@@ -1,0 +1,154 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="FamousThemes" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Index</title>
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+    <script src="../../../Assets/GoMobile/js/jquery.validate.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <!--    <p>
+            <a href="~/Dsr/Login">DSR Login</a>
+        </p>
+
+        <p>
+            Supervisor Login
+        </p>
+
+        <p>
+            Admin Login
+        </p>
+        -->
+    <div id="header">
+        <div class="gohome radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+        <div class="gomenu radius20"><a href="#" onclick="swiperParent.swipeTo(9);"><img src="../../../Assets/GoMobile/images/icons/contact.png" alt="" title="" /></a></div>
+    </div>
+    <div class="swiper-container swiper-parent" style="width:100%;">
+        <div class="swiper-wrapper">
+
+            <!--Menu page-->
+            <div class="swiper-slide sliderbg_menu">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="logo"><a href="#"></a></div>
+                                <br />
+                                <br />
+                                <br />
+                                <div class="menu">
+                                    <ul>
+                                        <li><a href="~/Dsr/Login"><img src="../../../Assets/GoMobile/images/icons/Bangla.png" alt="" title="" /><span>&nbsp;</span></a></li>
+                                        <li><a href="#" class="swipeIt"><img src="../../../Assets/GoMobile/images/icons/English.png" alt="" title="" /><span>&nbsp;</span></a></li>
+                                        <li><a href="#" class="swipeIt"><img src="../../../Assets/GoMobile/images/icons/Skip.png" alt="" title="" /><span>&nbsp;</span></a></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+
+
+
+
+            <!--End of pages-->
+
+        </div>
+        <div class="pagination"></div>
+    </div>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.tabify.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/code.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>
+    <!--Twitter Feed-->
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/twitter/jquery.tweet.js" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var $ = jQuery.noConflict();
+        jQuery(function ($) {
+            $(".tweet").tweet({
+                modpath: 'js/twitter/',
+                join_text: "auto",
+                username: "famousthemes",
+                count: 5,
+                auto_join_text_default: "we said,",
+                auto_join_text_ed: "we",
+                auto_join_text_ing: "we were",
+                auto_join_text_reply: "we replied",
+                auto_join_text_url: "we were checking out",
+                loading_text: "loading tweets..."
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function ajaxContact(theForm) {
+            var $ = jQuery;
+            $('#loader').fadeIn();
+            var formData = $(theForm).serialize(),
+            note = $('#Note');
+            $.ajax({
+                type: "POST",
+                url: "contact-send.php",
+                data: formData,
+                success: function (response) {
+                    if (note.height()) {
+                        note.fadeIn('fast', function () { $(this).hide(); });
+                    } else {
+                        note.hide();
+                    }
+                    $('#LoadingGraphic').fadeOut('fast', function () {
+                        //$(this).remove();
+                        if (response === 'success') {
+
+                            $('#formtitle').hide();
+
+                        }
+                        // Message Sent? Show the 'Thank You' message and hide the form
+                        result = '';
+                        c = '';
+                        if (response === 'success') {
+                            result = 'Your message has been sent. Thank you!';
+                            c = 'success';
+                        } else {
+                            result = response;
+                            c = 'error';
+                        }
+                        note.removeClass('success').removeClass('error').text('');
+                        var i = setInterval(function () {
+                            if (!note.is(':visible')) {
+                                note.html(result).addClass(c).slideDown('fast');
+                                clearInterval(i);
+                            }
+                        }, 40);
+                    }); // end loading image fadeOut
+                }
+            });
+            return false;
+        }
+    </script>
+</body>
+</html>

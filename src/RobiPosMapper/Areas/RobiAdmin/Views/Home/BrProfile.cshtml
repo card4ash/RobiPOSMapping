@@ -1,0 +1,385 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>BR Admin Panel</title>
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="~/Assets/MyImages/dashboardfavicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Assets/MyImages/dashboardfavicon.ico" type="image/x-icon">
+
+    <link href="~/Assets/Amsterdam/css/main.css" rel="stylesheet" type="text/css" />
+    <!--[if IE]> <link href="css/ie.css" rel="stylesheet" type="text/css"> <![endif]-->
+    <link href="~/Assets/ChartsAndGraphs/jqplot/jquery.jqplot.min.css" rel="stylesheet" />
+
+    <style>
+        ul.midnav li img {
+            padding-top: 12px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .newlyLoaded {
+            background-color: #aaaaaa !important;
+            -webkit-transition-property: background-color; /* Safari */
+            -webkit-transition-duration: 5s; /* Safari */
+            -webkit-transition-delay: 2s; /* Safari */
+            transition-property: background-color;
+            transition-duration: 10s;
+            transition-delay: 2s;
+        }
+
+        .firstColor {
+            background-color: #000000;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+        .addedEarlier {
+            background-color: #FFFFFF;
+            -webkit-transition: all 2s ease;
+            -moz-transition: all 2s ease;
+            -o-transition: all 2s ease;
+            -ms-transition: all 2s ease;
+            transition: all 2s ease;
+        }
+
+        .mypopup {
+            z-index: 10000;
+            background-color: rgba(0,0,0,0.5);
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .solutionpopup {
+            z-index: 10000;
+            filter: alpha(opacity=40); /*older IE*/
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50); /* IE */
+            -moz-opacity: .40; /*older Mozilla*/
+            -khtml-opacity: 0.4; /*older Safari*/
+            opacity: 0.4; /*supported by current Mozilla, Safari, and Opera*/
+            background-color: #000000;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .alignRight {
+            text-align: right !important;
+        }
+
+        .alignCenter {
+            text-align: center !important;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/jquery_ui_custom.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/excanvas.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.inputlimiter.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.autosize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.ibutton.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.dualListBox.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.select2.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.cleditor.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html4.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html5.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/jquery.plupload.queue.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.wizard.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.jgrowl.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.pie.chart.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.elfinder.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fancybox.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/tables/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-bootbox.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-progressbar.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/functions/custom.js"></script>
+    @*<script type="text/javascript" src="~/Assets/Amsterdam/js/charts/chart.js"></script>*@
+    <script src="~/Assets/ChartsAndGraphs/Chart.js"></script>
+    <script src="~/Assets/ChartsAndGraphs/jqplot/jquery.jqplot.min.js"></script>
+    <script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.pieRenderer.min.js"></script>
+    <script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.barRenderer.min.js"></script>
+    <script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+    <script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.pointLabels.min.js"></script>
+</head>
+
+<body>
+
+    <div id="MarketResearchPlanningPopup" class="mypopup" style="display: none; overflow: auto;">
+        <div style="background-color:yellow; color:black; width:100px; margin:auto;">LOADING..</div>
+        <img src="~/Assets/MyImages/b.gif" />
+    </div>
+
+    <!-- Top nav -->
+    <div id="top">
+        <div class="top-wrapper">
+            <a href="index" title=""><img src="~/Assets/Amsterdam/images/logo.png" class="logo" alt="" /></a>
+            <ul class="topnav">
+                <li class="topuser">
+                    <a title="" data-toggle="dropdown"><img src="~/Assets/Amsterdam/images/user.png" alt="" /><span>@ViewBag.UserName</span></a>
+                </li>
+                <li class="sidebar-button"><a href="#" title=""><b class="responsive-nav"></b></a></li>
+                <li><a href="/robiAdmin/Login" title=""><b class="logout"></b></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /top nav -->
+    <!-- Main wrapper -->
+    <div class="wrapper three-columns">
+
+        <!-- Left sidebar -->
+        <div class="sidebar" id="left-sidebar">
+            <ul class="navigation standard">
+                <!-- standard nav -->
+                <li>
+                    <a href="~/RobiAdmin/Home/Index?user=@ViewBag.UserName&moid=@ViewBag.MoId" title=""><img src="~/Assets/Amsterdam/images/icons/mainnav/dashboard.png" alt="" />Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="~/RobiAdmin/SurveyorManagement/Index?user=@ViewBag.UserName&moid=@ViewBag.MoId" title="">Consumer Contacts</a>
+                </li>
+
+                <li>
+                    <a href="~/RobiAdmin/OutletList/OverlappingOutletList?user=@ViewBag.UserName&moid=@ViewBag.MoId" title="Retailers where multipe surveyor worked.">Consumer Feedback</a>
+                </li>
+
+                <li>
+                    <a href="~/RobiAdmin/Home/CallCenterReport?user=@ViewBag.UserName&moid=@ViewBag.MoId" title="Surveyor wise updated and new pos count till today.">Call Center Reports</a>
+                </li>
+
+                <li>
+                    <a href="~/RobiAdmin/OutletSearch/Index?user=@ViewBag.UserName&moid=@ViewBag.MoId" title="Search with various criteria.">MobiChecker</a>
+                </li>
+
+                <li class="active">
+                    <a href="~/RobiAdmin/Home/BrProfile?user=@ViewBag.UserName&moid=@ViewBag.MoId" title="Summary.">BR Profile</a>
+                </li>
+
+                @*<li>
+                        <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromSrLog?user=@ViewBag.UserName&srid=0&date=@DateTime.Today.ToString("yyyy-MM-dd")" title="">SR Wise Retailers From SR Log</a>
+                    </li>
+                    <li>
+                        <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?user=@ViewBag.UserName&srid=0&date=@DateTime.Today.ToString("yyyy-MM-dd")" title="View SR and/or date specific activities from retailer table.">SR Wise Retailers from Retailers</a>
+                    </li>
+                    <li>
+                        <a href="~/RobiAdmin/OutletList/SrToRetailersCount?user=@ViewBag.UserName&srid=0&date=@DateTime.Today.ToString("yyyy-MM-dd")" title="Displays All SR with work count from retailer table.">SR-Retailers Count from retailer table</a>
+                    </li>*@
+
+                <!--  <li>
+                        <a target="_blank" href="~/RobiAdmin/DuplicatePhotos/Index?srid=0&date=yyyy-mm-dd" title="Displays duplicate photos list.">Duplicate Photos</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="~/RobiAdmin/Reports/RetailersFromAllScenario" title="Retailers From All Scenario.">Evaluating RSP status from all scenario</a>
+                    </li>
+                    <li>
+                        <a href="~/RobiAdmin/Reports/SignedRspRetailerStats" title="RSP Wise New, Updated, Reevaluated POS Count">RSP-POS Status</a>
+                    </li>
+                    <li>
+                        <a href="~/RobiAdmin/Reports/SrRetailerStats" title="Surveyor Wise New, Updated, Reevaluated POS Count">Surveyor-POS Status</a>
+                    </li>
+                    <li>
+                        <a href="~/RobiAdmin/Reports/SelectedRspStatus" title="">Selected RSP Status</a>
+                    </li> -->
+
+            </ul><!-- /standard nav -->
+        </div>
+        <!-- /left sidebar -->
+        <!-- Main content -->
+        <div class="content">
+            <div class="outer">
+                <div class="inner">
+                    <div class="page-header">
+                        <!-- Page header -->
+                        <h5>BR Search</h5>
+                    </div><!-- /page header -->
+                    <div class="body">
+                        <!-- Content container -->
+                        <div class="container">
+
+
+                            <div class="block well">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h5>Search Options</h5>
+                                    </div>
+                                </div>
+                                <div class="table-overflow">
+
+                                    <select id="RegionIdCombo">
+                                        <option value="-1">Select region...</option>
+
+                                    </select>
+
+                                    <select id="AreaIdCombo" title="Keep it unchanged if you dont want to include this in your search.">
+                                        <option value="-1">No area</option>
+                                    </select>
+
+                                    <select id="RspIdCombo" title="Keep it unchanged if you dont want to include this in your search.">
+                                        <option value="-1">No House</option>
+                                    </select>
+                                    <select id="SurveyorIdCombo" title="Keep it unchanged if you dont want to include this in your search.">
+                                        <option value="-1">Select BR ...</option>
+                                        <option value="1">BR 1</option><option value="2">BR 2</option>
+                                    </select>
+                                    <button id="SubmitSearch" class="btn btn-info">Search</button>
+                                </div>
+                            </div>
+                            <div class="separator-doubled"></div>
+                            <!--\\ Search -->
+
+
+
+                            <div class="table-overflow" style="display:none;" id="result-div">
+                                <span id="resultCount">Found: 2</span>
+                                <table class="table table-striped">
+                                    <tbody id="tbodyData">
+                                        <tr>
+                                            <td class="addedEarlier">
+                                                <a title="BR Name. Click for more details." target="_blank" href="/RSP/OutletDetails/Index?user=skpaul&amp;moid=11&amp;retailerid=522532">
+                                                   Abdur Rahim
+                                                </a>
+
+                                                &nbsp;&nbsp;
+                                                <a href="/RobiAdmin/SurveyorManagement/ShowAll?user=skpaul&amp;moid=11&amp;srid=480" title="View this surveyor details.">
+                                                    <img src="/Assets/MyImages/RetailerDetails16.png">
+                                                </a>
+
+                                                &nbsp;&nbsp;
+
+                                                <a href="/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?user=skpaul&amp;moid=11&amp;srid=480" title="View other retailers done by this surveyor.">
+                                                    <img src="/Assets/MyImages/FolderBlue16.png">
+                                                </a>
+
+                                                <br />
+                                                <span title="House Name">J.K. Enterprise</span>, <span title="Area Name">Barguna</span>, <span title="Region Name">Barisal</span>.<br>
+                                                <span title="Contact No.">01711458565</span>
+                                            </td>
+                                            <!--column 3: activity info-->
+                                            <td class="addedEarlier">
+                                                <img title="1 surveyor worked at this retailer." src="../../../../Assets/MyImages/Contacts32.png" width="20"> &nbsp;&nbsp; <span style="font-size:14px;">7,254 </span> <br>
+                                                Last worked on: 07 Dec, 12:15 PM <br>
+                                                                                                   
+                                            </td>
+
+                                            <td class="addedEarlier">
+                                                <img src="~/Assets/MyImages/lighter.png" alt="" width="20" /> <span style="font-size:14px;">3,451</span> <br>
+                                                <img src="~/Assets/MyImages/CigPack.png" alt="" width="20" /> <span style="font-size:14px;">5,120</span>
+                                            </td>
+
+                                            <td class="addedEarlier">
+                                                <img src="~/Photos/0bee8fc6-e71f-4d6a-ad64-70a05fb4e55c.png" width="60" />
+
+                                                <img src="~/Assets/MyImages/VDOIcon.png" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="addedEarlier">
+                                                <a title="BR Name. Click for more details." target="_blank" href="/RSP/OutletDetails/Index?user=skpaul&amp;moid=11&amp;retailerid=522532">
+                                                    Samiul Khan
+                                                </a>
+
+                                                &nbsp;&nbsp;
+                                                <a href="/RobiAdmin/SurveyorManagement/ShowAll?user=skpaul&amp;moid=11&amp;srid=480" title="View this surveyor details.">
+                                                    <img src="/Assets/MyImages/RetailerDetails16.png">
+                                                </a>
+
+                                                &nbsp;&nbsp;
+
+                                                <a href="/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?user=skpaul&amp;moid=11&amp;srid=480" title="View other retailers done by this surveyor.">
+                                                    <img src="/Assets/MyImages/FolderBlue16.png">
+                                                </a>
+
+                                                <br />
+                                                <span title="House Name">J.K. Enterprise</span>, <span title="Area Name">Barguna</span>, <span title="Region Name">Barisal</span>.<br>
+                                                <span title="Contact No.">019123456789</span>
+                                            </td>
+                                            <!--column 3: activity info-->
+                                            <td class="addedEarlier">
+                                                <img title="1 surveyor worked at this retailer." src="../../../../Assets/MyImages/Contacts32.png" width="20"> &nbsp;&nbsp; <span style="font-size:14px;">7,254 </span> <br>
+                                                Last worked on: 12 Dec, 4:27 PM <br>
+
+                                            </td>
+
+                                            <td class="addedEarlier">
+                                                <img src="~/Assets/MyImages/lighter.png" alt="" width="20" /> <span style="font-size:14px;">3,451</span> <br>
+                                                <img src="~/Assets/MyImages/CigPack.png" alt="" width="20" /> <span style="font-size:14px;">5,120</span>
+                                            </td>
+
+                                            <td class="addedEarlier">
+                                                <img src="~/Photos/2d5995ab-3faf-47f1-af6b-506515d0e4de.png" width="60" />
+                                                <img src="~/Assets/MyImages/VDOIcon.png" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div style="text-align:center;">
+                                <button style="text-align:center; margin:0 auto; padding:5px; width:250px; display:none;" id="ShowMore">Show more results..</button>
+                            </div>
+                        </div>
+                        <!-- /content container -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /main content -->
+
+    </div>
+
+
+    <script>
+        $(function () {
+            $('#SubmitSearch').click(function () {
+                $('#result-div').show();
+            });
+        });
+    </script>
+    
+
+</body>
+</html>
+

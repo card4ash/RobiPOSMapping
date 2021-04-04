@@ -1,0 +1,3080 @@
+﻿<style>
+    .trpos {
+        cursor: pointer;
+    }
+
+        .trpos:hover {
+            background-color: lightyellow;
+        }
+     .panel-info > .panel-heading {
+        color: #3a87ad;
+        background-color: #ffcb05;
+        border-color: #ffcb05;
+        color: #0B0A0A;
+    }
+    #layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: .8;
+        z-index: 100003;
+        display: none;
+        overflow: hidden;
+    }
+
+    #popup {
+        width: 90%;
+        height: 95%;
+        position: fixed;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100013;
+        border: 1px solid green;
+        padding: 10px;
+        background-color: #fff;
+        display: none;
+    }
+
+    #pickEmployee {
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x:hidden;
+    }
+
+    #mapcanvas {
+        height: 90%;
+        width: 100%;
+    }
+
+    .boxclose {
+        float: right;
+        margin-top: -30px;
+        margin-right: -30px;
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #AEAEAE;
+        border-radius: 30px;
+        background: #605F61;
+        font-size: 31px;
+        font-weight: bold;
+        display: inline-block;
+        line-height: 0px;
+        padding: 11px 3px;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('#boxclose').click(function () {
+            $('#btnUpdate').hide();
+            $('#btnCancel').hide();
+            $('#btnVerify').show();
+            $('#btnEdit').show();
+
+            $('#txtRetailerName').hide();
+            $('#txtAddress').hide();
+            $('#cmbRetailerType').hide();
+            $('#txtElMsisdn').hide();
+            $('#cmbVisitDay').hide();
+            $('#cmbStructure').hide();
+            $('#cmbShopSignage').hide();
+            $('#cmbShopType').hide();
+            $('#cmbLocality').hide();
+
+            $('.tdRetailerName').show();
+            $('.tdAddress').show();
+            $('.tdRetailerType').show();
+            $('.tdElMsisdn').show();
+            $('.tdVisitDay').show();
+            $('.tdrStructure').show();
+            $('.tdShopSignage').show();
+            $('.tdShopType').show();
+            $('.tdLocality').show();
+            $('#popup,#layer').hide();
+        });
+        $('#layer').click(function () {
+            $('#btnUpdate').hide();
+            $('#btnCancel').hide();
+            $('#btnVerify').show();
+            $('#btnEdit').show();
+
+            $('#txtRetailerName').hide();
+            $('#txtAddress').hide();
+            $('#cmbRetailerType').hide();
+            $('#txtElMsisdn').hide();
+            $('#cmbVisitDay').hide();
+            $('#cmbStructure').hide();
+            $('#cmbShopSignage').hide();
+            $('#cmbShopType').hide();
+            $('#cmbLocality').hide();
+
+            $('.tdRetailerName').show();
+            $('.tdAddress').show();
+            $('.tdRetailerType').show();
+            $('.tdElMsisdn').show();
+            $('.tdVisitDay').show();
+            $('.tdrStructure').show();
+            $('.tdShopSignage').show();
+            $('.tdShopType').show();
+            $('.tdLocality').show();
+            $('#popup,#layer').hide();
+        });
+    });
+
+</script>
+<style>
+    .input-group {
+        width:100%;
+    }
+    .input-group-addon {
+        text-align:left;
+        width: 30%;
+    }
+</style>
+<div id="layer"></div>
+<div id="popup">
+    <a class="boxclose" id="boxclose">x</a>
+    <div id="pickEmployee">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default" id="existing-data">
+                    <div class="panel-body"><div class="row">
+                        <div class="col-md-6 basicReatiler">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4>&nbsp;<span class="fa fa-globe"></span>Retailer Information</h4>
+
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-columns"></span>
+                                                    Retailer Name:<input type="hidden" id="retailerId" /><input type="hidden" id="verifyStatus" />
+                                                </span>
+                                                <span class="form-control tdRetailerName"></span>
+                                                <input class="form-control txtRetailerName" type="text" id="txtRetailerName" style="display:none;" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-building"></span>
+                                                    Address:
+                                                </span>
+                                                <span class="form-control tdAddress"></span>
+                                                <input class="form-control txtAddress" type="text" id="txtAddress" style="display:none;" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-sun-o"></span> Visit Day:
+                                                </span>
+                                                <span class="form-control tdVisitDay"></span>
+                                                <select class="form-control" id="cmbVisitDay" style="display:none;">
+                                                    <option value="0">Select Visit Days</option>
+                                                    @foreach (var row in ViewBag.VisitDayList.Rows)
+                                                    {
+                                                        <option value="@row["VisitDayId"]">@row["VisitDays"]</option>
+
+                                                    }
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-gear"></span> Retailer Structure:
+                                                </span>
+                                                <span class="form-control tdrStructure"></span>
+                                                <select class="form-control" id="cmbStructure" style="display:none;">
+                                                    <option value="0">Select Retailer Structure</option>
+                                                    @foreach (var row in ViewBag.StructureList.Rows)
+                                                    {
+                                                        <option value="@row["PosStructureId"]">@row["PosStructureName"]</option>
+
+                                                    }
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-home"></span> Shop Signage:
+                                                </span>
+                                                <span class="form-control tdShopSignage"></span>
+                                                <select class="form-control" id="cmbShopSignage" style="display:none;">
+                                                    <option value="0">Select Shop Signage</option>
+                                                    @foreach (var row in ViewBag.SignageList.Rows)
+                                                    {
+                                                        <option value="@row["ShopSignageId"]">@row["ShopSignageName"]</option>
+
+                                                    }
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-sitemap"></span> Shop Type:
+                                                </span>
+                                                <span class="form-control tdShopType"></span>
+                                                <select class="form-control" id="cmbShopType" style="display:none;">
+                                                    <option value="0">Select Shop Type</option>
+                                                    @foreach (var row in ViewBag.ShopTypeList.Rows)
+                                                    {
+                                                        <option value="@row["ShopTypeId"]">@row["ShopTypeName"]</option>
+
+                                                    }
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-user"></span> DSR:
+                                                </span>
+                                                <span class="form-control tdDSR"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-mobile-phone"></span> DSR MSISDN:
+                                                </span>
+                                                <span class="form-control tdDsrMsisdn"></span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-road"></span> Route Plan:
+                                                </span>
+                                                <span class="form-control tdRoutePlan"></span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @*<div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-mobile"></span>
+                                                        ElMSISDN:
+                                                    </span>
+                                                    <span class="form-control tdElMsisdn"></span>
+                                                    <input class="form-control txtElMsisdn" type="text" id="txtElMsisdn" style="display:none;" />
+                                                </div>*@
+
+
+                                            <div class="input-group elmsisdnAdd" style="display:none;">
+                                                <input type="hidden" />
+                                                <span class="input-group-btn" style="text-align:right;">
+                                                    <button id="btnAddMsisdn" class="btn btn-default" style="width:140px;" type="button">Add ELMSISDN</button>
+                                                </span>
+
+                                            </div>
+
+                                            <div class="input-group simposAdd" style="display:none;">
+                                                <input type="hidden" />
+                                                <span class="input-group-btn" style="text-align:right;">
+                                                    <button id="btnAddSimpos" class="btn btn-default" style="width:140px;" type="button">Add SIM POS</button>
+                                                </span>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="panel-footer">
+                                    <button class="btn btn-info btn-lg" id="btnReset">Reset</button>
+                                    <button class="btn btn-danger btn-lg" id="btnDelete">Delete</button>
+                                    <button class="btn btn-warning btn-lg" id="btnEdit">Edit</button>
+                                    <button class="btn btn-primary btn-lg" id="btnVerify">Verify</button>
+                                    <button class="btn btn-warning btn-lg" id="btnUpdate" style="display:none;">Update</button>
+                                    <button class="btn btn-primary btn-lg" id="btnCancel" style="display:none;">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading"><h4>&nbsp;<span class="fa fa-thumb-tack"></span> Retailer Demografic Information</h4></div>
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Region</span>
+                                                <span class="form-control tdRegion"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Area</span>
+                                                <span class="form-control tdArea"></span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Thana</span>
+                                                <span class="form-control tdThana"></span>
+                                                <select class="form-control" name="popthana" id="popthanaCombo" style="display:none;">
+                                                    <option value="0" selected="">Select a Thana</option>
+                                                    @foreach (var row in ViewBag.ThanaList.Rows)
+                                                    {
+                                                        <option value="@row["ThanaId"]">@row["ThanaName"]</option>
+
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Word</span>
+                                                <span class="form-control tdWard"></span>
+                                                <select class="form-control" name="popward" id="popwardCombo" style="display:none;">
+                                                    <option value="0" selected="">Select an Union/Ward</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Mauza</span>
+                                                <span class="form-control tdMauza"></span>
+                                                <select class="form-control" name="popmauza" id="popmauzaCombo" style="display:none;">
+                                                    <option value="0" selected="">Select an Mauza/Mohalla</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Village</span>
+                                                <span class="form-control tdVillage"></span>
+                                                <select class="form-control" name="popvillage" id="popvillageCombo" style="display:none;">
+                                                    <option value="0" selected="">Select a Village</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    EL POS
+                                                    <input class="form-control" id="isElPos" type="checkbox">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    SIM POS
+                                                    <input class="form-control" id="isSimPos" type="checkbox">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    SC POS
+                                                    <input class="form-control" id="isSCPos" type="checkbox">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isAppartment">
+                                                <i></i>Appartment
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isSlum">
+                                                <i></i>Slum
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isSemiurbanHouseing">
+                                                <i></i>Semi-urbun Housing
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isRuralHousing">
+                                                <i></i>Rural Housing
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isShoppingMall">
+                                                <i></i>Shopping Mall
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isRetailHub">
+                                                <i></i>Retail Hub
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isMobileDevice">
+                                                <i></i>Mobile Device Market
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isBazar">
+                                                <i></i>Bazaar
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+
+
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isOfficeArea">
+                                                <i></i>Office Area
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isGarmentsMajority">
+                                                <i></i>Garments Majority Area
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isGeneralIndustrial">
+                                                <i></i>General Industrial Area
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isUrbanTransit">
+                                                <i></i>Urban Transit Point
+                                            </label>
+
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isRuralTransit">
+                                                <i></i>Rural Transit Point
+                                            </label>
+
+                                        </div>
+                                        <div class="col-md-4">
+
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isUrbarHangouts">
+                                                <i></i>Urban Youth Hangouts
+                                            </label>
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isSemiUrbanHangouts">
+                                                <i></i>Semi-urban Youth Hangouts
+                                            </label>
+
+                                            <label class="checkbox">
+                                                <input type="checkbox" id="isRuralHangouts">
+                                                <i></i>Rural Youth Hangouts
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading"><h4>&nbsp;<span class="fa fa-thumb-tack"></span> Retailer Photo</h4></div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group" style="text-align:center;">
+                                                    <img id="posImage" style=" width:80%;height:auto;" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading"><h4>&nbsp;<span class="fa fa-thumb-tack"></span> QR Photo</h4></div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group" style="text-align:center;">
+                                                    <img id="qrImage" style=" width:80%;height:auto;" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Retailer Map</div>
+                                    @*First Row Name and Mobile*@
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12 col-xs-12 box-shadow" id="mapcanvas" style="height:250px; width:95%; border:0px; margin:1px auto;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                            <h1 class="page-title txt-color-blueDark">
+                                <i class="fa fa-table fa-fw "></i>
+                                Search
+                                <span>
+
+                                    Records
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- widget grid -->
+                    <section id="widget-grid" class="">
+                        <div class="row">
+                            <!-- NEW COL START -->
+                            <article class="col-sm-12 col-md-12 col-lg-12">
+                                <!-- Widget ID (each widget will need unique ID)-->
+                                <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false">
+                                    <header>
+                                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                                        <h2>Search Records </h2>
+                                    </header>
+                                    <!-- widget div-->
+                                    <div>
+                                        <!-- widget edit box -->
+                                        <div class="jarviswidget-editbox">
+                                            <!-- This area used as dropdown edit box -->
+                                        </div>
+                                        <!-- end widget edit box -->
+                                        <!-- widget content -->
+                                        <div class="widget-body no-padding">
+
+                                            <form action="" id="order-form" class="smart-form" novalidate="novalidate">
+
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="srname" id="srname">
+                                                                    <option value="0" selected="">Select an SR</option>
+                                                                    @foreach (var row in ViewBag.SRList.Rows)
+                                                    {
+                                            <option value="@row["PersonId"]">@row["PersonName"]</option>
+
+                                                    }
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="posStatus" id="posStatus">
+                                                                    <option value="0" selected="">Select POS Status</option>
+                                                                    <option value="1">Existing but Not Updated</option>
+                                                                    <option value="2">Updated</option>
+                                                                    <option value="3">Created</option>
+                                                                    <option value="4">Not Found</option>
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+
+                                                        <section class="col col-3">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-calendar"></i>
+                                                                <input type="text" name="startdate" id="startdate" placeholder="start date">
+                                                            </label>
+                                                        </section>
+                                                        <section class="col col-3">
+                                                            <label class="input">
+                                                                <i class="icon-append fa fa-calendar"></i>
+                                                                <input type="text" name="enddate" id="enddate" placeholder="end date">
+                                                            </label>
+                                                        </section>
+                                                    </div>
+
+
+                                                </fieldset>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="thana" id="thanaCombo">
+                                                                    <option value="0" selected="">Select a Thana</option>
+                                                                    @foreach (var row in ViewBag.ThanaList.Rows)
+                                                {
+                                            <option value="@row["ThanaId"]">@row["ThanaName"]</option>
+
+                                                }
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="ward" id="wardCombo">
+                                                                    <option value="0" selected="">Select an Union/Ward</option>
+
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="mauza" id="mauzaCombo">
+                                                                    <option value="0" selected="">Select a Mauza/Mohalla</option>
+
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="village" id="villageCombo">
+                                                                    <option value="0" selected="">Select a Village</option>
+
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+                                                    </div>
+
+
+                                                </fieldset>
+                                                <fieldset>
+                                                    <div class="row">
+
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="shopType" id="shopTypeCombo">
+                                                                    <option value="0" selected="">Select a Shop Type</option>
+                                                                    @foreach (var row in ViewBag.ShopTypeList.Rows)
+                                                {
+                                            <option value="@row["ShopTypeId"]">@row["ShopTypeName"]</option>
+
+                                                }
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+
+                                                        <section class="col col-3">
+                                                            <label class="select">
+                                                                <select name="verified" id="verifiedCombo">
+                                                                    <option value="0" selected="">POS Verified?</option>
+                                                                    <option value="1">Yes</option>
+                                                                    <option value="2">No</option>
+                                                                </select> <i></i>
+                                                            </label>
+                                                        </section>
+                                                        <section class="col col-3">
+                                                            <label class="input">
+                                                                <input type="text" name="elMsisdn" id="txtelMsisdn" placeholder="EL MSISDN">
+                                                            </label>
+                                                        </section>
+                                                        <section class="col col-3">
+                                                            <label class="input">
+                                                                <input type="text" name="simPos" id="txtSimPos" placeholder="SIM POS NO">
+                                                            </label>
+                                                        </section>
+                                                    </div>
+
+
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <section>
+
+                                                        <div class="row">
+                                                            <div class="col col-3">
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="elPoschk">
+                                                                    <i></i>EL POS
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="simPoschk">
+                                                                    <i></i>SIM POS
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="scPoschk">
+                                                                    <i></i>SC POS
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="appartmentschk">
+                                                                    <i></i>Apartments
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="slumschk">
+                                                                    <i></i>Slums
+                                                                </label>
+                                                            </div>
+                                                            <div class="col col-3">
+
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="semiUrbarchk">
+                                                                    <i></i>Semi-urban Housing
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="ruralHousingchk">
+                                                                    <i></i> Rural Housing
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="shoppingchk">
+                                                                    <i></i> Shopping Mall
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="retailHubchk">
+                                                                    <i></i> Retail Hub
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="mobileDevicechk">
+                                                                    <i></i>Mobile Device Market
+                                                                </label>
+                                                            </div>
+                                                            <div class="col col-3">
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="bazzarchk">
+                                                                    <i></i>Bazaar
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="officeAreachk">
+                                                                    <i></i> Office Area
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="garmentschk">
+                                                                    <i></i>Garments Majority Area
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="generalchk">
+                                                                    <i></i>General Industrial Area
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="urbanTransitchk">
+                                                                    <i></i> Urban Transit Points
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="col col-3">
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="ruralTarnsitchk">
+                                                                    <i></i>Rural Transit Points
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="urbanYouthchk">
+                                                                    <i></i>Urban Youth Hangouts
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="semiUrbanYouthchk">
+                                                                    <i></i>Semi-urban Youth Hangouts
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="ruralYouthchk">
+                                                                    <i></i>Rural Youth Hangouts
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="touristDestinations">
+                                                                    <i></i>Tourist Destinations
+                                                                </label>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </section>
+                                                </fieldset>
+
+
+                                                <footer>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Search
+                                                    </button>
+                                                </footer>
+                                            </form>
+
+                                        </div>
+                                        <!-- end widget content -->
+
+                                    </div>
+                                    <!-- end widget div -->
+                                </div>
+                                <!-- end widget -->
+                            </article>
+                            <!-- END COL -->
+                            <!-- NEW WIDGET START -->
+                            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                <!-- Widget ID (each widget will need unique ID)-->
+                                <div class="jarviswidget jarviswidget-color-orangeDark" id="wid-id-1" data-widget-editbutton="false">
+
+                                    <header>
+                                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                        <h2>Retailer Information</h2>
+                                    </header>
+
+                                    <!-- widget div-->
+                                    <div>
+                                        <!-- widget edit box -->
+                                        <div class="jarviswidget-editbox">
+                                            <!-- This area used as dropdown edit box -->
+                                        </div>
+                                        <!-- end widget edit box -->
+                                        <!-- widget content -->
+                                        <div class="widget-body no-padding">
+                                            <div class="alert alert-info no-margin fade in">
+                                                <button class="close" data-dismiss="alert">
+                                                    ×
+                                                </button>
+                                                
+                                                <div id="resultSummary">Use search to view data.</div>
+                                            </div>
+                                            <table id="posbasic" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Thana</th>
+                                                        <th>Ward</th>
+                                                        <th>Mauza</th>
+                                                        <th>Village</th>
+                                                        <th>Retailer</th>
+                                                        <th>POS Status</th>
+                                                        <th>Verified?</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+
+                                        </div>
+                                        <!-- end widget content -->
+
+                                    </div>
+                                    <!-- end widget div -->
+
+                                </div>
+                                <!-- end widget -->
+
+                            </article>
+                            <!-- WIDGET END -->
+                        </div>
+
+                        <!-- end row -->
+
+                    </section>
+                    <!-- end widget grid -->
+
+
+                    <script>
+    $(function () {
+        $('#btnAddMsisdn').click(function () {
+            $('.elmsisdnAdd').before('<div class="input-group newElmsisdn">'
+                                                    + '<span class="input-group-addon">'
+                                                        + '<span class="fa fa-mobile"></span>'
+                            + 'ELMSISDN:'
+                           + ' </span>'
+                            + '<input type="text" value="" class="form-control elmsdnName">'
+                            + '<span class="input-group-btn">'
+                             + '   <button class="btn btn-default btnElRemove" style="width:140px;"  type="button">Remove</button>'
+                            + '</span>'
+                        + '</div>');
+        });
+        $('#btnAddSimpos').click(function () {
+            $('.simposAdd').before('<div class="input-group newSimpos">'
+                                                    + '<span class="input-group-addon">'
+                                                        + '<span class="fa fa-mobile"></span>'
+                            + 'SIM POS:'
+                           + ' </span>'
+                            + '<input type="text" value="" class="form-control simposName">'
+                            + '<span class="input-group-btn">'
+                             + '   <button class="btn btn-default btnSimposRemove"  style="width:140px;"  type="button">Remove</button>'
+                            + '</span>'
+                        + '</div>');
+        });
+        $('.basicReatiler').on('click', '.btnElRemove', function () {
+            $(this).closest('.newElmsisdn').remove();
+        });
+        $('.basicReatiler').on('click', '.btnSimposRemove', function () {
+            $(this).closest('.newSimpos').remove();
+        });
+        $('.basicReatiler').on('click', '.btnElUpdate', function () {
+            var elname = $(this).closest('.existElmsisdn').find('.elmsisdnName').val();
+            var elId = $(this).closest('.existElmsisdn').find('.elmsisdnId').val();
+            var urlData = '@Url.Action("UpdateElmsisdn", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: elId,name:elname }),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        alert('Successfully Updated EL POS :)');
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    $.modal('<h4 style="color:red;">' + ajaxErrorMessage + '</h4>');
+                }
+            });
+        });
+
+        $('.basicReatiler').on('click', '.btnElDelete', function () {
+            var elId = $(this).closest('.existElmsisdn').find('.elmsisdnId').val();
+            var deletebtn = $(this);
+            var urlData = '@Url.Action("DeleteElmsisdn", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: elId }),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        alert('Successfully Deleted EL POS :)');
+                        deletebtn.closest('.existElmsisdn').remove();
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    $.modal('<h4 style="color:red;">' + ajaxErrorMessage + '</h4>');
+                }
+            });
+        });
+
+        $('.basicReatiler').on('click', '.btnSimposUpdate', function () {
+            var simposname = $(this).closest('.existSimpos').find('.simposName').val();
+            var simposId = $(this).closest('.existSimpos').find('.simposId').val();
+            var urlData = '@Url.Action("UpdateSimpos", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: simposId, name: simposname }),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        alert('Successfully Updated SIM POS :)')
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    $.modal('<h4 style="color:red;">' + ajaxErrorMessage + '</h4>');
+                }
+            });
+        });
+        $('.basicReatiler').on('click', '.btnSimposDelete', function () {
+            var deletebtnSim = $(this);
+            var simposId = $(this).closest('.existSimpos').find('.simposId').val();
+            var urlData = '@Url.Action("DeleteSimpos", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: simposId }),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        alert('Successfully Deleted SIM POS :)');
+                        deletebtnSim.closest('.existSimpos').remove();
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    $.modal('<h4 style="color:red;">' + ajaxErrorMessage + '</h4>');
+                }
+            });
+        });
+
+        $('#btnReset').click(function(){
+            var txt;
+            var retalerId = $('#retailerId').val();
+            var r = confirm("Are you Sure to Reset this POS?");
+            if (r == true) {
+                var urlData = '@Url.Action("ResetPOS", "Home")';
+                $.ajax({
+                    type: "POST", url: urlData,
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ id: retalerId }),
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.msg == "success") {
+                            alert('Successfully Reset  POS :)');
+                            $('input[value="' + retalerId + '"]').closest('tr').remove();
+                            $('#btnUpdate').hide();
+                            $('#btnCancel').hide();
+                            $('#btnVerify').show();
+                            $('#btnEdit').show();
+
+                            $('#txtRetailerName').hide();
+                            $('#txtAddress').hide();
+                            $('#cmbRetailerType').hide();
+                            $('#txtElMsisdn').hide();
+                            $('#cmbVisitDay').hide();
+                            $('#cmbStructure').hide();
+                            $('#cmbShopSignage').hide();
+                            $('#cmbShopType').hide();
+                            $('#cmbLocality').hide();
+
+                            $('.tdRetailerName').show();
+                            $('.tdAddress').show();
+                            $('.tdRetailerType').show();
+                            $('.tdElMsisdn').show();
+                            $('.tdVisitDay').show();
+                            $('.tdrStructure').show();
+                            $('.tdShopSignage').show();
+                            $('.tdShopType').show();
+                            $('.tdLocality').show();
+                            $('#popup,#layer').hide();
+                        }
+                        else {
+                            alert(result.msg);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        $.modal('<h4 style="color:red;">' + ajaxErrorMessage + '</h4>');
+                    }
+                });
+            } else {
+                
+            }
+        });
+
+        $('#btnDelete').click(function () {
+            var txt;
+            var retalerId = $('#retailerId').val();
+            var r = confirm("Are you Sure to Delete this POS?");
+            if (r == true) {
+                var urlData = '@Url.Action("DeletePOS", "Home")';
+                $.ajax({
+                    type: "POST", url: urlData,
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ id: retalerId }),
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.msg == "success") {
+                            alert('Successfully Deleted  POS :)');
+                            $('input[value="' + retalerId + '"]').closest('tr').remove();
+                            $('#btnUpdate').hide();
+                            $('#btnCancel').hide();
+                            $('#btnVerify').show();
+                            $('#btnEdit').show();
+
+                            $('#txtRetailerName').hide();
+                            $('#txtAddress').hide();
+                            $('#cmbRetailerType').hide();
+                            $('#txtElMsisdn').hide();
+                            $('#cmbVisitDay').hide();
+                            $('#cmbStructure').hide();
+                            $('#cmbShopSignage').hide();
+                            $('#cmbShopType').hide();
+                            $('#cmbLocality').hide();
+
+                            $('.tdRetailerName').show();
+                            $('.tdAddress').show();
+                            $('.tdRetailerType').show();
+                            $('.tdElMsisdn').show();
+                            $('.tdVisitDay').show();
+                            $('.tdrStructure').show();
+                            $('.tdShopSignage').show();
+                            $('.tdShopType').show();
+                            $('.tdLocality').show();
+                            $('#popup,#layer').hide();
+                        }
+                        else {
+                            alert(result.msg);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        $.modal('<h4 style="color:red;">' + ajaxErrorMessage + '</h4>');
+                    }
+                });
+            } else {
+                
+            }
+        });
+
+
+
+        $('#btnEdit').click(function () {
+            $('#btnVerify').hide();
+            $(this).hide();
+            $('#btnUpdate').show();
+            $('#btnCancel').show();
+
+            $('#txtRetailerName').show();
+            $('#txtAddress').show();
+            $('#cmbRetailerType').show();
+            $('#txtElMsisdn').show();
+            $('#cmbVisitDay').show();
+            $('#cmbStructure').show();
+            $('#cmbShopSignage').show();
+            $('#cmbShopType').show();
+            $('#cmbLocality').show();
+
+            $('#popthanaCombo').show();
+            $('#popwardCombo').show();
+            $('#popmauzaCombo').show();
+            $('#popvillageCombo').show();
+
+            $('.tdRetailerName').hide();
+            $('.tdAddress').hide();
+            $('.tdRetailerType').hide();
+            $('.tdElMsisdn').hide();
+            $('.tdVisitDay').hide();
+            $('.tdrStructure').hide();
+            $('.tdShopSignage').hide();
+            $('.tdShopType').hide();
+            $('.tdLocality').hide();
+
+            $('.tdThana').hide();
+            $('.tdWard').hide();
+            $('.tdMauza').hide();
+            $('.tdVillage').hide();
+
+            $('.btnElDelete').show();
+            $('.btnElUpdate').show();
+            $('.elmsisdnAdd').show();
+
+            $('.btnSimposDelete').show();
+            $('.btnSimposUpdate').show();
+            $('.simposAdd').show();
+
+        });
+        $('#btnCancel').click(function () {
+            $('#btnUpdate').hide();
+            $('#btnCancel').hide();
+            $('#btnVerify').show();
+            $('#btnEdit').show();
+
+            $('#txtRetailerName').hide();
+            $('#txtAddress').hide();
+            $('#cmbRetailerType').hide();
+            $('#txtElMsisdn').hide();
+            $('#cmbVisitDay').hide();
+            $('#cmbStructure').hide();
+            $('#cmbShopSignage').hide();
+            $('#cmbShopType').hide();
+            $('#cmbLocality').hide();
+
+            $('#popthanaCombo').hide();
+            $('#popwardCombo').hide();
+            $('#popmauzaCombo').hide();
+            $('#popvillageCombo').hide();
+            $('.tdThana').show();
+            $('.tdWard').show();
+            $('.tdMauza').show();
+            $('.tdVillage').show();
+
+            $('.tdRetailerName').show();
+            $('.tdAddress').show();
+            $('.tdRetailerType').show();
+            $('.tdElMsisdn').show();
+            $('.tdVisitDay').show();
+            $('.tdrStructure').show();
+            $('.tdShopSignage').show();
+            $('.tdShopType').show();
+            $('.tdLocality').show();
+
+            $('.btnElDelete').hide();
+            $('.btnElUpdate').hide();
+            $('.elmsisdnAdd').hide();
+            $('.newElmsisdn').remove();
+
+            $('.btnSimposDelete').hide();
+            $('.btnSimposUpdate').hide();
+            $('.simposAdd').hide();
+            $('.newSimpos').remove();
+        });
+        $('#btnUpdate').click(function () {
+            var pos = {};
+            pos.ID = $('#retailerId').val();
+            pos.retailerName = $('#txtRetailerName').val();
+            pos.address = $('#txtAddress').val();
+            pos.visitDayId = $('#cmbVisitDay').val();
+            pos.retailerStuctureId = $('#cmbStructure').val();
+            pos.shopSingage = $('#cmbShopSignage').val();
+            pos.shopType = $('#cmbShopType').val();
+            pos.thanaId = $('#popthanaCombo').val();
+            pos.wardId = $('#popwardCombo').val();
+            pos.mauzaId = $('#popmauzaCombo').val();
+            pos.villageId = $('#popvillageCombo').val();
+            pos.IsElPos = $('#isElPos').is(':checked');
+            pos.IsSimPos = $('#isSimPos').is(':checked');
+            pos.IsScPos = $('#isSCPos').is(':checked');
+            pos.IsApartments = $('#isAppartment').is(':checked');
+            pos.IsSlums = $('#isSlum').is(':checked');
+            pos.IsSemiUrbunHousing = $('#isSemiurbanHouseing').is(':checked');
+            pos.IsRuralHousing = $('#isRuralHousing').is(':checked');
+            pos.IsShoppingMall = $('#isShoppingMall').is(':checked');
+            pos.IsRetailHub = $('#isRetailHub').is(':checked');
+            pos.IsMobileDeviceMarket = $('#isMobileDevice').is(':checked');
+            pos.IsBazzar = $('#isBazar').is(':checked');
+            pos.IsOfficeArea = $('#isOfficeArea').is(':checked');
+            pos.IsGarmentsMajorityArea = $('#isGarmentsMajority').is(':checked');
+            pos.IsGeneralIndustrialArea = $('#isGeneralIndustrial').is(':checked');
+            pos.IsUrbanTransitPoints = $('#isUrbanTransit').is(':checked');
+            pos.IsRuralTransitPoints = $('#isRuralTransit').is(':checked');
+            pos.IsUrbanYouthHangouts = $('#isUrbarHangouts').is(':checked');
+            pos.IsSemiUrbanYouthHangouts = $('#isSemiUrbanHangouts').is(':checked');
+            pos.IsRuralYouthHangouts = $('#isRuralHangouts').is(':checked');
+            pos.elpos = [];
+            pos.simpos = [];
+            var valid = true;
+            $('.newElmsisdn').each(function () {
+                var obj = $(this).find('.elmsdnName').val();
+                if (obj) {
+                    if (obj.match(/^\d+$/)) {
+                        pos.elpos.push(obj);
+                        $(this).find('.elmsdnName').css('border-color', '#ccc');
+                    }
+                    else {
+                        $(this).find('.elmsdnName').css('border-color', 'red');
+                        valid = false;
+
+                    }
+                }
+            });
+            $('.newSimpos').each(function () {
+                var obj = $(this).find('.simposName').val();
+                if (obj) {
+                    if (obj.match(/^[0-9a-zA-Z]*$/)) {
+                        pos.simpos.push(obj);
+                    }
+                    else {
+                        $(this).find('.simposName').css('border-color', 'red');
+                        valid = false;
+
+                    }
+                }
+            });
+            if (valid == false) {
+                return false;
+            }
+
+
+            var retalerId = $('#retailerId').val();
+            var urlData = '@Url.Action("UpdateRetialerInfo", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ data:pos }),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        alert('successfully Updated :)');
+                        $('.newElmsisdn').remove();
+                        $('.newSimpos').remove();
+                        $('.elmsisdnAdd').hide();
+                        $('.simposAdd').hide();
+                        $('input[value="' + retalerId + '"]').closest('tr').data('posData', result.Pdata);
+                        $('input[value="' + retalerId + '"]').closest('tr').find('.tdtabRetailerName').html(result.Pdata.RetailerName);
+
+                        $('input[value="' + retalerId + '"]').closest('tr').find('.tdThanaName').html(result.Pdata.Thana);
+                        $('input[value="' + retalerId + '"]').closest('tr').find('.tdWardName').html(result.Pdata.Ward);
+                        $('input[value="' + retalerId + '"]').closest('tr').find('.tdMauzaName').html(result.Pdata.Mauza);
+                        $('input[value="' + retalerId + '"]').closest('tr').find('.tdVillageName').html(result.Pdata.Village);
+
+                        var popupData = result.Pdata;
+
+
+                        $('#popthanaCombo').hide();
+                        $('#popwardCombo').hide();
+                        $('#popmauzaCombo').hide();
+                        $('#popvillageCombo').hide();
+
+                        $('.tdThana').html(popupData.Thana).show();
+                        $('.tdWard').html(popupData.Ward).show();
+                        $('.tdMauza').html(popupData.Mauza).show();
+                        $('.tdVillage').html(popupData.Village).show();
+
+                        $('.tdRetailerName').html(popupData.RetailerName);
+                        $('.tdAddress').html(popupData.Address);
+                        $('.tdRetailerType').html(popupData.RetailerType);
+                        $('.tdElMsisdn').html(popupData.Elmsisdn);
+                        $('.tdVisitDay').html(popupData.VisitDay);
+                        $('.tdrStructure').html(popupData.PosStructure);
+                        $('.tdShopSignage').html(popupData.ShopSignage);
+                        $('.tdShopType').html(popupData.ShopType);
+                        $('.tdDSR').html(popupData.Dsr);
+
+                        $('#btnUpdate').hide();
+                        $('#btnCancel').hide();
+                        $('#btnVerify').show();
+                        $('#btnEdit').show();
+
+                        $('#txtRetailerName').hide();
+                        $('#txtAddress').hide();
+                        $('#cmbRetailerType').hide();
+                        $('#txtElMsisdn').hide();
+                        $('#cmbVisitDay').hide();
+                        $('#cmbStructure').hide();
+                        $('#cmbShopSignage').hide();
+                        $('#cmbShopType').hide();
+                        $('#cmbLocality').hide();
+
+                        $('.tdRetailerName').show();
+                        $('.tdAddress').show();
+                        $('.tdRetailerType').show();
+                        $('.tdElMsisdn').show();
+                        $('.tdVisitDay').show();
+                        $('.tdrStructure').show();
+                        $('.tdShopSignage').show();
+                        $('.tdShopType').show();
+                        $('.tdLocality').show();
+
+                        var urlData = '@Url.Action("GetElmsisdn", "Home")';
+                        $.ajax({
+                            type: "POST", url: urlData,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ id: retalerId }),
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.msg == "success") {
+                                    $('.existElmsisdn').remove();
+                                    $.each(result.Rdata, function () {
+                                        $('.elmsisdnAdd').before('<div class="input-group existElmsisdn">'
+                                                                + '<span class="input-group-addon">'
+                                                                    + '<span class="fa fa-mobile"></span>'
+                                        + 'ELMSISDN:'
+                                       + ' </span>'
+                                        + '<input type="text" value="' + this.Name + '" class="form-control elmsisdnName"><input class="elmsisdnId" type="hidden" value="' + this.ID + '"/>'
+                                        + '<span class="input-group-btn">'
+                                        + '    <button class="btn btn-default btnElUpdate"  style="display:none;" type="button">Update</button>'
+                                         + '   <button class="btn btn-default btnElDelete"  style="display:none;" type="button">Delete</button>'
+                                        + '</span>'
+                                    + '</div>');
+
+                                    });
+                                }
+                                else {
+                                    alert(result.msg);
+                                }
+                            },
+                            error: function (request, status, error) {
+                                alert("Failed to load elmsisdns. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                            }
+                        });
+
+
+                        var urlData = '@Url.Action("GetSimpos", "Home")';
+                        $.ajax({
+                            type: "POST", url: urlData,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ id: retalerId }),
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.msg == "success") {
+                                    $('.existSimpos').remove();
+                                    $.each(result.Rdata, function () {
+                                        $('.simposAdd').before('<div class="input-group existSimpos">'
+                                                                + '<span class="input-group-addon">'
+                                                                    + '<span class="fa fa-mobile"></span>'
+                                        + 'SIM POS:'
+                                       + ' </span>'
+                                        + '<input type="text" value="' + this.Name + '" class="form-control simposName"><input class="simposId" type="hidden" value="' + this.ID + '"/>'
+                                        + '<span class="input-group-btn">'
+                                        + '    <button class="btn btn-default btnSimposUpdate"  style="display:none;width:70px;" type="button">Update</button>'
+                                         + '   <button class="btn btn-default btnSimposDelete"  style="display:none;width:70px;" type="button">Delete</button>'
+                                        + '</span>'
+                                    + '</div>');
+
+                                    });
+                                }
+                                else {
+                                    alert(result.msg);
+                                }
+                            },
+                            error: function (request, status, error) {
+                                alert("Failed to load SIM POS. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                            }
+                        });
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("Failed to Update Retailer Information. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+
+        });
+        $('#btnVerify').click(function () {
+            var retalerId = $('#retailerId').val();
+            var verifyStatus = $('#verifyStatus').val();
+            var urlData = '@Url.Action("ChangeVerificationStatus", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: retalerId, status: verifyStatus }),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        var posData = $('input[value="' + retalerId + '"]').closest('tr').data('posData');
+                        console.log(posData);
+                        if (posData.Verified == true) {
+                            posData.Verified = false;
+                        }
+                        else {
+                            posData.Verified = true;
+                        }
+                        $('#verifyStatus').val(posData.Verified);
+                        var verifiedtxt = '';
+                        if (posData.Verified == true) {
+                            $('#btnVerify').html('Verified').removeClass('btn-primary').addClass('btn-success');
+                            verifiedtxt = 'Yes';
+                        }
+                        else {
+                            $('#btnVerify').html('Verify').removeClass('btn-success').addClass('btn-primary');
+                            verifiedtxt = 'No';
+                        }
+                        $('input[value="' + retalerId + '"]').closest('tr').find('.verifyS').html(verifiedtxt);
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+
+        });
+        $('#posbasic').on('click', '.trpos', function () {
+            $('#popup,#layer').show();
+            var popupData = $(this).data('posData');
+            $('#verifyStatus').val(popupData.Verified);
+            $('#retailerId').val(popupData.ID);
+            var RetailerName = popupData.RetailerName;
+            var RetailerLat = popupData.Lat;
+            var RetailerLon = popupData.Lon;
+
+
+
+            var urlData = '@Url.Action("GetElmsisdn", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: popupData.ID}),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        $('.existElmsisdn').remove();
+                        $.each(result.Rdata, function () {
+                            $('.elmsisdnAdd').before('<div class="input-group existElmsisdn">'
+                                                    + '<span class="input-group-addon">'
+                                                        + '<span class="fa fa-mobile"></span>'
+                            + 'ELMSISDN:'
+                           + ' </span>'
+                            + '<input type="text" value="' + this.Name + '" class="form-control elmsisdnName"><input class="elmsisdnId" type="hidden" value="'+this.ID+'"/>'
+                            + '<span class="input-group-btn">'
+                            + '    <button class="btn btn-default btnElUpdate"  style="display:none;width:70px;" type="button">Update</button>'
+                             + '   <button class="btn btn-default btnElDelete"  style="display:none;width:70px;" type="button">Delete</button>'
+                            + '</span>'
+                        + '</div>');
+
+                        });
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load elmsisdns. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+
+
+            var urlData = '@Url.Action("GetSimpos", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: popupData.ID }),
+                dataType: "json",
+                success: function (result) {
+                    if (result.msg == "success") {
+                        $('.existSimpos').remove();
+                        $.each(result.Rdata, function () {
+                            $('.simposAdd').before('<div class="input-group existSimpos">'
+                                                    + '<span class="input-group-addon">'
+                                                        + '<span class="fa fa-mobile"></span>'
+                            + 'SIM POS:'
+                           + ' </span>'
+                            + '<input type="text" value="' + this.Name + '" class="form-control simposName"><input class="simposId" type="hidden" value="' + this.ID + '"/>'
+                            + '<span class="input-group-btn">'
+                            + '    <button class="btn btn-default btnSimposUpdate"  style="display:none;width:70px;" type="button">Update</button>'
+                             + '   <button class="btn btn-default btnSimposDelete"  style="display:none;width:70px;" type="button">Delete</button>'
+                            + '</span>'
+                        + '</div>');
+
+                        });
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load SIM POS. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+
+
+            var dev = $(this).find('.dev').html();
+            var markers = [];
+            var obj = new Object();
+            obj.title = RetailerName;
+            obj.lat = RetailerLat;
+            obj.lng = RetailerLon;
+            obj.description = RetailerName;
+            if (RetailerLat != 0) {
+                markers.push(obj);
+            }
+
+            if (popupData.Verified == true) {
+                $('#btnVerify').html('Verified').removeClass('btn-primary').addClass('btn-success');
+            }
+            else {
+                $('#btnVerify').html('Verify').removeClass('btn-success').addClass('btn-primary');
+            }
+
+            $('.tdRegion').html(popupData.Region);
+            $('.tdArea').html(popupData.Area);
+            $('.tdThana').html(popupData.Thana);
+            $('.tdWard').html(popupData.Ward);
+            $('.tdMauza').html(popupData.Mauza);
+            $('.tdVillage').html(popupData.Village);
+
+            $('#popthanaCombo').val(popupData.ThanaId);
+            LoadWard(popupData.ThanaId, popupData.WardId);
+            LoadMauza(popupData.WardId, popupData.MauzaId);
+            LoadVillage(popupData.MauzaId, popupData.VillageId);
+
+            $('#isElPos').prop('checked', popupData.IsElPos);
+            $('#isSimPos').prop('checked', popupData.IsSimPos);
+            $('#isSCPos').prop('checked', popupData.IsScPos);
+            $('#isAppartment').prop('checked', popupData.IsApartments);
+            $('#isSlum').prop('checked', popupData.IsSlums);
+            $('#isSemiurbanHouseing').prop('checked', popupData.IsSemiUrbunHousing);
+            $('#isRuralHousing').prop('checked', popupData.IsRuralHousing);
+            $('#isShoppingMall').prop('checked', popupData.IsShoppingMall);
+            $('#isRetailHub').prop('checked', popupData.IsRetailHub);
+            $('#isMobileDevice').prop('checked', popupData.IsMobileDeviceMarket);
+            $('#isBazar').prop('checked', popupData.IsBazzar);
+            $('#isOfficeArea').prop('checked', popupData.IsOfficeArea);
+            $('#isGarmentsMajority').prop('checked', popupData.IsGarmentsMajorityArea);
+            $('#isGeneralIndustrial').prop('checked', popupData.IsGeneralIndustrialArea);
+            $('#isUrbanTransit').prop('checked', popupData.IsUrbanTransitPoints);
+            $('#isRuralTransit').prop('checked', popupData.IsRuralTransitPoints);
+            $('#isUrbarHangouts').prop('checked', popupData.IsUrbanYouthHangouts);
+            $('#isSemiUrbanHangouts').prop('checked', popupData.IsSemiUrbanYouthHangouts);
+            $('#isRuralHangouts').prop('checked', popupData.IsRuralYouthHangouts);
+
+
+
+            $('.tdRetailerName').html(popupData.RetailerName);
+            $('#txtRetailerName').val(popupData.RetailerName);
+            $('.tdAddress').html(popupData.Address);
+            $('#txtAddress').val(popupData.Address);
+            $('.tdRetailerType').html(popupData.RetailerType);
+            $('#cmbRetailerType').val(popupData.RetailerTypeId);
+            $('.tdElMsisdn').html(popupData.Elmsisdn);
+            $('#txtElMsisdn').val(popupData.Elmsisdn);
+            $('.tdDsrMsisdn').html(popupData.DsrMsisdn); 
+            $('.tdRoutePlan').html(popupData.DsrMsisdn  + popupData.VisitDayCode);
+            $('.tdVisitDay').html(popupData.VisitDay);
+            $('#cmbVisitDay').val(popupData.VisitDayId);
+            $('.tdrStructure').html(popupData.PosStructure);
+            $('#cmbStructure').val(popupData.PosStructureId);
+            $('#posImage').attr('src', '../../../../Photos/RetailerPhoto/' + popupData.PosImage);
+            $('#qrImage').attr('src', '../../../../Photos/QRPhoto/' + popupData.QrCodeId + '.png');
+            $('.tdShopSignage').html(popupData.ShopSignage);
+            $('#cmbShopSignage').val(popupData.ShopSignageId);
+            $('.tdShopType').html(popupData.ShopType);
+            $('#cmbShopType').val(popupData.ShopTypeId);
+            $('.tdDSR').html(popupData.Dsr);
+            LoadMap(markers);
+        });
+    });
+                    </script>
+
+                    <script>
+    function LoadMap(markers) {
+        if (markers.length > 0) {
+            var mapOptions = {
+                scrollwheel: false,
+                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var infoWindow = new google.maps.InfoWindow();
+            var map = new google.maps.Map(document.getElementById("mapcanvas"), mapOptions);
+
+
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var iconName;
+                iconName = '../../../../Assets/SmartAdmin/img/blue_MarkerR.png';
+
+
+                function toggleBounce() {
+                    if (marker.getAnimation() != null) {
+                        marker.setAnimation(null);
+                    } else {
+                        marker.setAnimation(google.maps.Animation.BOUNCE);
+                    }
+                }
+
+                //toggleBounce();
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    icon: iconName,
+                    title: data.title,
+                    animation: google.maps.Animation.DROP
+                });
+
+                //setTimeout(toggleBounce, 1500);
+
+
+                (function (marker, data) {
+
+                    google.maps.event.addListener(marker, "click", function (e) {
+
+                        //--> marker animation
+                        marker.setAnimation(google.maps.Animation.BOUNCE);
+
+                        stopAnimation(marker);
+
+                        function stopAnimation(marker) {
+                            setTimeout(function () {
+                                marker.setAnimation(null);
+                            }, 3000);
+                        }
+                        //<-- marker animation
+
+                        google.maps.event.addListenerOnce(infoWindow, 'domready', function () {
+                        });
+
+                        infoWindow.setContent(data.description);
+                        infoWindow.open(map, marker);
+
+                    });
+                })(marker, data);
+            }
+
+            //google map ends
+            $('#mapcanvas').show();
+            google.maps.event.trigger(map, 'resize');
+            var center = new google.maps.LatLng(markers[0].lat, markers[0].lng);
+            map.setCenter(center);
+            map.setZoom(map.getZoom());
+
+        }
+        else {
+            $('#mapcanvas').hide();
+        }
+        //google map
+    }
+
+                    </script>
+
+
+
+
+
+
+
+                    <script type="text/javascript">
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+
+    // Load form valisation dependency
+    loadScript("../../Assets/SmartAdmin/js/plugin/jquery-form/jquery-form.min.js", runFormValidation);
+    // Registration validation script
+    function runFormValidation() {
+
+        $.validator.addMethod("dateCheck", function (value, element) {
+            //var dateValue = $("#startdate").val();
+            var validDatePattern = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+
+            if (validDatePattern.test(value)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }, 'Invalid date.');
+
+        var $orderForm = $("#order-form").validate({
+            // Rules for form validation
+            rules: {
+
+            },
+
+            // Messages for form validation
+            messages: {
+                acname: {
+                    required: 'Please select an AC'
+                },
+                startdate: { required: 'Please select start date', dateCheck: 'invalid date.' },
+                enddate: { required: 'Please select end date', dateCheck: 'invalid date.' }
+
+            },
+
+            // Ajax form submition
+            submitHandler: function () {
+                SubmitThisForm();
+            },
+
+            // Do not change code below
+            errorPlacement: function (error, element) {
+                error.insertAfter(element.parent());
+            }
+        });
+
+        // START AND FINISH DATE
+        $('#startdate').datepicker({
+            dateFormat: 'dd/mm/yy',
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+            onSelect: function (selectedDate) {
+                $('#enddate').datepicker('option', 'minDate', selectedDate);
+            }
+        });
+
+        $('#enddate').datepicker({
+            dateFormat: 'dd/mm/yy',
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+            onSelect: function (selectedDate) {
+                $('#startdate').datepicker('option', 'maxDate', selectedDate);
+            }
+        });
+    };
+
+    //Form Submit
+    function SubmitThisForm() {
+        var SubmitURL = '@Url.Action("SearchResult", "Home")';
+        var FormData = $("#order-form").serialize();
+        $.ajax({
+            type: "POST",
+            url: SubmitURL,
+            data: FormData,
+            dataType: "json",
+
+            beforeSend: function () {
+                //$(form).find('.btn').attr('disabled', 'disabled');
+                //$(form).find('.btn').html('Working...');
+            },
+            success: function (result) {
+
+
+                if (result.status == "success") {
+                    $('#posbasic tbody').empty();
+                    var dataCount=result.data.length;
+                    $('#resultSummary').html(dataCount+' Retailer Data Found');
+                    $.each(result.data, function () {
+                        var posStatus = '';
+                        var verified = '';
+                        if (this.POSStatus == 1)
+                        {
+                            posStatus = 'Existing';
+                        }
+                        else if (this.POSStatus == 3)
+                        {
+                            posStatus = 'Created';
+                        }
+                        else if (this.POSStatus == 2)
+                        {
+                            posStatus = 'Updated';
+                        }
+                        if (this.Verified == true)
+                        {
+                            verified = "Yes";
+                        }
+                        else if (this.Verified == false) {
+                            verified = 'No';
+                        }
+                        // $('#tsa_data tbody').append('<tr><td>' + this.DistributionHouse + '</td><td>' + this.TSAPosition + '</td><td>' + this.TSAName + '</td><td>' + this.OutletNos + '</td><td>' + this.PartnerNos + '</td><td>' + this.ShwajonNos + '</td><td>' + this.SetTargetNos + '</td><td>' + this.Brand + '</td><td>' + this.Target + '</td><td>' + this.Acheivement + '</td></tr>');
+                        $('#posbasic tbody').append($('<tr class="trpos">').append('<td style="display:none;"><input type="hidden" class="hdnId" value="' + this.ID + '" /></td><td  class="tdThanaName">' + this.Thana + '</td><td  class="tdWardName">' + this.Ward + '</td><td  class="tdMauzaName">' + this.Mauza + '</td><td  class="tdVillageName">' + this.Village + '</td><td class="tdtabRetailerName">' + this.RetailerName + '</td><td>' + posStatus + '</td><td class="verifyS">' + verified + '</td>').data('posData', this));
+                        //console.log(this.outletsTargetSales);
+                    });
+
+                }
+                else {
+                    $('#posbasic tbody').empty();
+                    $('#resultSummary').html('Data Retrive Error');
+                }
+            },
+            error: function (request, status, error) {
+                $('#posbasic tbody').empty();
+                $('#resultSummary').html('Error In Server');
+            },
+            complete: function () {
+                //$(form).find('.btn').removeAttr("disabled");
+                //$(form).find('.btn').html('Submit');
+            }
+        });
+        // return false;
+    }
+    //<-- submit form
+
+
+    $.date = function (dateObject) {
+        var d = new Date(dateObject);
+        var day = d.getDate();
+        var month = d.getMonth() + 1;
+        var year = d.getFullYear();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
+
+        var date = day + "/" + month + "/" + year;
+
+        return date;
+    };
+
+    $.time = function (dateObject) {
+        var t = new Date(dateObject);
+        var hour = t.getUTCHours();
+        var minute = t.getMinutes();
+        var second = t.getSeconds();
+        var tt = '';
+
+        if (hour < 12) {
+            tt = 'am';
+        }
+        else {
+            tt = 'pm';
+        }
+
+        if (hour > 12) {
+            hour = hour - 12;
+        }
+
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minute < 10) {
+            minute = "0" + minute;
+        }
+
+        var time = hour + ":" + minute + ":" + second + " " + tt;
+
+        return time;
+    };
+
+
+                    </script>
+
+
+                    <script>
+    $(function () {
+        $('#thanaCombo').change(function () {
+            var selectedVal = $('#thanaCombo option:selected').attr('value');
+            var urlData = '@Url.Action("GetWards", "Home")';
+
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify({ thanaId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#wardCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Ward/Union</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.wardId + '">' + this.wardName + '</option>');
+                    });
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Ward list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        });
+
+        $('#wardCombo').change(function () {
+            var selectedVal = $('#wardCombo option:selected').attr('value');
+            var urlData = '@Url.Action("GetMauzas", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ wardId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#mauzaCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Mohalla/Mauza</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.mauzaId + '">' + this.mauzaName + '</option>');
+                    });
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Mauza/Mohalla list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        });
+        $('#mauzaCombo').change(function () {
+            var selectedVal = $('#mauzaCombo option:selected').attr('value');
+            var urlData = '@Url.Action("GetVillages", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ mauzaId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#villageCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Village</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.villageId + '">' + this.villageName + '</option>');
+                    });
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Village list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        });
+    });
+                    </script>
+
+                    <script>
+
+        function LoadWard(thanaId, wardId) {
+            var selectedVal = thanaId;
+            var urlData = '@Url.Action("GetWards", "Home")';
+
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify({ thanaId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#popwardCombo');
+                    combo.empty();
+                    combo.append('<option value=-1>Select a Ward/Union</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.wardId + '">' + this.wardName + '</option>');
+                    });
+                    combo.val(wardId);
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Ward list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        }
+
+        function LoadMauza(wardId, mauzaId) {
+            var selectedVal = wardId;
+            var urlData = '@Url.Action("GetMauzas", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ wardId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#popmauzaCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Mohalla/Mauza</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.mauzaId + '">' + this.mauzaName + '</option>');
+                    });
+                    combo.val(mauzaId);
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Mauza/Mohalla list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        }
+
+        function LoadVillage(mauzaId, villageId) {
+            var selectedVal = mauzaId;
+            var urlData = '@Url.Action("GetVillages", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ mauzaId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#popvillageCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Village</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.villageId + '">' + this.villageName + '</option>');
+                    });
+                    combo.val(villageId);
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Village list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        }
+
+
+        $('#popthanaCombo').change(function () {
+            var selectedVal = $('#popthanaCombo option:selected').attr('value');
+            var urlData = '@Url.Action("GetWards", "Home")';
+
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+
+                data: JSON.stringify({ thanaId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#popwardCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Ward/Union</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.wardId + '">' + this.wardName + '</option>');
+                    });
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Ward list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        });
+
+        $('#popwardCombo').change(function () {
+            var selectedVal = $('#popwardCombo option:selected').attr('value');
+            var urlData = '@Url.Action("GetMauzas", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ wardId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#popmauzaCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Mohalla/Mauza</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.mauzaId + '">' + this.mauzaName + '</option>');
+                    });
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Mauza/Mohalla list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        });
+        $('#popmauzaCombo').change(function () {
+            var selectedVal = $('#popmauzaCombo option:selected').attr('value');
+            var urlData = '@Url.Action("GetVillages", "Home")';
+            $.ajax({
+                type: "POST", url: urlData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ mauzaId: selectedVal }),
+                dataType: "json",
+                success: function (result) {
+                    var combo = $('#popvillageCombo');
+                    combo.empty();
+                    combo.append('<option value=0>Select a Village</option>');
+
+                    $.each(result, function () {
+                        combo.append('<option value="' + this.villageId + '">' + this.villageName + '</option>');
+                    });
+                },
+                error: function (request, status, error) {
+                    alert("Failed to load Village list. Error Details-  Request: " + request + " Status: " + status + " Error: " + error);
+                }
+            });
+        });
+                    </script>
+
+
+                    <script>
+
+    var greyStyleMap = new google.maps.StyledMapType(greyscale_style, {
+        name: "Greyscale"
+    }),
+	        monoChromeStyleMap = new google.maps.StyledMapType(monochrome_style, {
+	            name: "Mono Chrome"
+	        }),
+	        metroStyleMap = new google.maps.StyledMapType(metro_style, {
+	            name: "Metro"
+	        }),
+	        nightvisionStyleMap = new google.maps.StyledMapType(nightvision_style, {
+	            name: "Nightvision"
+	        }),
+	        nvisionhstyleMap = new google.maps.StyledMapType(nightvision_highlight_style, {
+	            name: "Nightvision Light"
+	        }),
+	        oPaperStyleMap = new google.maps.StyledMapType(old_paper_style, {
+	            name: "Old Paper"
+	        }),
+	        colorfulStyleMap = new google.maps.StyledMapType(colorful_style, {
+	            name: "Colorful"
+	        }),
+	        monoColorStyleMap = new google.maps.StyledMapType(mono_color_style, {
+	            name: "One Color"
+	        });
+
+    var colorful_style = [{
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "transit",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d3d3d3"
+        }, {
+            "visibility": "on"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#b1bc39"
+        }]
+    }, {
+        "featureType": "landscape.man_made",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#ebad02"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#416d9f"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#000000"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }, {
+            "color": "#ffffff"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#000000"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#ffffff"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#ebad02"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#8ca83c"
+        }]
+    }];
+
+    // Grey Scale
+    var greyscale_style = [{
+        "featureType": "road.highway",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "transit",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "stylers": [{
+            "visibility": "on"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d3d3d3"
+        }, {
+            "visibility": "on"
+        }]
+    }, {
+        "featureType": "poi.medical",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.medical",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "color": "#cccccc"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#cecece"
+        }]
+    }, {
+        "featureType": "road.local",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#808080"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#808080"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#fdfdfd"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d2d2d2"
+        }]
+    }];
+
+    // Black & White
+    var monochrome_style = [{
+        "featureType": "road.highway",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "transit",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d3d3d3"
+        }, {
+            "visibility": "on"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#ffffff"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#cecece"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#000000"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#ffffff"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#000000"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#000000"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }];
+
+    // Retro
+    var metro_style = [{
+        "featureType": "transit",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d3d3d3"
+        }, {
+            "visibility": "on"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#eee8ce"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#b8cec9"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#000000"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }, {
+            "color": "#ffffff"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#000000"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#ffffff"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d3cdab"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#ced09d"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }];
+
+    // Night
+    var nightvision_style = [{
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "transit",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d3d3d3"
+        }, {
+            "visibility": "on"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "hue": "#0008ff"
+        }, {
+            "lightness": -75
+        }, {
+            "saturation": 10
+        }]
+    }, {
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "color": "#1f1d45"
+        }]
+    }, {
+        "featureType": "landscape.natural",
+        "stylers": [{
+            "color": "#1f1d45"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#01001f"
+        }]
+    }, {
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#e7e8ec"
+        }]
+    }, {
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#151348"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#f7fdd9"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#01001f"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#316694"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#1a153d"
+        }]
+
+    }];
+
+    // Night Light
+    var nightvision_highlight_style = [{
+        "elementType": "geometry",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "hue": "#232a57"
+        }]
+    }, {
+        "featureType": "road.highway",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "hue": "#0033ff"
+        }, {
+            "saturation": 13
+        }, {
+            "lightness": -77
+        }]
+    }, {
+        "featureType": "landscape",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "color": "#4657ab"
+        }]
+    }, {
+        "featureType": "transit",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#0d0a1f"
+        }]
+    }, {
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#d2cfe3"
+        }]
+    }, {
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#0d0a1f"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#ffffff"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#0d0a1f"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#ff9910"
+        }]
+    }, {
+        "featureType": "road.local",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#4657ab"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#232a57"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#232a57"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }];
+
+    // Papiro
+    var old_paper_style = [{
+        "elementType": "geometry",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#f2e48c"
+        }]
+    }, {
+        "featureType": "road.highway",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "transit",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "color": "#d3d3d3"
+        }, {
+            "visibility": "on"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#f2e48c"
+        }]
+    }, {
+        "featureType": "landscape",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#592c00"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#a77637"
+        }]
+    }, {
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#592c00"
+        }]
+    }, {
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#f2e48c"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#592c00"
+        }]
+    }, {
+        "featureType": "administrative",
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#f2e48c"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#a5630f"
+        }]
+    }, {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "on"
+        }, {
+            "color": "#592c00"
+        }]
+    }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "geometry.fill",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }, {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [{
+            "visibility": "off"
+        }]
+    }];
+
+    // One color - Change the hue value for your desired color
+    var mono_color_style = [{
+        "stylers": [{
+            "hue": "#ff00aa"
+        }, {
+            "saturation": 1
+        }, {
+            "lightness": 1
+        }]
+    }];
+
+                    </script>
+
+
+<script>
+    $(function () {
+        var dsrId=@Html.Raw(Json.Encode(ViewBag.DSRID));
+        var posStatusId=@Html.Raw(Json.Encode(ViewBag.PosStatus));
+        var verifiedId=@Html.Raw(Json.Encode(ViewBag.PosVerification));
+        
+        $('#srname').val(dsrId);
+        $('#posStatus').val(posStatusId);
+        $('#verifiedCombo').val(verifiedId);
+        var SubmitURL = '@Url.Action("SearchResult", "Home")';
+        var FormData = $("#order-form").serialize();
+        if(dsrId>0){
+            var form = $("#onlineform").serialize();
+            $.ajax({
+                type: "POST",
+                url: SubmitURL,
+                data: FormData,
+                dataType: "json",
+                success: function (result) {
+
+
+                    if (result.status == "success") {
+                        $('#posbasic tbody').empty();
+                        var dataCount=result.data.length;
+                        $('#resultSummary').html(dataCount+' Retailer Data Found');
+                        $.each(result.data, function () {
+                            var posStatus = '';
+                            var verified = '';
+                            if (this.POSStatus == 1)
+                            {
+                                posStatus = 'Existing';
+                            }
+                            else if (this.POSStatus == 3)
+                            {
+                                posStatus = 'Created';
+                            }
+                            else if (this.POSStatus == 2)
+                            {
+                                posStatus = 'Updated';
+                            }
+                            if (this.Verified == true)
+                            {
+                                verified = "Yes";
+                            }
+                            else if (this.Verified == false) {
+                                verified = 'No';
+                            }
+                            // $('#tsa_data tbody').append('<tr><td>' + this.DistributionHouse + '</td><td>' + this.TSAPosition + '</td><td>' + this.TSAName + '</td><td>' + this.OutletNos + '</td><td>' + this.PartnerNos + '</td><td>' + this.ShwajonNos + '</td><td>' + this.SetTargetNos + '</td><td>' + this.Brand + '</td><td>' + this.Target + '</td><td>' + this.Acheivement + '</td></tr>');
+                            $('#posbasic tbody').append($('<tr class="trpos">').append('<td style="display:none;"><input type="hidden" class="hdnId" value="' + this.ID + '" /></td><td  class="tdThanaName">' + this.Thana + '</td><td  class="tdWardName">' + this.Ward + '</td><td  class="tdMauzaName">' + this.Mauza + '</td><td  class="tdVillageName">' + this.Village + '</td><td class="tdtabRetailerName">' + this.RetailerName + '</td><td>' + posStatus + '</td><td class="verifyS">' + verified + '</td>').data('posData', this));
+                            //console.log(this.outletsTargetSales);
+                        });
+
+                    }
+                    else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                }
+        });
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

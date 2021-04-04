@@ -1,0 +1,196 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Robi Admin Panel</title>
+    <link href="~/Assets/Amsterdam/css/main.css" rel="stylesheet" type="text/css" />
+    <!--[if IE]> <link href="css/ie.css" rel="stylesheet" type="text/css"> <![endif]-->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/jquery_ui_custom.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/excanvas.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.inputlimiter.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.autosize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.ibutton.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.dualListBox.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.select2.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.cleditor.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html4.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html5.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/jquery.plupload.queue.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.wizard.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.jgrowl.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.pie.chart.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.elfinder.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fancybox.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/tables/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-bootbox.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-progressbar.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/functions/custom.js"></script>
+    @*<script type="text/javascript" src="~/Assets/Amsterdam/js/charts/chart.js"></script>*@
+
+</head>
+
+<body>
+
+    <!-- Top nav -->
+    <div id="top">
+        <div class="top-wrapper">
+            <a href="index" title=""><img src="~/Assets/Amsterdam/images/logo.png" class="logo" alt="" /></a>
+            <ul class="topnav">
+                <li class="topuser">
+                    <a title="" data-toggle="dropdown"><img src="~/Assets/Amsterdam/images/user.png" alt="" /><span>@Session["LoginName"]</span></a>
+                </li>
+                <li class="sidebar-button"><a href="#" title=""><b class="responsive-nav"></b></a></li>
+                <li><a href="/robiAdmin/Login" title=""><b class="logout"></b></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /top nav -->
+    <!-- Main wrapper -->
+    <div class="wrapper three-columns">
+
+        <!-- Left sidebar -->
+        <div class="sidebar" id="left-sidebar">
+            <ul class="navigation standard">
+                <!-- standard nav -->
+                <li class="active"><a href="index" title=""><img src="~/Assets/Amsterdam/images/icons/mainnav/dashboard.png" alt="" />Dashboard</a></li>
+                <li>
+                    <a href="index" title="" class="expand"><img src="~/Assets/Amsterdam/images/icons/mainnav/form-elements.png" alt="" />Advance Serach</a>
+
+                </li>
+
+            </ul><!-- /standard nav -->
+
+            <div class="separator-doubled"></div>
+
+            <!-- Stats progress -->
+            <!-- /stats progress -->
+
+        </div>
+        <!-- /left sidebar -->
+        <!-- Main content -->
+        <div class="content">
+            <div class="outer">
+                <div class="inner">
+                    <div class="page-header">
+                        <!-- Page header -->
+                        <h5><i class="font-home"></i>SR At Field</h5>
+                        
+                    </div><!-- /page header -->
+
+                    <div class="body">
+
+                        
+                        <!-- /middle navigation standard -->
+                        <!-- Content container -->
+                        <div class="container">
+
+                           
+
+                            <div class="row-fluid">
+
+                                <!-- Column -->
+                                <div class="span12">
+
+                                    <!-- Timeline messages -->
+                                    <div class="block well">
+                                        <div class="navbar">
+                                            <div class="navbar-inner">
+                                                <h5>@ViewBag.SRList.Rows.Count SRs </h5>
+                                            </div>
+                                        </div>
+                                        <div class="table-overflow">
+                                            <table class="table" id="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Area</th>
+                                                        <th class="text-center alert-warning"><span class="fa fa-expand-o">&nbsp;</span>RSP</th>
+                                                        <th class="text-center"><span class="fa fa-check">&nbsp;</span>Type</th>
+                                                        <th class="text-center"><span class="fa fa-times">&nbsp;</span>Name</th>
+                                                        <th class="text-center"><span class="fa fa-times">&nbsp;</span>SR MSISDN</th>
+                                                        <th class="text-center"><span class="fa fa-times">&nbsp;</span>POS Visti Nos.</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var row in ViewBag.SRList.Rows)
+                                                    {
+                                                        <tr>
+                                                            <td>@row["AreaName"].ToString()</td>
+                                                            <td>@row["RspName"].ToString()</td>
+                                                            <td>@row["PersonTypeName"].ToString()</td>
+                                                            <td>@row["PersonName"].ToString()</td>
+                                                            <td>@row["PersonMsisdn"].ToString()</td>
+                                                            <td>@row["POSNo"].ToString()</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
+                               
+                                
+
+                            </div>
+
+                            <div class="separator-doubled"></div>
+
+                           
+
+                        </div>
+                        <!-- /content container -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /main content -->
+        <!-- Right sidebar -->
+        <!-- /right sidebar -->
+
+    </div>
+    <!-- /main wrapper -->
+
+    
+    
+
+    
+
+
+
+
+
+</body>
+</html>

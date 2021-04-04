@@ -1,0 +1,204 @@
+﻿
+            @foreach (var row in ViewBag.Retailers.Rows)
+            {
+                <tr>
+                    <td class="newlyLoaded">
+                        <a title="Retaile Name. Click for more details." target="_blank" href="~/RSP/OutletDetails/Index?user=@ViewBag.UserName&moid=@ViewBag.MoId&retailerid=@row["RetailerId"]">
+
+                            @row["RetailerName"].ToString()
+                        </a>
+                        @Html.Raw(ManageIsVerified(row))
+                        @Html.Raw(ManageRetailerStatus(row)) <br />
+                        @Html.Raw(ManageRegionalInfo(row))<br />
+                        @Html.Raw(ManageAddress(row))
+                    </td>
+                    <!--column 3: activity info-->
+                    <td class="newlyLoaded">
+                        @Html.Raw(ManageMultipleSr(row))<br />
+                        @Html.Raw(ManageLastActivityDateTime(row)) <br />
+                        @if (row["LoginName"].ToString().Trim().ToUpper() != "NONE")
+                        {
+                            <text>
+                                by @row["LoginName"].ToUpper()
+                                &nbsp;&nbsp;
+                                <a href="~/RobiAdmin/SurveyorManagement/ShowAll?user=@ViewBag.UserName&moid=@ViewBag.MoId&srid=@row["SurveyorId"]" title="View this surveyor details.">
+                                    <img src="~/Assets/MyImages/RetailerDetails16.png" />
+                                </a>
+
+                                &nbsp;&nbsp;
+
+                                <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?user=@ViewBag.UserName&moid=@ViewBag.MoId&srid=@row["SurveyorId"]" title="View other retailers done by this surveyor.">
+                                    <img src="~/Assets/MyImages/FolderBlue16.png" />
+                                </a>
+                            </text>
+                        }
+                    </td>
+
+                    <td class="newlyLoaded">
+                        @Html.Raw(ManageElMsisdn(row)) <br />
+                        @Html.Raw(ManageSimPosCode(row))
+                    </td>
+
+                    <td class="newlyLoaded">
+                        @Html.Raw(ManagePhoto(row))
+                    </td>
+                </tr>
+
+            }
+@functions {
+
+    public string ManagePhoto(System.Data.DataRow row)
+    {
+        string str;
+        if (row["PhotoName"].ToString().Trim().ToLower() == "default.png")
+        {
+            str = "<span style=\"color:red;\">Photo not provided yet.</span>";
+        }
+        else
+        {
+            str=" <img src=\"../../../../Photos/RetailerPhoto/" + row["PhotoName"].ToString() + "\" width=\"140\" />";
+        }
+
+        return str;
+    }
+
+    public String ManageRetailerStatus(System.Data.DataRow row)
+    {
+        String imageString = string.Empty;
+        //RetailerStatusId
+        String retailerStatusId = row["RetailerStatusId"].ToString();
+
+        switch (retailerStatusId)
+        {
+            case "2":
+                imageString = "<img title=\"This retailer has been updated by surveyor.\" src=\"../../../../Assets/MyImages/UpdatedTwo.gif\"/>";
+                break;
+            case "3":
+                imageString = "<img title=\"This retailer has been newly added by surveyor.\" src=\"../../../../Assets/MyImages/New.gif\"/>";
+                break;
+
+            default:
+                imageString = "";
+                break;
+        }
+        return imageString;
+    }
+
+    public String ManageRegionalInfo(System.Data.DataRow row)
+    {
+        string src = "";
+        src += "<span title=\"RSP Name\">" + row["RspName"].ToString() + "</span>, ";
+        src += "<span title=\"Area Name\">" + row["AreaName"].ToString() + "</span>, ";
+        src += "<span title=\"Region Name\">" + row["RegionName"].ToString() + "</span>.";
+
+        return src;
+    }
+
+    public string ManageAddress(System.Data.DataRow row)
+    {
+        if (String.IsNullOrEmpty(row["Address"].ToString()))
+        {
+            return "<span style=\"color:red;\">Address not provided yet.</span>";
+        }
+        else
+        {
+            return " <span title=\"Address details\">" + row["Address"].ToString() + "</span>";
+        }
+    }
+
+    public string ManageMultipleSr(System.Data.DataRow row)
+    {
+        Int32 disctinctSrQuantity = Convert.ToInt32(row["VisitedSrQuantity"]);
+
+
+        String imageString = String.Empty;
+
+        for (int i = 0; i < disctinctSrQuantity; i++)
+        {
+            imageString += "<img title=\"" + disctinctSrQuantity + " surveyor worked at this retailer.\" src=\"../../../../Assets/MyImages/SingleSr16.png\"/>";
+        }
+
+        return imageString;
+    }
+
+    public string ManageLastActivityDateTime(System.Data.DataRow row)
+    {
+        string str = String.Empty;
+
+        if (row["LastActivityDateTime"] == DBNull.Value)
+        {
+            str = "<span style=\"color:red;\">Not worked yet.</span>";
+        }
+        else
+        {
+            str ="Last updated on: " + Convert.ToDateTime(row["LastActivityDateTime"]).ToString("dd MMM, hh:mm tt");
+        }
+
+        return str;
+    }
+    
+    public string ManageIsVerified(System.Data.DataRow row)
+    {
+        Object objIsVerified = row["IsVerified"];
+        string src = "";
+        if (objIsVerified != DBNull.Value)
+        {
+            Boolean isVerified = Convert.ToBoolean(objIsVerified);
+            if (isVerified)
+            {
+                src = "<img title=\"You verified this retailer.\" src=\"../../../../Assets/MyImages/Tick16.png\"/>";
+            }
+        }
+        return src + "&nbsp;&nbsp;&nbsp;<img title=\"You searched this retailer " + row["SearchQuantity"].ToString() + " times.\" width=\"12\" src=\"../../../../Assets/MyImages/Search16.png\" /> " + row["SearchQuantity"].ToString() + "";
+    }
+
+
+    public string ManageElMsisdn(System.Data.DataRow row)
+    {
+        Int32 elQuantilty = Convert.ToInt32(row["ElQuantity"]);
+        string src = "";
+
+        if (elQuantilty == 0)
+        {
+
+            // src = "<img title=\"This retailer has no EL MSISDN.\" src=\"../../../../Assets/MyImages/NoElMsisdn16.png\"/>";
+            src = "<span style=\"color:red;\">No EL MSISDN.</span>";
+
+        }
+        else
+        {
+            for (int i = 0; i < elQuantilty; i++)
+            {
+                src += "<img title=\"This retailer has " + elQuantilty + " EL MSISDN.\" src=\"../../../../Assets/MyImages/ElMsisdn16.png\"/>";
+            }
+        }
+
+        return src;
+    }
+
+    //
+    public string ManageSimPosCode(System.Data.DataRow row)
+    {
+        Int32 SimPosCodeQuantityQuantilty = Convert.ToInt32(row["SimPosCodeQuantity"]);
+        string src = "";
+
+        if (SimPosCodeQuantityQuantilty == 0)
+        {
+
+            // src = "<img title=\"This retailer has no EL MSISDN.\" src=\"../../../../Assets/MyImages/NoElMsisdn16.png\"/>";
+            src = "<span style=\"color:red;\">No SIM POS Code.</span>";
+
+        }
+        else
+        {
+            for (int i = 0; i < SimPosCodeQuantityQuantilty; i++)
+            {
+                src += "<img title=\"This retailer has " + SimPosCodeQuantityQuantilty + " SIM POS Code.\" src=\"../../../../Assets/MyImages/SimPosCode16.png\"/>";
+            }
+        }
+
+        return src;
+    }
+}
+
+

@@ -1,0 +1,18 @@
+﻿<table>
+    <thead>
+        <tr style="height:20px; background-color:gainsboro;">
+            <td style="width:100px !important; padding:5px;">Retailer Id</td>
+            <td style="width:150px !important; padding:5px; text-align:center;">Multiple SR Quantity</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in ViewBag.Retailers.Rows)
+        {
+            <tr>
+                <td style="padding:10px;"><a href="~/RSP/OutletDetails/Index?user=@ViewBag.UserName&moid=@ViewBag.MoId&retailerid=@row[0].ToString()" target="_blank">@row[0].ToString()</a></td>
+                <td style="padding:10px; text-align:center;">@row[1].ToString()</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

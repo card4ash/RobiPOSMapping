@@ -1,0 +1,207 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="Saumitra Kumar Paul" />
+    <meta name="description" content="Robi App" />
+    <meta name="keywords" content="app" />
+    <title>Change Password</title>
+
+    <style>
+        input[type=text], input[type=password] {
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;
+            padding: 10px 2px 10px 3px;
+            margin: 5px 1px 3px 0px;
+            border: 1px solid #DDDDDD;
+            width: 100%;
+            border-radius: 3px;
+        }
+
+            input[type=text]:focus, input[type=password]:focus {
+                /*box-shadow: 0 0 5px rgba(81, 203, 238, 1);*/
+                /*padding: 3px 0px 3px 3px;
+                margin: 5px 1px 3px 0px;*/
+                box-shadow: 0px 0px 10px #FFB606; /*#61C5FA*/
+                /*border: 1px solid rgba(81, 203, 238, 1);*/
+            }
+    </style>
+
+    <style>
+        #submitchange {
+            height: 3em;
+            width: 100%;
+            margin: 5px 5px 5px 0;
+            border: 1px solid #999;
+            border-radius: 3px;
+            /*padding: 10px 8px;*/
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+            background-color: #FFB606;
+        }
+    </style>
+
+    <link href="~/Assets/SimpleModal/simplemodal.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link href="~/Assets/GoMobile/css/idangerous.swiper.scrollbar.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="gohome radius6"><a href="~/dsr/Home/Index?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+
+
+        <div class="gomenu radius6"><a href="~/dsr/SearchRetailer?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/docs.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/NewRetailer/Index?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/clients.png" alt="" title="" /></a></div>
+    </div>
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+            <!--page content-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পাসওয়ার্ড পরিবর্তন</h2>
+                                    <div class="form">
+                                        <form>
+                                            <input type="text" id="PasswordOne" placeholder="enter your new password" />
+                                            <input type="text" id="PasswordTwo" placeholder="re-enter your new password" />
+                                            <input type="hidden" id="SessionId" value="@ViewBag.SessionDigest" />
+                                            <img src="../../../Assets/GoMobile/images/loader.gif" style="display:none;" alt="Loading..." id="loader" />
+
+                                            <button id="submitchange">Change</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--          <div class="swiper-scrollbar"></div>-->
+                </div>
+            </div>
+
+        </div>
+        <!--  <div class="pagination"></div>-->
+    </div>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/codes.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>*@
+    <script src="~/Assets/SimpleModal/jquery.simplemodal.1.4.4.min.js"></script>
+
+
+
+
+    <script>
+        $(function () {
+            //Search By Retailer Id
+            $('#submitchange').click(function (e) {
+                e.preventDefault();
+                var $button = $(this);
+                var $PasswordOne = $.trim($(this).closest('form').find('#PasswordOne').val());
+                var $PasswordTwo = $.trim($(this).closest('form').find('#PasswordTwo').val());
+
+                if ($PasswordOne == '') {
+                    //alert(''); return;
+                    $.modal('<h2 style="font-size:20px;">Please enter your new password.</h2>'); return;
+                }
+
+                if ($PasswordOne != $PasswordTwo) {
+                    //alert('Password did not match.');
+                    $.modal('<h3 style="color:red;">Password did not match.</h3>');
+                    return;
+
+                }
+
+                var fd = new FormData(); fd.append('NewPassword', $PasswordOne); fd.append("SessionId", $("#SessionId").val());
+                //ajax call-->
+                var urlData = 'ChangePassword/Change';
+                $.ajax({
+                    url: urlData,
+                    type: "POST",
+                    data: fd,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    beforeSend: function () {
+                        $($button).attr('disabled', 'disabled');
+                        $($button).html('Working...');
+                    },
+                    success: function (response) {
+
+                        if (response.Changed == 'ok') {
+                            //  alert("Password changed successfully.");
+                            $.modal('<h3 style="color:green;">Password changed successfully.</h3>');
+                            return;
+                        }
+                        else {
+                            if (response.IsSessionTimeOut == true) {
+                                window.location = response.url;
+                            }
+                            else {
+                                $.modal('<h3 style="color:red;">Failed to change password. Please try again.</h3>');
+                            }
+                        }
+
+                    },
+                    error: function (request, status, error) {
+                        $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                    },
+                    complete: function () {
+                        $($button).removeAttr("disabled");
+                        $($button).html('Change');
+                    }
+                });
+                //<-- alax call
+            });
+            //<-- Search By Retailer Id
+
+
+        });
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

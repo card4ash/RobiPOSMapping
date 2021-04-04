@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="FamousThemes" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Robi POS Mapper</title>
+
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+    <script src="../../../Assets/GoMobile/js/jquery.validate.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="gohome radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+        <div class="gomenu radius20"><a href="#" onclick="swiperParent.swipeTo(9);"><img src="../../../Assets/GoMobile/images/icons/contact.png" alt="" title="" /></a></div>
+    </div>
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+            <!--Menu page-->
+            <div class="swiper-slide sliderbg_menu">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="logo"><a href="#"></a></div>
+                               
+                                 <div class="menu">
+                                    <ul>
+                                        <li><a href="../NewRetailer?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest" ><img src="../../../Assets/GoMobile/images/icons/clients.png" alt="" title="" /><span>Add</span></a></li>
+                                        <li><a href="../SearchRetailer?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest" class=" swipeit"><img src="../../../Assets/GoMobile/images/icons/docs.png" alt="" title="" /><span>Search</span></a></li>
+                                        <li><a href="~/dsr/ChangePhoto?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest" class="swipeIt"><img src="../../../Assets/GoMobile/images/icons/camera.png" alt="" title="" /><span>Change Photo</span></a></li>
+                                        <li>
+                                            <a href="#"><img src="../../../Assets/GoMobile/images/icons/bangla.png" alt="" title="" /><span>Set Bangla</span></a>
+                                        </li>
+                                        
+                                         <li><a href="../ChangePassword?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest" class="swipeIt"><img src="../../../Assets/GoMobile/images/icons/about.png" alt="" title="" /><span>Password</span></a></li>
+                                        <li><a href="~/Dsr/Login/LogOut?sd=@ViewBag.SessionDigest"  class=" swipeit"><img src="../../../Assets/GoMobile/images/icons/twitter.png" alt="" title="" /><span>Logout</span></a></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+          
+
+         
+
+            <!--End of pages-->
+
+        </div>
+        <div class="pagination"></div>
+    </div>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.tabify.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/code.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>*@
+
+
+</body>
+</html>

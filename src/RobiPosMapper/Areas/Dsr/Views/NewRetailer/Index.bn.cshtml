@@ -1,0 +1,981 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="Saumitra Kumar Paul" />
+    <meta name="description" content="Robi App" />
+    <meta name="keywords" content="app" />
+    <title>New Retailer Entry</title>
+
+    <link href="~/Areas/Dsr/Assets/css/mystyle.css" rel="stylesheet" />
+    <link href="~/Assets/SimpleModal/simplemodal.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link href="~/Assets/GoMobile/css/idangerous.swiper.scrollbar.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+
+</head>
+<body>
+    <div id="header">
+        <div class="gohome radius6"><a href="~/dsr/Home/Index?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/CallCenterHelp?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/phone.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/SearchRetailer?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/docs.png" alt="" title="" /></a></div>
+
+    </div>
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+            <!--Part 1: Retailer name, address, category-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ১</h2>
+                                    <blockquote>রিটেইলারের নাম, ঠিকানা ও প্রকারভেদ -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>রিটেইলারের নাম:</label>
+                                                <input type="text" id="RetailerName" value="" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>রিটেইলারের ঠিকানা:</label>
+                                                <textarea id="RetailerAddress"></textarea>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>পি.ও.এস প্রকারভেদ :</label>
+                                                <select id="PosCategoryId">
+                                                    <option value="-1">select category</option>
+                                                    @foreach (var category in ViewBag.PosCategoryList)
+                                                    {
+                                                        <option value="@category.PosCategoryId">@category.PosCategoryName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- Part 2: EL POS, SIM POS, SC Code -->
+            <div class="swiper-slide sliderbg purple">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ২</h2>
+                                    <blockquote>পি.ও.এস বিবরণ -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsElPos">&nbsp; ইজি লোড  পি.ও.এস :
+                                                </label>
+                                                <button id="AddElMsisdn">Add EL MSISDN</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsSimPos">&nbsp; সিম  পি.ও.এস :
+                                                </label>
+
+                                                <p>
+                                                    <button id="AddSimPosCode">Add SIM POS Code</button>
+                                                </p>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsScPos">&nbsp; স্ক্র্যাচ কার্ড পি.ও.এস :
+                                                </label>
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- Part 3: Region to Village -->
+            <div class="swiper-slide sliderbg bluegreen">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ৩</h2>
+                                    <blockquote>রিটেইলারের ভৌগলিক অবস্থান-</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>রিজিওন :</label>
+                                                <select name="RegionId" id="RegionId" disabled>
+                                                    <option value="@ViewBag.RegionId">@ViewBag.RegionName</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>এরিয়া :</label>
+                                                <select name="AreaId" id="AreaId" disabled>
+                                                    <option value="@ViewBag.AreaId">@ViewBag.AreaName</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>উপজিলা/থানা :</label>
+                                                <select name="ThanaId" id="ThanaId">
+                                                    <option value="-1">select thana</option>
+                                                    @foreach (var thana in ViewBag.ThanaList)
+                                                    {
+                                                        <option value="@thana.ThanaId">@thana.ThanaName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>ইউনিয়ন/ওয়ার্ড :</label>
+                                                <select name="WardId" id="WardId">
+                                                    <option value="0">n/a</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>মৌজা/মহল্লা :</label>
+                                                <select name="MauzaId" id="MauzaId">
+                                                    <option value="0">n/a</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>গ্রাম :</label>
+                                                <select name="VillageId" id="VillageId">
+                                                    <option value="0">n/a</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 4: POS Structure, Visit Day, Shop signage, Shop type -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ৪</h2>
+                                    <blockquote>পি.ও.এস এর গঠনগত বিবরণ,ভিজিটের দিন ও সাইনবোর্ডের বিবরণ - </blockquote>
+
+                                    <!-- PosStructure -->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>পি.ও.এস এর গঠন :</label>
+                                                <select id="PosStructureId">
+                                                    <option value="-1">select structure</option>
+                                                    @foreach (var structure in ViewBag.PosStructureList)
+                                                    {
+                                                        <option value="@structure.PosStructureId">@structure.PosStructureName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!-- visit day -->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>ভিজিটের দিন :</label>
+                                                <select name="VisitDayId" id="VisitDayId">
+                                                    <option value="-1">select days</option>
+                                                    @foreach (var visitday in ViewBag.VisitDayList)
+                                                    {
+                                                        <option value="@visitday.VisitDayId">@visitday.VisitDayName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!-- shop signage -->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>শপ সাইনেজ :</label>
+                                                <select name="ShopSignageId" id="ShopSignageId">
+                                                    <option value="-1">select company</option>
+                                                    @foreach (var sign in ViewBag.ShopSignageList)
+                                                    {
+                                                        <option value="@sign.ShopSignageId">@sign.ShopSignageName</option>
+                                                    }
+                                                    <option value="0">None</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--shop type -->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>শপ টাইপ :</label>
+                                                <select name="ShopTypeId" id="ShopTypeId">
+                                                    <option value="-1">select shop type</option>
+                                                    @foreach (var shop in ViewBag.ShopTypeList)
+                                                    {
+                                                        <option value="@shop.ShopTypeId">@shop.ShopTypeName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- part 5: Locality-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ৫</h2>
+                                    <blockquote>এলাকার ধরণ -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsApartments"> এপার্টমেন্টস
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsSlums"> বস্তি
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsSemiUrbunHousing"> মফস্বল আবাসন 
+                                                </label>
+
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRuralHousing"> পল্লী আবাসন 
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsShoppingMall"> শপিং মল
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRetailHub"> খুচরা বাজার 
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsMobileDeviceMarket"> মোবাইল এর দোকানপাট 
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsBazaar"> বাজার
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsOfficeArea"> অফিস এলাকা
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsGarmentsMajorityArea"> গারমেন্টস প্রধান এলাকা
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsGeneralIndustrialArea"> সাধারণ শিল্প এলাকা 
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsUrbanTransitPoints"> শহুরে ট্রানজিট পয়েন্টস
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRuralTransitPoints"> পল্লী ট্রানজিট পয়েন্টস
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsUrbanYouthHangouts"> শহুরে তরুণদের আড্ডা 
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsSemiUrbanYouthHangouts"> মফস্বলের তরুণদের আড্ডা 
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRuralYouthHangouts">  পল্লী তরুণদের আড্ডা 
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsTouristDestinations"> পর্যটন/অবসর গন্তব্য
+                                                </label>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 6: Retailer photo-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ৬</h2>
+                                    <blockquote>দোকানের সম্মুখভাগের একটি পরিষ্কার ছবি তুলুন -</blockquote>
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <input type='file' class="custom-file-input" id="RetailerPhotoInput" accept="image/jpeg,image/png,jpg|png;capture=camera" />
+                                                <br /><br />
+                                                <img id="RetailerPhotoPreview" src="~/Photos/RetailerPhoto/default.png" alt="Retailer photo" style="width:100%;" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 7: QR -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ৭</h2>
+                                    <blockquote>কিউ.আর. কোডের একটি পরিষ্কার ছবি তুলুন -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform" id="qr-form" enctype="multipart/form-data" method="post">
+                                                <input type='file' class="custom-file-input" id="QrPhotoInput" accept="image/jpeg,image/png,jpg|png;capture=camera" />
+                                                <button id="SubmitQr">Validate</button>
+                                                <!--user may type qr value in hand-->
+                                                <input type="text" id="QrValueInHand" placeholder="or, type QR value here" value="" />
+
+                                                <br /><br />
+                                                <img id="QrPhotoPreview" src="~/Photos/QRPhoto/0.png" alt="QR Code" style="width:100%;" />
+                                                <input type="hidden" id="QrId" value="" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 8: GeoService -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ৮</h2>
+                                    <blockquote>আপনার পজিসন লোকেট করুন -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <button id="GeoServiceToggle">Start</button>
+                                                <input type="hidden" id="Latitude" value="" />
+                                                <input type="hidden" id="Longitude" value="" />
+                                                <input type="hidden" id="Accuracy" value="" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 9: Submit -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">পর্ব - ৯</h2>
+                                    <blockquote>আপনার তথ্য গুলো সেভ করুন -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <input type="hidden" id="SessionId" value="@ViewBag.SessionDigest" />
+                                                <button id="SubmitRetailer">Save</button>
+                                                <p id="ErrorDetails"></p>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="pagination">
+            <button class="left" id="GoToFirst">First</button>
+            <button class="left" id="GoToPrevious">Prev.</button>
+
+            <button class="right" id="GoToLast">Last</button>
+            <button class="right" id="GoToNext">Next</button>
+        </div>
+    </div>
+    <script src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    <script src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script src="../../../Assets/GoMobile/js/codes.js"></script>
+    @*<script src="../../../Assets/GoMobile/js/load.js"></script>*@
+    <script src="~/Assets/SimpleModal/jquery.simplemodal.1.4.4.min.js"></script>
+    <script src="~/Areas/Dsr/Assets/js/RegionalData.js"></script>
+    <script src="~/Areas/Dsr/Assets/js/SubmitNewRetailer.js"></script>
+    <script src="~/Areas/Dsr/Assets/js/BottomNavInitialize.js"></script>
+
+    <script>
+        var $IsElPosCheckbox = $('#IsElPos');
+        var $IsSimPosCheckBox = $("#IsSimPos");
+        var $IsScPosCheckBox = $("#IsScPos");
+
+        var $RegionCombo = $("#RegionId");
+        var $AreaCombo = $("#AreaId");
+        var $ThanaCombo = $("#ThanaId");
+        var $WardCombo = $("#WardId");
+        var $MauzaCombo = $("#MauzaId");
+        var $VillageCombo = $("#VillageId");
+
+        var $RetailerPhotoInput = $("#RetailerPhotoInput"), clearBn = $("#clear");
+
+        $(function () {
+            $('#SubmitQr').hide();
+
+            $($IsElPosCheckbox).click(function () {
+                var thisCheck = $(this);
+
+                if ($IsElPosCheckbox.is(':checked')) {
+                    $IsElPosCheckbox.closest('form').find("#AddElMsisdn").show();
+                    //$("#AddElMsisdn").show();
+                }
+                else {
+                    $IsElPosCheckbox.closest('form').find('.ElMsisdnDiv').remove().end().find("#AddElMsisdn").hide();
+                }
+            });
+
+            $('#AddElMsisdn').on('click', function (e) {
+                e.preventDefault();
+                $('<div/>').addClass('ElMsisdnDiv')
+                .html($('<input type="text" placeholder="enter EL MSISDN"/>').addClass('ElMsisdnInput'))
+                .append($('<button/>').addClass('RemoveElMsisdn').text('X'))
+                .insertBefore(this);
+
+            });
+            $(document).on('click', 'button.RemoveElMsisdn', function (e) {
+                e.preventDefault();
+                $(this).closest('div.ElMsisdnDiv').remove();
+            });
+
+            $(document).on('click', '.ElMsisdnInput', function (e) {
+                e.preventDefault();
+                $(this).focus();
+            });
+
+
+            //SIM POS checkbox click handler IsSimPos
+            $($IsSimPosCheckBox).click(function () {
+                if ($IsSimPosCheckBox.is(':checked')) {
+                    $IsSimPosCheckBox.closest('form').find('#AddSimPosCode').show();
+                    //$('#AddSimPosCode').show();
+                }
+                else {
+                    $IsSimPosCheckBox.closest('form').find('.SimPosCodeDiv').remove().end().find('#AddSimPosCode').hide();
+                }
+            });
+
+            //adding new sim pos code
+            $('#AddSimPosCode').on('click', function (e) {
+                e.preventDefault();
+                $('<div/>').addClass('SimPosCodeDiv')
+                .html($('<input type="text" placeholder="enter SIM POS code"/>').addClass('SimPosCodeInput'))
+                .append($('<button/>').addClass('RemoveSimPosCode').text('X'))
+                .insertBefore(this);
+            });
+
+            //removing sim pos code
+            $(document).on('click', 'button.RemoveSimPosCode', function (e) {
+                e.preventDefault();
+                $(this).closest('div.SimPosCodeDiv').remove();
+            });
+
+            //Set focus
+            $(document).on('click', '.SimPosCodeInput', function (e) {
+                e.preventDefault();
+                $(this).focus();
+            });
+
+            $(document).on('click', '.GeoLocationDiv', function (e) {
+                e.preventDefault();
+                $('.GeoLocationDiv').not(this).remove();
+
+                $(this).closest('form').find('#Latitude').val($(this).find('.lat').val());
+                $(this).closest('form').find('#Longitude').val($(this).find('.lon').val());
+                $(this).closest('form').find('#Accuracy').val($(this).find('.acc').val());
+
+            });
+
+            // $("#RetailerPhotoPreview").hide();
+            // $("#QrPhotoPreview").hide();
+
+            // GetAllRegions();
+
+
+            $("#RetailerPhotoInput").change(function () {
+                PreviewRetailerPhoto(this);
+            });
+
+            $("#QrPhotoInput").change(function () {
+                PreviewQrPhoto(this);
+            });
+
+            //QR Submission starts
+            $("#SubmitQr").click(function () {
+                $button = $("#SubmitQr");
+                var file = document.getElementById('QrPhotoInput').files[0];
+                var fd = new FormData();
+                fd.append("QrImage", file);
+                var urlData = '../../../Common/ReadQrCode';
+                $.ajax({
+                    url: urlData,
+                    type: "POST",
+                    data: fd,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    beforeSend: function () {
+                        $button.attr('disabled', 'disabled');
+                        $button.html('Working...');
+                    },
+                    success: function (response) {
+
+                        switch (response.status) {
+                            case 1:
+                                $('#QrId').val(response.qrdata);
+                                $('#QrValueInHand').val(response.qrdata);
+                                $.modal('<h3 style="color:green;">QR image is valid.</h3>');
+                                break;
+                            case 2:
+                                $('#QrId').val('');
+                                $('#QrValueInHand').val('');
+                                $.modal('<h3 style="color:red;">QR image is not valid. Please try again.</h3>');
+                                break;
+                            case 3:
+                                $('#QrId').val('');
+                                $('#QrValueInHand').val('');
+                                $.modal('<h3 style="color:red;">QR code not found in this photo. Try again.</h3>');
+                                break;
+                            default:
+                                $('#QrId').val('');
+                                $('#QrValueInHand').val('');
+                                $.modal('<h3 style="color:red;">Valid QR code not found in this photo. Please try again.</h3>');
+                                break;
+                        }
+                    },
+                    error: function (request, status, error) {
+                        $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                    },
+                    complete: function () {
+                        $button.removeAttr("disabled");
+                        $button.html('Validate');
+                    }
+                });
+            });
+            //QR Submission ends
+
+            $("#GeoServiceToggle").click(function (e) {
+                e.preventDefault();
+                var buttonText = $(this).html();
+                if (buttonText === 'Start') {
+                    StartGeoService();
+                    $(this).html('Stop');
+                }
+                else {
+                    StopGeoService();
+                    $(this).html('Start');
+                }
+            });
+        });
+    </script>
+
+    <!-- image preview -->
+    <script>
+        //var file = document.getElementById('files').files[0];
+
+        function PreviewRetailerPhoto(input) {
+            if (input.files && input.files[0]) {
+
+                var photoSize = input.files[0].size;
+                photoSize = photoSize / 1024;
+                if (photoSize > 600) {
+                    ClearRetailerPhoto();
+                    //alert('Please select smaller photo less than 600KB in size.');
+                    $.modal('<h3 style="color:red;">Please select smaller photo less than 600KB in size.</h3>');
+                }
+                else {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#RetailerPhotoPreview').attr('src', e.target.result);
+                        $('#RetailerPhotoPreview').show();
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+
+            }
+        }
+
+        function ClearRetailerPhoto() {
+            $RetailerPhotoInput.replaceWith($RetailerPhotoInput.val('').clone(true));
+            $("#RetailerPhotoPreview").hide();
+            $('#RetailerPhotoPreview').attr('src', '#');
+        }
+
+        function PreviewQrPhoto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#QrPhotoPreview').attr('src', e.target.result);
+                    $('#QrPhotoPreview').show();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+                $('#SubmitQr').show();
+            }
+        }
+
+        function ClearQrPhoto() {
+            $QrPhotoInput = $('#QrPhotoInput');
+            $QrPhotoInput.replaceWith($QrPhotoInput.val('').clone(true));
+            $("#QrPhotoPreview").hide();
+            $('#SubmitQr').hide();
+        }
+    </script>
+
+    <!-- GeoLocation Service -->
+    <script>
+        var WatchId = null;
+        function StartGeoService() {
+
+            try {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                            processGeolocationResult,
+                            html5Error,
+                            {
+                                maximumAge: 250,
+                                timeout: 60000,
+                                enableHighAccuracy: true
+                            }
+                    );
+
+                    WatchId = navigator.geolocation.watchPosition(
+                           processGeolocationResult,
+                           html5Error,
+                           {
+                               maximumAge: 250,
+                               timeout: 60000,
+                               enableHighAccuracy: true
+                           }
+                   );
+
+                    //For more info on maximumAge (milliseconds): http://dev.w3.org/geo/api/spec-source.html#max-age
+                    //For more info on timeout (milliseconds): http://dev.w3.org/geo/api/spec-source.html#timeout
+                    //For more info on enableHighAccuracy: http://dev.w3.org/geo/api/spec-source.html#high-accuracy
+                }
+                else {
+                    alert("Sorry, your browser does not support geolocation");
+                }
+            }
+            catch (err) {
+                alert("Unable to start geolocation. See console.log for message.")
+                //console.log("startGeolocation: " + err.message);
+            }
+
+        }
+
+        function processGeolocationResult(position) {
+            displayGeocodedLocation(position);
+        }
+
+        function html5Error(error) {
+            var error_value = "null";
+
+            switch (error.code) {
+                case 1:
+                    error_value = "PERMISSION_DENIED";
+                    // this.geoSliderOnOff.val("off");
+                    break;
+                case 2:
+                    error_value = "POSITION_UNAVAILABLE";
+                    break;
+                case 3:
+                    //Read more at http://dev.w3.org/geo/api/spec-source.html#timeout
+                    error_value = "TIMEOUT";
+                    break;
+            }
+
+
+            alert('There was a problem retrieving your location: ' + error_value);
+            console.log('There was a problem retrieving your location: ' + error_value);
+        }
+
+        function displayGeocodedLocation(position) {
+
+            if (position.coords.accuracy < 20) {
+                $('<div/>').addClass('GeoLocationDiv green').html(position.coords.accuracy.toFixed(0) + ' meters <input type="hidden" class="lat" value="' + position.coords.latitude + '"/><input type="hidden" class="lon" value="' + position.coords.longitude + '"/><input type="hidden" class="acc" value="' + position.coords.accuracy.toFixed(0) + '"/>').insertAfter($('#GeoServiceToggle'));
+            }
+            else {
+                $('<div/>').addClass('GeoLocationDiv').html(position.coords.accuracy.toFixed(0) + ' meters <input type="hidden" class="lat" value="' + position.coords.latitude + '"/><input type="hidden" class="lon" value="' + position.coords.longitude + '"/><input type="hidden" class="acc" value="' + position.coords.accuracy.toFixed(0) + '"/>').insertAfter($('#GeoServiceToggle'));
+            }
+        }
+
+        function StopGeoService() {
+            try {
+                // swipernested.reInit();
+                navigator.geolocation.clearWatch(WatchId);
+                WatchId = null;
+
+            }
+            catch (err) {
+                console.log("stopGeolocation error: " + err.toString());
+            }
+        }
+    </script>
+    <!-- GeoLocation Service -->
+
+    <!-- QR code input by hand handler -->
+    <script>
+
+        $(function () {
+            $(document).on('click', '#QrValueInHand', function (e) {
+                e.preventDefault();
+                $(this).focus();
+            });
+
+            var lastValue = '';
+            $("#QrValueInHand").on('change keyup paste mouseup', function () {
+                if ($(this).val() != lastValue) {
+                    lastValue = $(this).val();
+                    $(this).closest('form').find('#QrId').val(lastValue);
+                }
+            });
+        });
+
+    </script>
+    <!-- QR code input by hand handler -->
+
+    <!-- Reset Form -->
+    <script>
+        function ResetForm() {
+            $('#RetailerName').val('');
+            $('#RetailerAddress').val('');
+            $('#PosCategoryId').val(-1);
+
+            //$('#IsElPos').prop('checked', false);
+            $IsElPosCheckbox.prop('checked', false);
+            $IsElPosCheckbox.closest('form').find('.ElMsisdnDiv').remove().end().find("#AddElMsisdn").hide();
+
+            $('#IsSimPos').attr('checked', false);
+            $IsSimPosCheckBox.closest('form').find('.SimPosCodeDiv').remove().end().find('#AddSimPosCode').hide();
+
+            $('#IsScPos').attr('checked', false);
+
+            // $('#VillageId').val(0);
+
+            $ThanaCombo.val(-1);
+            $WardCombo.val(0);
+            $MauzaCombo.val(0);
+            $VillageCombo.val(0);
+
+            $('#PosStructureId').val(-1);
+            $('#ShopSignageId').val(-1);
+            $('#ShopTypeId').val(-1);
+            $('#VisitDayId').val(-1);
+
+            $('#IsApartments').prop('checked', false);
+            $('#IsSlums').prop('checked', false);
+            $('#IsSemiUrbunHousing').prop('checked', false);
+            $('#IsRuralHousing').prop('checked', false);
+            $('#IsShoppingMall').prop('checked', false);
+            $('#IsRetailHub').prop('checked', false);
+            $('#IsMobileDeviceMarket').prop('checked', false);
+            $('#IsBazaar').prop('checked', false);
+            $('#IsOfficeArea').prop('checked', false);
+            $('#IsGarmentsMajorityArea').prop('checked', false);
+            $('#IsGeneralIndustrialArea').prop('checked', false);
+            $('#IsUrbanTransitPoints').prop('checked', false);
+            $('#IsRuralTransitPoints').prop('checked', false);
+            $('#IsUrbanYouthHangouts').prop('checked', false);
+            $('#IsSemiUrbanYouthHangouts').prop('checked', false);
+            $('#IsRuralYouthHangouts').prop('checked', false);
+            $('#IsTouristDestinations').prop('checked', false);
+
+
+            ClearRetailerPhoto();
+            ClearQrPhoto();
+            $("#QrValueInHand").val('');
+            $('.GeoLocationDiv').remove();
+            $('#QrId').val('');
+            $('#Latitude').val('');
+            $('#Longitude').val('');
+            $('#Accuracy').val('');
+        }
+
+    </script>
+    <!-- Reset Form -->
+
+
+
+</body>
+
+</html>

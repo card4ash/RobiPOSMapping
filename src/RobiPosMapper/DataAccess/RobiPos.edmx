@@ -1,0 +1,1765 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RobiPosMappingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaId" />
+          </Key>
+          <Property Name="AreaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="50" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="DistrictId" />
+          </Key>
+          <Property Name="DistrictId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DistrictName" Type="varchar" MaxLength="50" />
+          <Property Name="DivisionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionId" />
+          </Key>
+          <Property Name="DivisionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DivisionName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ElMsisdn">
+          <Key>
+            <PropertyRef Name="ElMsisdnId" />
+          </Key>
+          <Property Name="ElMsisdnId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElMsisdn" Type="int" />
+          <Property Name="RetailerId" Type="int" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="LanguageName" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Locality">
+          <Key>
+            <PropertyRef Name="LocalityId" />
+          </Key>
+          <Property Name="LocalityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocalityName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Mauza">
+          <Key>
+            <PropertyRef Name="MauzaId" />
+          </Key>
+          <Property Name="MauzaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MauzaName" Type="varchar" MaxLength="150" />
+          <Property Name="WardId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonName" Type="varchar" MaxLength="100" />
+          <Property Name="RspId" Type="int" />
+          <Property Name="PersonTypeId" Type="int" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="PersonMsisdn" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="LoginPassword" Type="varchar" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LanguagePreference" Type="varchar" MaxLength="10" />
+          <Property Name="IsPrinted" Type="int" />
+          <Property Name="IsDistributed" Type="int" />
+          <Property Name="PrintDate" Type="datetime" />
+          <Property Name="DistributionDate" Type="date" />
+        </EntityType>
+        <EntityType Name="PersonType">
+          <Key>
+            <PropertyRef Name="PersonTypeId" />
+          </Key>
+          <Property Name="PersonTypeId" Type="int" Nullable="false" />
+          <Property Name="PersonTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PosStructure">
+          <Key>
+            <PropertyRef Name="PosStructureId" />
+          </Key>
+          <Property Name="PosStructureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PosStructureName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PosType">
+          <Key>
+            <PropertyRef Name="PosTypeId" />
+          </Key>
+          <Property Name="PosTypeId" Type="int" Nullable="false" />
+          <Property Name="PosTypeName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QrCode">
+          <Key>
+            <PropertyRef Name="QrCodeId" />
+          </Key>
+          <Property Name="SerialNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QrCodeId" Type="int" Nullable="false" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="RspId" Type="int" />
+          <Property Name="IsPrinted" Type="int" />
+          <Property Name="IsDistributed" Type="int" />
+          <Property Name="PrintDate" Type="datetime" />
+          <Property Name="DistributionDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Retailer">
+          <Key>
+            <PropertyRef Name="RetailerId" />
+          </Key>
+          <Property Name="RetailerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RetailerName" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="250" />
+          <Property Name="PosCategoryId" Type="int" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="ThanaId" Type="int" />
+          <Property Name="WardId" Type="int" />
+          <Property Name="MauzaId" Type="int" />
+          <Property Name="VillageId" Type="int" />
+          <Property Name="IsElPos" Type="bit" />
+          <Property Name="IsSimPos" Type="bit" />
+          <Property Name="IsScPos" Type="bit" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="15" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="15" />
+          <Property Name="AccuracyLevel" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="VisitDayId" Type="int" />
+          <Property Name="DefaultPhotoName" Type="varchar" MaxLength="30" />
+          <Property Name="PosStructureId" Type="int" />
+          <Property Name="ShopSignageId" Type="int" />
+          <Property Name="ShopTypeId" Type="int" />
+          <Property Name="RspId" Type="int" />
+          <Property Name="DsrActivityDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="RetailerStatusId" Type="int" />
+          <Property Name="IsVerifiedByDsrs" Type="bit" />
+          <Property Name="DsrsVerificationDateTime" Type="datetime" />
+          <Property Name="DsrId" Type="int" />
+          <Property Name="IsApartments" Type="bit" />
+          <Property Name="IsSlums" Type="bit" />
+          <Property Name="IsSemiUrbunHousing" Type="bit" />
+          <Property Name="IsRuralHousing" Type="bit" />
+          <Property Name="IsShoppingMall" Type="bit" />
+          <Property Name="IsRetailHub" Type="bit" />
+          <Property Name="IsMobileDeviceMarket" Type="bit" />
+          <Property Name="IsBazaar" Type="bit" />
+          <Property Name="IsOfficeArea" Type="bit" />
+          <Property Name="IsGarmentsMajorityArea" Type="bit" />
+          <Property Name="IsGeneralIndustrialArea" Type="bit" />
+          <Property Name="IsUrbanTransitPoints" Type="bit" />
+          <Property Name="IsRuralTransitPoints" Type="bit" />
+          <Property Name="IsUrbanYouthHangouts" Type="bit" />
+          <Property Name="IsSemiUrbanYouthHangouts" Type="bit" />
+          <Property Name="IsRuralYouthHangouts" Type="bit" />
+          <Property Name="IsTouristDestinations" Type="bit" />
+          <Property Name="WorkingId" Type="int" />
+          <Property Name="WorkingFileName" Type="varchar" MaxLength="50" />
+          <Property Name="QrCodeId" Type="int" />
+          <Property Name="IsPrinted" Type="int" />
+          <Property Name="IsDistributed" Type="int" />
+          <Property Name="PrintDate" Type="datetime" />
+          <Property Name="DistributionDate" Type="date" />
+        </EntityType>
+        <EntityType Name="RetailerPhoto">
+          <Key>
+            <PropertyRef Name="PhotoId" />
+          </Key>
+          <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RetailerId" Type="int" />
+          <Property Name="PhotoName" Type="varchar" MaxLength="30" />
+          <Property Name="UploadDate" Type="datetime" />
+          <Property Name="UploadedBy" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="RSP">
+          <Key>
+            <PropertyRef Name="RspId" />
+          </Key>
+          <Property Name="RspId" Type="int" Nullable="false" />
+          <Property Name="RspMsisdn" Type="int" />
+          <Property Name="RspCode" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="RspName" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="IsPrinted" Type="int" />
+          <Property Name="IsDistributed" Type="int" />
+          <Property Name="PrintDate" Type="datetime" />
+          <Property Name="DistributionDate" Type="date" />
+        </EntityType>
+        <EntityType Name="ShopSignage">
+          <Key>
+            <PropertyRef Name="ShopSignageId" />
+          </Key>
+          <Property Name="ShopSignageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopSignageName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ShopType">
+          <Key>
+            <PropertyRef Name="ShopTypeId" />
+          </Key>
+          <Property Name="ShopTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopTypeName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SimPosCode">
+          <Key>
+            <PropertyRef Name="SimPosCodeId" />
+          </Key>
+          <Property Name="SimPosCodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SimPosCode" Type="varchar" MaxLength="50" />
+          <Property Name="RetailerId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Thana">
+          <Key>
+            <PropertyRef Name="ThanaId" />
+          </Key>
+          <Property Name="ThanaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThanaName" Type="varchar" MaxLength="100" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="AreaId" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="LoginName" Type="varchar" MaxLength="15" />
+          <Property Name="LoginPassword" Type="varchar" MaxLength="10" />
+          <Property Name="LanguageId" Type="int" />
+          <Property Name="UserTypeId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="Msisdn" Type="int" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="UserTypeName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Village">
+          <Key>
+            <PropertyRef Name="VillageId" />
+          </Key>
+          <Property Name="VillageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VillageName" Type="varchar" MaxLength="150" />
+          <Property Name="MauzaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VisitDay">
+          <Key>
+            <PropertyRef Name="VisitDayId" />
+          </Key>
+          <Property Name="VisitDayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisitDays" Type="varchar" MaxLength="50" />
+          <Property Name="VisitDayCode" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Ward">
+          <Key>
+            <PropertyRef Name="WardId" />
+          </Key>
+          <Property Name="WardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WardName" Type="varchar" MaxLength="100" />
+          <Property Name="ThanaId" Type="int" />
+        </EntityType>
+        <EntityType Name="WeekDay">
+          <Key>
+            <PropertyRef Name="DayId" />
+          </Key>
+          <Property Name="DayId" Type="int" Nullable="false" />
+          <Property Name="DayName" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RobiPosMapping.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="DivisionId" />
+          </Key>
+          <Property Name="DivisionId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Area_Region1">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaId" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElMsisdn_Retailer">
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="0..1" />
+          <End Role="ElMsisdn" Type="Self.ElMsisdn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retailer">
+              <PropertyRef Name="RetailerId" />
+            </Principal>
+            <Dependent Role="ElMsisdn">
+              <PropertyRef Name="RetailerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mauza_Union">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="1" />
+          <End Role="Mauza" Type="Self.Mauza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="WardId" />
+            </Principal>
+            <Dependent Role="Mauza">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Mauza">
+          <End Role="Mauza" Type="Self.Mauza" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mauza">
+              <PropertyRef Name="MauzaId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="MauzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_PosStructure">
+          <End Role="PosStructure" Type="Self.PosStructure" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosStructure">
+              <PropertyRef Name="PosStructureId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="PosStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_RSP">
+          <End Role="RSP" Type="Self.RSP" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RSP">
+              <PropertyRef Name="RspId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="RspId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_ShopSignage">
+          <End Role="ShopSignage" Type="Self.ShopSignage" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopSignage">
+              <PropertyRef Name="ShopSignageId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="ShopSignageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_ShopType">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="ShopTypeId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="ShopTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Thana">
+          <End Role="Thana" Type="Self.Thana" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Thana">
+              <PropertyRef Name="ThanaId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Village">
+          <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Village">
+              <PropertyRef Name="VillageId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="VillageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_VisitDay">
+          <End Role="VisitDay" Type="Self.VisitDay" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitDay">
+              <PropertyRef Name="VisitDayId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="VisitDayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="WardId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SimPosCode_Retailer">
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="0..1" />
+          <End Role="SimPosCode" Type="Self.SimPosCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retailer">
+              <PropertyRef Name="RetailerId" />
+            </Principal>
+            <Dependent Role="SimPosCode">
+              <PropertyRef Name="RetailerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thana_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Thana" Type="Self.Thana" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictId" />
+            </Principal>
+            <Dependent Role="Thana">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Union_Thana">
+          <End Role="Thana" Type="Self.Thana" Multiplicity="0..1" />
+          <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Thana">
+              <PropertyRef Name="ThanaId" />
+            </Principal>
+            <Dependent Role="Ward">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserType">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Village_Mauza">
+          <End Role="Mauza" Type="Self.Mauza" Multiplicity="1" />
+          <End Role="Village" Type="Self.Village" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mauza">
+              <PropertyRef Name="MauzaId" />
+            </Principal>
+            <Dependent Role="Village">
+              <PropertyRef Name="MauzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RobiPosMappingModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElMsisdn" EntityType="Self.ElMsisdn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locality" EntityType="Self.Locality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mauza" EntityType="Self.Mauza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonType" EntityType="Self.PersonType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosStructure" EntityType="Self.PosStructure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosType" EntityType="Self.PosType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QrCode" EntityType="Self.QrCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Retailer" EntityType="Self.Retailer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RetailerPhoto" EntityType="Self.RetailerPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RSP" EntityType="Self.RSP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopSignage" EntityType="Self.ShopSignage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopType" EntityType="Self.ShopType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SimPosCode" EntityType="Self.SimPosCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thana" EntityType="Self.Thana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Village" EntityType="Self.Village" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitDay" EntityType="Self.VisitDay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeekDay" EntityType="Self.WeekDay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[View_1].[DivisionId] AS [DivisionId]
+FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Area_Region1" Association="Self.FK_Area_Region1">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Area" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_Area" Association="Self.FK_District_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElMsisdn_Retailer" Association="Self.FK_ElMsisdn_Retailer">
+            <End Role="Retailer" EntitySet="Retailer" />
+            <End Role="ElMsisdn" EntitySet="ElMsisdn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mauza_Union" Association="Self.FK_Mauza_Union">
+            <End Role="Ward" EntitySet="Ward" />
+            <End Role="Mauza" EntitySet="Mauza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Mauza" Association="Self.FK_Retailer_Mauza">
+            <End Role="Mauza" EntitySet="Mauza" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_PosStructure" Association="Self.FK_Retailer_PosStructure">
+            <End Role="PosStructure" EntitySet="PosStructure" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_RSP" Association="Self.FK_Retailer_RSP">
+            <End Role="RSP" EntitySet="RSP" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_ShopSignage" Association="Self.FK_Retailer_ShopSignage">
+            <End Role="ShopSignage" EntitySet="ShopSignage" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_ShopType" Association="Self.FK_Retailer_ShopType">
+            <End Role="ShopType" EntitySet="ShopType" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Thana" Association="Self.FK_Retailer_Thana">
+            <End Role="Thana" EntitySet="Thana" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Village" Association="Self.FK_Retailer_Village">
+            <End Role="Village" EntitySet="Village" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_VisitDay" Association="Self.FK_Retailer_VisitDay">
+            <End Role="VisitDay" EntitySet="VisitDay" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Ward" Association="Self.FK_Retailer_Ward">
+            <End Role="Ward" EntitySet="Ward" />
+            <End Role="Retailer" EntitySet="Retailer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SimPosCode_Retailer" Association="Self.FK_SimPosCode_Retailer">
+            <End Role="Retailer" EntitySet="Retailer" />
+            <End Role="SimPosCode" EntitySet="SimPosCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thana_District" Association="Self.FK_Thana_District">
+            <End Role="District" EntitySet="District" />
+            <End Role="Thana" EntitySet="Thana" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Union_Thana" Association="Self.FK_Union_Thana">
+            <End Role="Thana" EntitySet="Thana" />
+            <End Role="Ward" EntitySet="Ward" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Language" Association="Self.FK_User_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Village_Mauza" Association="Self.FK_Village_Mauza">
+            <End Role="Mauza" EntitySet="Mauza" />
+            <End Role="Village" EntitySet="Village" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RobiPosMappingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaId" />
+          </Key>
+          <Property Name="AreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Area_Region1" FromRole="Area" ToRole="Region" />
+          <NavigationProperty Name="Districts" Relationship="Self.FK_District_Area" FromRole="Area" ToRole="District" />
+          <NavigationProperty Name="Retailers" Relationship="RobiPosMappingModel.FK_Retailer_Area" FromRole="Area" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="DistrictId" />
+          </Key>
+          <Property Name="DistrictId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DivisionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_District_Area" FromRole="District" ToRole="Area" />
+          <NavigationProperty Name="Thanas" Relationship="Self.FK_Thana_District" FromRole="District" ToRole="Thana" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionId" />
+          </Key>
+          <Property Name="DivisionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DivisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ElMsisdn">
+          <Key>
+            <PropertyRef Name="ElMsisdnId" />
+          </Key>
+          <Property Name="ElMsisdnId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElMsisdn1" Type="Int32" />
+          <Property Name="RetailerId" Type="Int32" />
+          <NavigationProperty Name="Retailer" Relationship="Self.FK_ElMsisdn_Retailer" FromRole="ElMsisdn" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="LanguageName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Language" FromRole="Language" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Locality">
+          <Key>
+            <PropertyRef Name="LocalityId" />
+          </Key>
+          <Property Name="LocalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocalityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Mauza">
+          <Key>
+            <PropertyRef Name="MauzaId" />
+          </Key>
+          <Property Name="MauzaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MauzaName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="WardId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ward" Relationship="Self.FK_Mauza_Union" FromRole="Mauza" ToRole="Ward" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_Mauza" FromRole="Mauza" ToRole="Retailer" />
+          <NavigationProperty Name="Villages" Relationship="Self.FK_Village_Mauza" FromRole="Mauza" ToRole="Village" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RspId" Type="Int32" />
+          <Property Name="PersonTypeId" Type="Int32" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="PersonMsisdn" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoginPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_Person" FromRole="Person" ToRole="Retailer" />
+          <Property Name="LanguagePreference" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsPrinted" Type="Int32" />
+          <Property Name="IsDistributed" Type="Int32" />
+          <Property Name="PrintDate" Type="DateTime" Precision="3" />
+          <Property Name="DistributionDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="PersonType">
+          <Key>
+            <PropertyRef Name="PersonTypeId" />
+          </Key>
+          <Property Name="PersonTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PersonTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PosStructure">
+          <Key>
+            <PropertyRef Name="PosStructureId" />
+          </Key>
+          <Property Name="PosStructureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PosStructureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_PosStructure" FromRole="PosStructure" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="PosType">
+          <Key>
+            <PropertyRef Name="PosTypeId" />
+          </Key>
+          <Property Name="PosTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PosTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="QrCode">
+          <Key>
+            <PropertyRef Name="QrCodeId" />
+          </Key>
+          <Property Name="QrCodeId" Type="Int32" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="RspId" Type="Int32" />
+          <Property Name="IsPrinted" Type="Int32" />
+          <Property Name="IsDistributed" Type="Int32" />
+          <Property Name="SerialNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrintDate" Type="DateTime" Precision="3" />
+          <Property Name="DistributionDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK_Area_Region1" FromRole="Region" ToRole="Area" />
+          <NavigationProperty Name="Retailers" Relationship="RobiPosMappingModel.FK_Retailer_Region" FromRole="Region" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="Retailer">
+          <Key>
+            <PropertyRef Name="RetailerId" />
+          </Key>
+          <Property Name="RetailerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RetailerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="ThanaId" Type="Int32" />
+          <Property Name="WardId" Type="Int32" />
+          <Property Name="MauzaId" Type="Int32" />
+          <Property Name="VillageId" Type="Int32" />
+          <Property Name="IsElPos" Type="Boolean" />
+          <Property Name="IsSimPos" Type="Boolean" />
+          <Property Name="IsScPos" Type="Boolean" />
+          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="15" />
+          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="15" />
+          <Property Name="AccuracyLevel" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="VisitDayId" Type="Int32" />
+          <Property Name="DefaultPhotoName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PosStructureId" Type="Int32" />
+          <Property Name="ShopSignageId" Type="Int32" />
+          <Property Name="ShopTypeId" Type="Int32" />
+          <Property Name="RspId" Type="Int32" />
+          <Property Name="DsrActivityDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RetailerStatusId" Type="Int32" />
+          <Property Name="IsVerifiedByDsrs" Type="Boolean" />
+          <Property Name="DsrsVerificationDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DsrId" Type="Int32" />
+          <Property Name="IsApartments" Type="Boolean" />
+          <Property Name="IsSlums" Type="Boolean" />
+          <Property Name="IsSemiUrbunHousing" Type="Boolean" />
+          <Property Name="IsRuralHousing" Type="Boolean" />
+          <Property Name="IsShoppingMall" Type="Boolean" />
+          <Property Name="IsRetailHub" Type="Boolean" />
+          <Property Name="IsMobileDeviceMarket" Type="Boolean" />
+          <Property Name="IsBazaar" Type="Boolean" />
+          <Property Name="IsOfficeArea" Type="Boolean" />
+          <Property Name="IsGarmentsMajorityArea" Type="Boolean" />
+          <Property Name="IsGeneralIndustrialArea" Type="Boolean" />
+          <Property Name="IsUrbanTransitPoints" Type="Boolean" />
+          <Property Name="IsRuralTransitPoints" Type="Boolean" />
+          <Property Name="IsUrbanYouthHangouts" Type="Boolean" />
+          <Property Name="IsSemiUrbanYouthHangouts" Type="Boolean" />
+          <Property Name="IsRuralYouthHangouts" Type="Boolean" />
+          <Property Name="WorkingId" Type="Int32" />
+          <Property Name="WorkingFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QrCodeId" Type="Int32" />
+          <NavigationProperty Name="ElMsisdns" Relationship="Self.FK_ElMsisdn_Retailer" FromRole="Retailer" ToRole="ElMsisdn" />
+          <NavigationProperty Name="Mauza" Relationship="Self.FK_Retailer_Mauza" FromRole="Retailer" ToRole="Mauza" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Retailer_Person" FromRole="Retailer" ToRole="Person" />
+          <NavigationProperty Name="PosStructure" Relationship="Self.FK_Retailer_PosStructure" FromRole="Retailer" ToRole="PosStructure" />
+          <NavigationProperty Name="RSP" Relationship="Self.FK_Retailer_RSP" FromRole="Retailer" ToRole="RSP" />
+          <NavigationProperty Name="ShopSignage" Relationship="Self.FK_Retailer_ShopSignage" FromRole="Retailer" ToRole="ShopSignage" />
+          <NavigationProperty Name="ShopType" Relationship="Self.FK_Retailer_ShopType" FromRole="Retailer" ToRole="ShopType" />
+          <NavigationProperty Name="Thana" Relationship="Self.FK_Retailer_Thana" FromRole="Retailer" ToRole="Thana" />
+          <NavigationProperty Name="Village" Relationship="Self.FK_Retailer_Village" FromRole="Retailer" ToRole="Village" />
+          <NavigationProperty Name="VisitDay" Relationship="Self.FK_Retailer_VisitDay" FromRole="Retailer" ToRole="VisitDay" />
+          <NavigationProperty Name="Ward" Relationship="Self.FK_Retailer_Ward" FromRole="Retailer" ToRole="Ward" />
+          <NavigationProperty Name="SimPosCodes" Relationship="Self.FK_SimPosCode_Retailer" FromRole="Retailer" ToRole="SimPosCode" />
+          <NavigationProperty Name="Area" Relationship="RobiPosMappingModel.FK_Retailer_Area" FromRole="Retailer" ToRole="Area" />
+          <NavigationProperty Name="Region" Relationship="RobiPosMappingModel.FK_Retailer_Region" FromRole="Retailer" ToRole="Region" />
+          <Property Name="PosCategoryId" Type="Int32" />
+          <Property Name="IsTouristDestinations" Type="Boolean" />
+          <Property Name="IsPrinted" Type="Int32" />
+          <Property Name="IsDistributed" Type="Int32" />
+          <Property Name="PrintDate" Type="DateTime" Precision="3" />
+          <Property Name="DistributionDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="RetailerPhoto">
+          <Key>
+            <PropertyRef Name="PhotoId" />
+          </Key>
+          <Property Name="PhotoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RetailerId" Type="Int32" />
+          <Property Name="PhotoName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UploadDate" Type="DateTime" Precision="3" />
+          <Property Name="UploadedBy" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="RSP">
+          <Key>
+            <PropertyRef Name="RspId" />
+          </Key>
+          <Property Name="RspId" Type="Int32" Nullable="false" />
+          <Property Name="RspMsisdn" Type="Int32" />
+          <Property Name="RspCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RspName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_RSP" FromRole="RSP" ToRole="Retailer" />
+          <Property Name="IsPrinted" Type="Int32" />
+          <Property Name="IsDistributed" Type="Int32" />
+          <Property Name="PrintDate" Type="DateTime" Precision="3" />
+          <Property Name="DistributionDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ShopSignage">
+          <Key>
+            <PropertyRef Name="ShopSignageId" />
+          </Key>
+          <Property Name="ShopSignageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopSignageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_ShopSignage" FromRole="ShopSignage" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="ShopType">
+          <Key>
+            <PropertyRef Name="ShopTypeId" />
+          </Key>
+          <Property Name="ShopTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_ShopType" FromRole="ShopType" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="SimPosCode">
+          <Key>
+            <PropertyRef Name="SimPosCodeId" />
+          </Key>
+          <Property Name="SimPosCodeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SimPosCode1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RetailerId" Type="Int32" />
+          <NavigationProperty Name="Retailer" Relationship="Self.FK_SimPosCode_Retailer" FromRole="SimPosCode" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Thana">
+          <Key>
+            <PropertyRef Name="ThanaId" />
+          </Key>
+          <Property Name="ThanaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThanaName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="AreaId" Type="Int32" />
+          <NavigationProperty Name="District" Relationship="Self.FK_Thana_District" FromRole="Thana" ToRole="District" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_Thana" FromRole="Thana" ToRole="Retailer" />
+          <NavigationProperty Name="Wards" Relationship="Self.FK_Union_Thana" FromRole="Thana" ToRole="Ward" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoginName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="LoginPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LanguageId" Type="Int32" />
+          <Property Name="UserTypeId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="Msisdn" Type="Int32" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_User_Language" FromRole="User" ToRole="Language" />
+          <NavigationProperty Name="UserType" Relationship="Self.FK_User_UserType" FromRole="User" ToRole="UserType" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_UserType" FromRole="UserType" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Village">
+          <Key>
+            <PropertyRef Name="VillageId" />
+          </Key>
+          <Property Name="VillageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VillageName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MauzaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mauza" Relationship="Self.FK_Village_Mauza" FromRole="Village" ToRole="Mauza" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_Village" FromRole="Village" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="VisitDay">
+          <Key>
+            <PropertyRef Name="VisitDayId" />
+          </Key>
+          <Property Name="VisitDayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitDays" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VisitDayCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_VisitDay" FromRole="VisitDay" ToRole="Retailer" />
+        </EntityType>
+        <EntityType Name="Ward">
+          <Key>
+            <PropertyRef Name="WardId" />
+          </Key>
+          <Property Name="WardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WardName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ThanaId" Type="Int32" />
+          <NavigationProperty Name="Mauzas" Relationship="Self.FK_Mauza_Union" FromRole="Ward" ToRole="Mauza" />
+          <NavigationProperty Name="Retailers" Relationship="Self.FK_Retailer_Ward" FromRole="Ward" ToRole="Retailer" />
+          <NavigationProperty Name="Thana" Relationship="Self.FK_Union_Thana" FromRole="Ward" ToRole="Thana" />
+        </EntityType>
+        <EntityType Name="WeekDay">
+          <Key>
+            <PropertyRef Name="DayId" />
+          </Key>
+          <Property Name="DayId" Type="Int32" Nullable="false" />
+          <Property Name="DayName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="DivisionId" />
+          </Key>
+          <Property Name="DivisionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Area_Region1">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaId" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thana_District">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="Thana" Type="Self.Thana" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="DistrictId" />
+            </Principal>
+            <Dependent Role="Thana">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElMsisdn_Retailer">
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="0..1" />
+          <End Role="ElMsisdn" Type="Self.ElMsisdn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retailer">
+              <PropertyRef Name="RetailerId" />
+            </Principal>
+            <Dependent Role="ElMsisdn">
+              <PropertyRef Name="RetailerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mauza_Union">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="1" />
+          <End Role="Mauza" Type="Self.Mauza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="WardId" />
+            </Principal>
+            <Dependent Role="Mauza">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Mauza">
+          <End Role="Mauza" Type="Self.Mauza" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mauza">
+              <PropertyRef Name="MauzaId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="MauzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Village_Mauza">
+          <End Role="Mauza" Type="Self.Mauza" Multiplicity="1" />
+          <End Role="Village" Type="Self.Village" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mauza">
+              <PropertyRef Name="MauzaId" />
+            </Principal>
+            <Dependent Role="Village">
+              <PropertyRef Name="MauzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="DsrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_PosStructure">
+          <End Role="PosStructure" Type="Self.PosStructure" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PosStructure">
+              <PropertyRef Name="PosStructureId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="PosStructureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_RSP">
+          <End Role="RSP" Type="Self.RSP" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RSP">
+              <PropertyRef Name="RspId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="RspId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_ShopSignage">
+          <End Role="ShopSignage" Type="Self.ShopSignage" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopSignage">
+              <PropertyRef Name="ShopSignageId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="ShopSignageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_ShopType">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="ShopTypeId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="ShopTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Thana">
+          <End Role="Thana" Type="Self.Thana" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Thana">
+              <PropertyRef Name="ThanaId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Village">
+          <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Village">
+              <PropertyRef Name="VillageId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="VillageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_VisitDay">
+          <End Role="VisitDay" Type="Self.VisitDay" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitDay">
+              <PropertyRef Name="VisitDayId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="VisitDayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Ward">
+          <End Role="Ward" Type="Self.Ward" Multiplicity="0..1" />
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ward">
+              <PropertyRef Name="WardId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="WardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SimPosCode_Retailer">
+          <End Role="Retailer" Type="Self.Retailer" Multiplicity="0..1" />
+          <End Role="SimPosCode" Type="Self.SimPosCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retailer">
+              <PropertyRef Name="RetailerId" />
+            </Principal>
+            <Dependent Role="SimPosCode">
+              <PropertyRef Name="RetailerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Union_Thana">
+          <End Role="Thana" Type="Self.Thana" Multiplicity="0..1" />
+          <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Thana">
+              <PropertyRef Name="ThanaId" />
+            </Principal>
+            <Dependent Role="Ward">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserType">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RobiPosMappingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="Districts" EntityType="Self.District" />
+          <EntitySet Name="Divisions" EntityType="Self.Division" />
+          <EntitySet Name="ElMsisdns" EntityType="Self.ElMsisdn" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Localities" EntityType="Self.Locality" />
+          <EntitySet Name="Mauzas" EntityType="Self.Mauza" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="PersonTypes" EntityType="Self.PersonType" />
+          <EntitySet Name="PosStructures" EntityType="Self.PosStructure" />
+          <EntitySet Name="PosTypes" EntityType="Self.PosType" />
+          <EntitySet Name="QrCodes" EntityType="Self.QrCode" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Retailers" EntityType="Self.Retailer" />
+          <EntitySet Name="RetailerPhotoes" EntityType="Self.RetailerPhoto" />
+          <EntitySet Name="RSPs" EntityType="Self.RSP" />
+          <EntitySet Name="ShopSignages" EntityType="Self.ShopSignage" />
+          <EntitySet Name="ShopTypes" EntityType="Self.ShopType" />
+          <EntitySet Name="SimPosCodes" EntityType="Self.SimPosCode" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Thanas" EntityType="Self.Thana" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <EntitySet Name="Villages" EntityType="Self.Village" />
+          <EntitySet Name="VisitDays" EntityType="Self.VisitDay" />
+          <EntitySet Name="Wards" EntityType="Self.Ward" />
+          <EntitySet Name="WeekDays" EntityType="Self.WeekDay" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" />
+          <AssociationSet Name="FK_Area_Region1" Association="Self.FK_Area_Region1">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Area" EntitySet="Areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_Area" Association="Self.FK_District_Area">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="District" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thana_District" Association="Self.FK_Thana_District">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Thana" EntitySet="Thanas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElMsisdn_Retailer" Association="Self.FK_ElMsisdn_Retailer">
+            <End Role="Retailer" EntitySet="Retailers" />
+            <End Role="ElMsisdn" EntitySet="ElMsisdns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Language" Association="Self.FK_User_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mauza_Union" Association="Self.FK_Mauza_Union">
+            <End Role="Ward" EntitySet="Wards" />
+            <End Role="Mauza" EntitySet="Mauzas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Mauza" Association="Self.FK_Retailer_Mauza">
+            <End Role="Mauza" EntitySet="Mauzas" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Village_Mauza" Association="Self.FK_Village_Mauza">
+            <End Role="Mauza" EntitySet="Mauzas" />
+            <End Role="Village" EntitySet="Villages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Person" Association="Self.FK_Retailer_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_PosStructure" Association="Self.FK_Retailer_PosStructure">
+            <End Role="PosStructure" EntitySet="PosStructures" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_RSP" Association="Self.FK_Retailer_RSP">
+            <End Role="RSP" EntitySet="RSPs" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_ShopSignage" Association="Self.FK_Retailer_ShopSignage">
+            <End Role="ShopSignage" EntitySet="ShopSignages" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_ShopType" Association="Self.FK_Retailer_ShopType">
+            <End Role="ShopType" EntitySet="ShopTypes" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Thana" Association="Self.FK_Retailer_Thana">
+            <End Role="Thana" EntitySet="Thanas" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Village" Association="Self.FK_Retailer_Village">
+            <End Role="Village" EntitySet="Villages" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_VisitDay" Association="Self.FK_Retailer_VisitDay">
+            <End Role="VisitDay" EntitySet="VisitDays" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Ward" Association="Self.FK_Retailer_Ward">
+            <End Role="Ward" EntitySet="Wards" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SimPosCode_Retailer" Association="Self.FK_SimPosCode_Retailer">
+            <End Role="Retailer" EntitySet="Retailers" />
+            <End Role="SimPosCode" EntitySet="SimPosCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Union_Thana" Association="Self.FK_Union_Thana">
+            <End Role="Thana" EntitySet="Thanas" />
+            <End Role="Ward" EntitySet="Wards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Area" Association="RobiPosMappingModel.FK_Retailer_Area">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retailer_Region" Association="RobiPosMappingModel.FK_Retailer_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Retailer" EntitySet="Retailers" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Retailer_Area">
+          <End Type="RobiPosMappingModel.Area" Role="Area" Multiplicity="0..1" />
+          <End Type="RobiPosMappingModel.Retailer" Role="Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retailer_Region">
+          <End Type="RobiPosMappingModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="RobiPosMappingModel.Retailer" Role="Retailer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="Retailer">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RobiPosMappingModelStoreContainer" CdmEntityContainer="RobiPosMappingEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Divisions">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Division">
+              <MappingFragment StoreEntitySet="Division">
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElMsisdns">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.ElMsisdn">
+              <MappingFragment StoreEntitySet="ElMsisdn">
+                <ScalarProperty Name="ElMsisdnId" ColumnName="ElMsisdnId" />
+                <ScalarProperty Name="ElMsisdn1" ColumnName="ElMsisdn" />
+                <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localities">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Locality">
+              <MappingFragment StoreEntitySet="Locality">
+                <ScalarProperty Name="LocalityId" ColumnName="LocalityId" />
+                <ScalarProperty Name="LocalityName" ColumnName="LocalityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mauzas">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Mauza">
+              <MappingFragment StoreEntitySet="Mauza">
+                <ScalarProperty Name="MauzaId" ColumnName="MauzaId" />
+                <ScalarProperty Name="MauzaName" ColumnName="MauzaName" />
+                <ScalarProperty Name="WardId" ColumnName="WardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="DistributionDate" ColumnName="DistributionDate" />
+                <ScalarProperty Name="PrintDate" ColumnName="PrintDate" />
+                <ScalarProperty Name="IsDistributed" ColumnName="IsDistributed" />
+                <ScalarProperty Name="IsPrinted" ColumnName="IsPrinted" />
+                <ScalarProperty Name="LanguagePreference" ColumnName="LanguagePreference" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="RspId" ColumnName="RspId" />
+                <ScalarProperty Name="PersonTypeId" ColumnName="PersonTypeId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="PersonMsisdn" ColumnName="PersonMsisdn" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonTypes">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.PersonType">
+              <MappingFragment StoreEntitySet="PersonType">
+                <ScalarProperty Name="PersonTypeId" ColumnName="PersonTypeId" />
+                <ScalarProperty Name="PersonTypeName" ColumnName="PersonTypeName" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosStructures">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.PosStructure">
+              <MappingFragment StoreEntitySet="PosStructure">
+                <ScalarProperty Name="PosStructureId" ColumnName="PosStructureId" />
+                <ScalarProperty Name="PosStructureName" ColumnName="PosStructureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosTypes">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.PosType">
+              <MappingFragment StoreEntitySet="PosType">
+                <ScalarProperty Name="PosTypeId" ColumnName="PosTypeId" />
+                <ScalarProperty Name="PosTypeName" ColumnName="PosTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QrCodes">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.QrCode">
+              <MappingFragment StoreEntitySet="QrCode">
+                <ScalarProperty Name="DistributionDate" ColumnName="DistributionDate" />
+                <ScalarProperty Name="PrintDate" ColumnName="PrintDate" />
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+                <ScalarProperty Name="IsDistributed" ColumnName="IsDistributed" />
+                <ScalarProperty Name="IsPrinted" ColumnName="IsPrinted" />
+                <ScalarProperty Name="RspId" ColumnName="RspId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="QrCodeId" ColumnName="QrCodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Retailers">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Retailer">
+              <MappingFragment StoreEntitySet="Retailer">
+                <ScalarProperty Name="DistributionDate" ColumnName="DistributionDate" />
+                <ScalarProperty Name="PrintDate" ColumnName="PrintDate" />
+                <ScalarProperty Name="IsDistributed" ColumnName="IsDistributed" />
+                <ScalarProperty Name="IsPrinted" ColumnName="IsPrinted" />
+                <ScalarProperty Name="IsTouristDestinations" ColumnName="IsTouristDestinations" />
+                <ScalarProperty Name="PosCategoryId" ColumnName="PosCategoryId" />
+                <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+                <ScalarProperty Name="RetailerName" ColumnName="RetailerName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="ThanaId" ColumnName="ThanaId" />
+                <ScalarProperty Name="WardId" ColumnName="WardId" />
+                <ScalarProperty Name="MauzaId" ColumnName="MauzaId" />
+                <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+                <ScalarProperty Name="IsElPos" ColumnName="IsElPos" />
+                <ScalarProperty Name="IsSimPos" ColumnName="IsSimPos" />
+                <ScalarProperty Name="IsScPos" ColumnName="IsScPos" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="AccuracyLevel" ColumnName="AccuracyLevel" />
+                <ScalarProperty Name="VisitDayId" ColumnName="VisitDayId" />
+                <ScalarProperty Name="DefaultPhotoName" ColumnName="DefaultPhotoName" />
+                <ScalarProperty Name="PosStructureId" ColumnName="PosStructureId" />
+                <ScalarProperty Name="ShopSignageId" ColumnName="ShopSignageId" />
+                <ScalarProperty Name="ShopTypeId" ColumnName="ShopTypeId" />
+                <ScalarProperty Name="RspId" ColumnName="RspId" />
+                <ScalarProperty Name="DsrActivityDateTime" ColumnName="DsrActivityDateTime" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="RetailerStatusId" ColumnName="RetailerStatusId" />
+                <ScalarProperty Name="IsVerifiedByDsrs" ColumnName="IsVerifiedByDsrs" />
+                <ScalarProperty Name="DsrsVerificationDateTime" ColumnName="DsrsVerificationDateTime" />
+                <ScalarProperty Name="DsrId" ColumnName="DsrId" />
+                <ScalarProperty Name="IsApartments" ColumnName="IsApartments" />
+                <ScalarProperty Name="IsSlums" ColumnName="IsSlums" />
+                <ScalarProperty Name="IsSemiUrbunHousing" ColumnName="IsSemiUrbunHousing" />
+                <ScalarProperty Name="IsRuralHousing" ColumnName="IsRuralHousing" />
+                <ScalarProperty Name="IsShoppingMall" ColumnName="IsShoppingMall" />
+                <ScalarProperty Name="IsRetailHub" ColumnName="IsRetailHub" />
+                <ScalarProperty Name="IsMobileDeviceMarket" ColumnName="IsMobileDeviceMarket" />
+                <ScalarProperty Name="IsBazaar" ColumnName="IsBazaar" />
+                <ScalarProperty Name="IsOfficeArea" ColumnName="IsOfficeArea" />
+                <ScalarProperty Name="IsGarmentsMajorityArea" ColumnName="IsGarmentsMajorityArea" />
+                <ScalarProperty Name="IsGeneralIndustrialArea" ColumnName="IsGeneralIndustrialArea" />
+                <ScalarProperty Name="IsUrbanTransitPoints" ColumnName="IsUrbanTransitPoints" />
+                <ScalarProperty Name="IsRuralTransitPoints" ColumnName="IsRuralTransitPoints" />
+                <ScalarProperty Name="IsUrbanYouthHangouts" ColumnName="IsUrbanYouthHangouts" />
+                <ScalarProperty Name="IsSemiUrbanYouthHangouts" ColumnName="IsSemiUrbanYouthHangouts" />
+                <ScalarProperty Name="IsRuralYouthHangouts" ColumnName="IsRuralYouthHangouts" />
+                <ScalarProperty Name="WorkingId" ColumnName="WorkingId" />
+                <ScalarProperty Name="WorkingFileName" ColumnName="WorkingFileName" />
+                <ScalarProperty Name="QrCodeId" ColumnName="QrCodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RetailerPhotoes">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.RetailerPhoto">
+              <MappingFragment StoreEntitySet="RetailerPhoto">
+                <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+                <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+                <ScalarProperty Name="PhotoName" ColumnName="PhotoName" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RSPs">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.RSP">
+              <MappingFragment StoreEntitySet="RSP">
+                <ScalarProperty Name="DistributionDate" ColumnName="DistributionDate" />
+                <ScalarProperty Name="PrintDate" ColumnName="PrintDate" />
+                <ScalarProperty Name="IsDistributed" ColumnName="IsDistributed" />
+                <ScalarProperty Name="IsPrinted" ColumnName="IsPrinted" />
+                <ScalarProperty Name="RspId" ColumnName="RspId" />
+                <ScalarProperty Name="RspMsisdn" ColumnName="RspMsisdn" />
+                <ScalarProperty Name="RspCode" ColumnName="RspCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RspName" ColumnName="RspName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopSignages">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.ShopSignage">
+              <MappingFragment StoreEntitySet="ShopSignage">
+                <ScalarProperty Name="ShopSignageId" ColumnName="ShopSignageId" />
+                <ScalarProperty Name="ShopSignageName" ColumnName="ShopSignageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopTypes">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.ShopType">
+              <MappingFragment StoreEntitySet="ShopType">
+                <ScalarProperty Name="ShopTypeId" ColumnName="ShopTypeId" />
+                <ScalarProperty Name="ShopTypeName" ColumnName="ShopTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SimPosCodes">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.SimPosCode">
+              <MappingFragment StoreEntitySet="SimPosCode">
+                <ScalarProperty Name="SimPosCodeId" ColumnName="SimPosCodeId" />
+                <ScalarProperty Name="SimPosCode1" ColumnName="SimPosCode" />
+                <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thanas">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Thana">
+              <MappingFragment StoreEntitySet="Thana">
+                <ScalarProperty Name="ThanaId" ColumnName="ThanaId" />
+                <ScalarProperty Name="ThanaName" ColumnName="ThanaName" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="Msisdn" ColumnName="Msisdn" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Villages">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Village">
+              <MappingFragment StoreEntitySet="Village">
+                <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+                <ScalarProperty Name="VillageName" ColumnName="VillageName" />
+                <ScalarProperty Name="MauzaId" ColumnName="MauzaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitDays">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.VisitDay">
+              <MappingFragment StoreEntitySet="VisitDay">
+                <ScalarProperty Name="VisitDayId" ColumnName="VisitDayId" />
+                <ScalarProperty Name="VisitDays" ColumnName="VisitDays" />
+                <ScalarProperty Name="VisitDayCode" ColumnName="VisitDayCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wards">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.Ward">
+              <MappingFragment StoreEntitySet="Ward">
+                <ScalarProperty Name="WardId" ColumnName="WardId" />
+                <ScalarProperty Name="WardName" ColumnName="WardName" />
+                <ScalarProperty Name="ThanaId" ColumnName="ThanaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeekDays">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.WeekDay">
+              <MappingFragment StoreEntitySet="WeekDay">
+                <ScalarProperty Name="DayId" ColumnName="DayId" />
+                <ScalarProperty Name="DayName" ColumnName="DayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1">
+            <EntityTypeMapping TypeName="RobiPosMappingModel.View_1">
+              <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

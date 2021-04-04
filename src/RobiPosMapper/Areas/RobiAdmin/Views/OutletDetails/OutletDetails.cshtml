@@ -1,0 +1,391 @@
+﻿@{
+    Layout = null;   
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>@ViewBag.Retailer.Rows[0]["RetailerName"].ToString()</title>
+
+    <link href="~/Assets/Amsterdam/css/main.css" rel="stylesheet" type="text/css" />
+    <!--[if IE]> <link href="css/ie.css" rel="stylesheet" type="text/css"> <![endif]-->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/jquery_ui_custom.js"></script>
+    <link href="~/Assets/Plugins/pnotify/jquery.pnotify.default.css" rel="stylesheet" />
+
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/excanvas.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.inputlimiter.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.autosize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.ibutton.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.dualListBox.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.select2.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.cleditor.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html4.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html5.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/jquery.plupload.queue.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.wizard.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.jgrowl.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.pie.chart.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.elfinder.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fancybox.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/tables/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-bootbox.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-progressbar.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+    <script src="~/Assets/Plugins/pnotify/jquery.pnotify.min.js"></script>
+    <script src="~/Assets/js/notifications.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/functions/custom.js"></script>
+
+    <style>
+        td b {
+            font-weight: bold;
+            color: #2F86B2;
+            /*#68B4DD;*/
+        }
+
+        td i {
+            font-style: italic;
+        }
+
+        td a.linkbutton {
+            font-style: italic;
+            text-decoration: underline;
+        }
+
+            td a.linkbutton:hover {
+                text-decoration: none;
+            }
+
+        .hidecontrol {
+            display: none !important;
+            border: 50px solid red !important;
+        }
+
+        .toplink {
+            color: #FFFF00;
+        }
+
+            .toplink:hover {
+                color: #40FF00;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!--info notice -->
+    <div class="row-fluid">
+        <!--Verify part-->
+        <div class="span6">
+            @if (ViewBag.Retailer.Rows[0]["IsVerifiedByRsp"] == true)
+            {
+                <div class="notice outer">
+                    <div class="note note-success">
+                        <strong>
+                            This retailer is verified on @ViewBag.Retailer.Rows[0]["RspVerificationDateTime"].ToString("dd MMM yyyy, hh:mm tt").
+                            
+                        </strong>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="notice outer">
+                    <div class="note note-danger">
+                        <strong>This Retailer is not verified yet.</strong>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--Verify part-->
+        <!--Active/Inactive part-->
+        <div class="span6">
+            @if (ViewBag.Retailer.Rows[0]["IsActive"] == true)
+            {
+                <div class="notice outer">
+                    <div class="note">
+                        <strong>
+                            This retailer is active.
+                            
+                        </strong>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="notice outer">
+                    <div class="note note-danger">
+                        <strong>This Retailer is inactive. </strong>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--Active/Inactive part-->
+
+    </div>
+    <!--info notice -->
+
+
+    <div class="outer">
+        <div class="inner">
+            <div class="page-header">
+                <!-- Page header -->
+                <h5>Outlet Details</h5>
+                <!--  <h5><i class="font-comments">Messages</h5>
+                  <ul class="icons">
+                      <li><a href="#" class="hovertip" title="My tasks"><i class="font-tasks"></a></li>
+                      <li><a href="#" class="hovertip" title="Reload data"><i class="font-refresh"></a></li>
+                      <li><a href="#" class="hovertip" title="Settings"><i class="font-cog"></a></li>
+                  </ul>-->
+            </div><!-- /page header -->
+
+            <div class="body">
+                <div class="container">
+                    <div class=" well">
+                        <div class="table-overflow">
+                            <table class="table table-bordered table-block">
+                                <tbody>
+
+                                    <!-- Retailer Details -->
+                                    <tr>
+                                        <td>Retailer Details</td>
+                                        <td colspan="3">
+                                            <b>ID: </b> <i> @ViewBag.Retailer.Rows[0]["RetailerId"].ToString()</i> &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <b>Name: </b> <i> @ViewBag.Retailer.Rows[0]["RetailerName"].ToString()</i> &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <br />
+                                            <b>Status: </b> <i> @ViewBag.Retailer.Rows[0]["ShortStatus"].ToString()</i>&nbsp;&nbsp;
+                                            <b>Reevaluated: </b> <i> fsdf</i>&nbsp;&nbsp;
+                                            <b>Work time: </b> <i> @ViewBag.Retailer.Rows[0]["SurveyorActivityDateTime"].ToString("dd-MMM-yyyy, hh:mm tt")</i>&nbsp;&nbsp;
+                                            <b>SR: </b> <i> @ViewBag.Retailer.Rows[0]["LoginName"].ToString().ToUpper()</i>&nbsp;&nbsp;
+                                            <b>QR: </b> <i> @ViewBag.Retailer.Rows[0]["QrCodeId"].ToString().ToUpper()</i>
+                                        </td>
+                                    </tr>
+                                    <!-- Retailer Details -->
+                                    <!-- RSP, Region to village, address -->
+                                    <tr>
+                                        <td rowspan="4">Location Details</td>
+                                        <td colspan="3">
+
+                                            <b>RSP: </b> <i> @ViewBag.Retailer.Rows[0]["RspName"].ToString()</i> &nbsp; &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowspan"><b>Region: </b> <i> @ViewBag.Retailer.Rows[0]["RegionName"].ToString()</i></td>
+                                        <td><b> Area: </b> <i> @ViewBag.Retailer.Rows[0]["AreaName"].ToString()</i></td>
+                                        <td><b>Upazila/Thana: </b> <i>@ViewBag.Retailer.Rows[0]["AreaName"].ToString()</i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowspan"><b>Union/Ward: </b> <i>@ViewBag.Retailer.Rows[0]["WardName"].ToString()</i></td>
+                                        <td><b>Mauza/Mohalla: </b> <i>@ViewBag.Retailer.Rows[0]["MauzaName"].ToString()</i></td>
+                                        <td><b>Village: </b> <i>@ViewBag.Retailer.Rows[0]["VillageName"].ToString()</i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowspan" colspan="3"><b>Detail Address:</b> <i>@ViewBag.Retailer.Rows[0]["Address"].ToString()</i> </td>
+                                    </tr>
+                                    <!-- RSP, Region to village, address -->
+                                    <!-- visit day-->
+                                    <tr>
+                                        <td>Visit Days</td>
+                                        <td colspan="3"> <i>@ViewBag.Retailer.Rows[0]["VisitDays"].ToString()</i></td>
+                                    </tr>
+                                    <!-- visit day-->
+                                    <!-- Pos Category, Strucute, Signage, Type -->
+                                    <tr>
+                                        <td>Characteristics</td>
+                                        <td colspan="3">
+                                            <b>Category: </b> <i> @ViewBag.Retailer.Rows[0]["PosCategoryName"].ToString()</i> &nbsp;&nbsp;
+                                            <b>Structure: </b> <i> @ViewBag.Retailer.Rows[0]["PosStructureName"].ToString()</i> &nbsp;&nbsp;
+                                            <b>Signage: </b> <i> @ViewBag.Retailer.Rows[0]["ShopSignageName"].ToString()</i>&nbsp;&nbsp;
+                                            <b>Type: </b> <i> @ViewBag.Retailer.Rows[0]["ShopTypeName"].ToString()</i>&nbsp;&nbsp;
+
+                                        </td>
+                                    </tr>
+                                    <!-- Pos Category, Strucute, Signage, Type -->
+                                    <!--ELPOS, SimPos, ScPos-->
+                                    <tr>
+                                        <td>EasyLoad Status</td>
+                                        <td>
+                                            <b>EL POS: </b> <i> @IsItemChecked("IsElPos")</i>
+                                            @foreach (var row in ViewBag.ElNumbers.Rows)
+                                            {
+                                                <br /> <text>&nbsp;- </text><i>@row[0].ToString()</i>
+                                            }
+                                        </td>
+                                        <td>
+                                            <b>SIM POS: </b> <i> @IsItemChecked("IsSimPos")</i>
+                                            @foreach (var row in ViewBag.SimPosCodes.Rows)
+                                            {
+                                                <br /> <text>&nbsp;- </text><i>@row[0].ToString()</i>
+                                            }
+                                        </td>
+                                        <td>
+                                            <b>Scratch Card POS: </b> <i> @IsItemChecked("IsScPos")</i>
+                                        </td>
+                                    </tr>
+                                    <!--ELPOS, SimPos, ScPos-->
+                                    <!-- Surveyor -->
+                                    <tr>
+                                        <td>Surveyor</td>
+                                        <td colspan="3">
+                                            <b>Name: </b> <i> @ViewBag.Retailer.Rows[0]["SurveyorName"].ToString()</i> as <i> @ViewBag.Retailer.Rows[0]["LoginName"].ToString().ToUpper()</i>&nbsp;&nbsp;
+                                            <b>Contact: </b> <i> @ViewBag.Retailer.Rows[0]["SurveyorContactNo"].ToString()</i> &nbsp;&nbsp;
+                                            <b>Area: </b> <i> @ViewBag.Retailer.Rows[0]["SurveyorArea"].ToString()</i> &nbsp;&nbsp;
+                                            <br /> Log Details:
+                                            @foreach (var row in ViewBag.RetailerWorkLogs.Rows)
+                                            {
+                                                <br />@row["LogDateTime"].ToString("dd-MMM-yyyy, hh:mm tt") <text>&nbsp;- SR</text> @row["SrId"].ToString()
+                                            }
+                                        </td>
+                                    </tr>
+                                    <!-- Is surveyor -->
+                                    <!-- DSR -->
+                                    <tr>
+                                        <td>DSR</td>
+                                        <td colspan="3">
+                                            <b>Name: </b> <i> @ViewBag.Retailer.Rows[0]["DsrName"].ToString()</i>&nbsp;&nbsp;
+                                            <b>MSISDN: </b> <i> @ViewBag.Retailer.Rows[0]["DsrMsisdn"].ToString()</i>&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <!-- DSR -->
+                                    <!-- multiple SR -->
+                                    @if (ViewBag.SrRetailerLog.Rows.Count > 0)
+                                    {
+                                        <tr>
+                                            <td><span style="color:red;">Multiple SR Found !!</span></td>
+                                            <td colspan="3">
+                                                @foreach (var srs in ViewBag.SrRetailerLog.Rows)
+                                                {
+                                                    <b># SR: </b> <i> @srs["LoginName"].ToString().ToUpper()</i>  <text>&nbsp;&nbsp;</text>
+                                                    <b>Log Time: </b> <i> @srs["LogDateTime"].ToString("dd MMM yyyy, hh:mm tt")</i> <text>&nbsp;&nbsp;</text>
+                                                    <b>Contact: </b> <i> @srs["ContactNo"].ToString()</i>  <text>&nbsp;&nbsp;</text>
+                                                    <b>Name: </b> <i> @srs["SurveyorName"].ToString()</i> <text>&nbsp;&nbsp;</text>
+                                                    <b>Area: </b> <i title="Area of this surveyor."> @srs["AreaName"].ToString()</i>  <text>&nbsp;&nbsp;</text>
+                                                    <b>DSR: </b> <i title="Surveyor was logged-in as this DSR while updating this retailer. If multiple records found, last update will persist."> @srs["DsrName"].ToString()</i>
+                                                    <text><br /></text>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    <!-- multiple SR -->
+                                    <!-- Picture -->
+                                    <tr>
+                                        <td>Photo</td>
+                                        <td colspan="3">
+                                            <img src="~/Photos/RetailerPhoto/@ViewBag.Retailer.Rows[0]["Photo"].ToString()" width="100%" />
+                                        </td>
+                                    </tr>
+                                    <!-- picture -->
+                                    <!-- Map -->
+                                    <tr>
+                                        <td>Geo-Location</td>
+                                        <td colspan="3">
+                                            <b>Latitude: </b> <i> @ViewBag.Retailer.Rows[0]["Latitude"].ToString()</i>&nbsp;&nbsp;
+                                            <b>Longitude: </b> <i> @ViewBag.Retailer.Rows[0]["Longitude"].ToString()</i>&nbsp;&nbsp;
+                                            <b>Accuracy Level: </b> <i> @ViewBag.Retailer.Rows[0]["AccuracyLevel"].ToString()</i>&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="3">
+                                            <div id="map_canvas" style="width: 100%; height:600px;"></div>
+                                            <input type="hidden" id="Latitude" value="@ViewBag.Retailer.Rows[0]["Latitude"]" />
+                                            <input type="hidden" id="Longitude" value="@ViewBag.Retailer.Rows[0]["Longitude"]" />
+                                            <input type="hidden" id="Accuracy" value="@ViewBag.Retailer.Rows[0]["AccuracyLevel"]" />
+                                        </td>
+                                    </tr>
+                                    <!-- map -->
+                                    <!-- Locality Type -->
+                                    <tr>
+                                        <td>Locality Type</td>
+                                        <td colspan="3">
+                                            <b>Apartments: </b> <i> @IsItemChecked("IsApartments")</i>,&nbsp;&nbsp;
+                                            <b>Slums: </b> <i> @IsItemChecked("IsSlums")</i>,&nbsp;&nbsp;
+                                            <b>Semi-urbun Housing: </b> <i> @IsItemChecked("IsSemiUrbunHousing")</i>,&nbsp;&nbsp;
+                                            <b>Rural Housing: </b> <i> @IsItemChecked("IsRuralHousing")</i>,&nbsp;&nbsp;
+                                            <b>Shopping Mall: </b> <i> @IsItemChecked("IsShoppingMall")</i>,&nbsp;&nbsp;
+                                            <b>Retail Hub: </b> <i> @IsItemChecked("IsRetailHub")</i>,&nbsp;&nbsp;
+                                            <b>Mobile Device Market: </b> <i> @IsItemChecked("IsMobileDeviceMarket")</i>,&nbsp;&nbsp;
+                                            <b>Bazaar: </b> <i> @IsItemChecked("IsBazaar")</i>,&nbsp;&nbsp;
+                                            <b>Office Area: </b> <i> @IsItemChecked("IsOfficeArea")</i>,&nbsp;&nbsp;
+                                            <b>Garments Majority Area: </b> <i> @IsItemChecked("IsGarmentsMajorityArea")</i>,&nbsp;&nbsp;
+                                            <b>General Industrial Area: </b> <i> @IsItemChecked("IsGeneralIndustrialArea")</i>,&nbsp;&nbsp;
+                                            <b>Urban Transit Points: </b> <i> @IsItemChecked("IsUrbanTransitPoints")</i>,&nbsp;&nbsp;
+                                            <b>Rural Transit Points: </b> <i> @IsItemChecked("IsRuralTransitPoints")</i>,&nbsp;&nbsp;
+                                            <b>Urban Youth Hangouts: </b> <i> @IsItemChecked("IsUrbanYouthHangouts")</i>,&nbsp;&nbsp;
+                                            <b>SemiUrban Youth Hangouts: </b> <i> @IsItemChecked("IsSemiUrbanYouthHangouts")</i>,&nbsp;&nbsp;
+                                            <b>Rural Youth Hangouts: </b> <i> @IsItemChecked("IsRuralYouthHangouts")</i>,&nbsp;&nbsp;
+                                            <b>Tourist Destinations: </b> <i> @IsItemChecked("IsTouristDestinations")</i>,&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <!-- Locality Type  -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /content container -->
+
+            </div>
+        </div>
+    </div>
+    <!-- /main wrapper -->
+    @functions {
+        public string IsItemChecked(string columnName)
+        {
+            return Convert.ToBoolean(ViewBag.Retailer.Rows[0][columnName]) == true ? "Yes" : "No";
+        }
+    }
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!--google map-->
+    <script>
+        $(function () {
+            var retailerLat = document.getElementById('Latitude').value;
+            var retailerLon = document.getElementById('Longitude').value;
+            var retailerLocation = new google.maps.LatLng(retailerLat, retailerLon);
+            var opts = {
+                zoom: 10,
+                center: retailerLocation,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById('map_canvas'), opts);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: retailerLocation
+            });
+        });
+    </script>
+    <!--google map-->
+
+</body>
+
+</html>
+
+

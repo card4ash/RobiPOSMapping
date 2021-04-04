@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Surveyor Management > Add New Surveyor";
+}
+
+<style>
+    #myTable {
+        margin-left: 16px;
+    }
+
+    #myTable td{
+        padding:5px;
+    }
+
+    a.topicon {
+        margin-right: 15px;
+    }
+
+</style>
+<div class="row-fluid">
+    <div class="span12">
+
+        <a class="topicon" title="Add new surveyor." href="~/RobiAdmin/SurveyorManagement/AddNewSurveyor?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/AddNewSurveyors48.png" /></a>
+        <a class="topicon" title="Show only active surveyors." href="~/RobiAdmin/SurveyorManagement/ShowActiveSurveyors?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowActiveSurveyors48.png" /></a>
+        <a class="topicon" title="Show both active/inactive surveyors." href="~/RobiAdmin/SurveyorManagement/ShowAll?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowAllSureveyors48.png" /> </a>
+
+
+        <div class="block well">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h5>New Surveyor Added Successfully. You have entered the following information-</h5>
+                </div>
+            </div>
+            <div class="table-overflow">
+                <table  id="myTable">
+                    <tbody>
+                        <tr>
+                            <td>Surveyor Name</td>
+                            <td>::</td>
+                            <td><strong>@ViewBag.FullName</strong></td>
+                        </tr>
+                        <tr>
+                            
+                            <td>Contact No.</td>
+                            <td>::</td>
+                            <td><strong>@ViewBag.ContactNo</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Login Name</td>
+                            <td>::</td>
+                            <td><strong>@ViewBag.LoginName</strong>&nbsp;&nbsp;&nbsp;<img src="~/Assets/MyImages/arrow_notebook.png" /> </td>
+                        </tr>
+                        <tr>
+                            <td>Login Password</td>
+                            <td>::</td>
+                            <td><strong>@ViewBag.LoginPassword</strong>&nbsp;&nbsp;<img src="~/Assets/MyImages/arrow_notebook.png" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>::</td>
+                            <td><strong>@ViewBag.Description</strong></td>
+
+                        </tr>
+                        <tr>
+                            <td>Region</td>
+                            <td>::</td>
+                            <td><strong>@ViewBag.Region</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                  
+               
+                 
+               
+             
+                  
+            </div>
+        </div>
+
+    </div>
+</div>
+

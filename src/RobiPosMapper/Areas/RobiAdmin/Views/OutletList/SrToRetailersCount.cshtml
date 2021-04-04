@@ -1,0 +1,29 @@
+﻿<div class="table-overflow">
+    <table class="table table-striped" id="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>SR</th>
+                <th>Full Name</th>
+                <th>Contact No</th>
+                <th>Area</th>
+                <th>Work Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in ViewBag.Retailers.Rows)
+            {
+                <tr>
+                    <td>@row["SurveyorId"].ToString()</td>
+
+                    <td>@row["LoginName"].ToString().ToUpper()</td>
+                    <td><a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?user=@ViewBag.UserName&srid=@row["SurveyorId"]&date=">@row["SurveyorName"].ToString() </a></td>
+                    <td>@row["ContactNo"].ToString()</td>
+                    <td> @row["AreaName"].ToString()</td>
+                    <td><a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?user=@ViewBag.UserName&srid=@row["SurveyorId"]&date=@ViewBag.QueryDate"> @row["WorkQuantity"].ToString() </a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

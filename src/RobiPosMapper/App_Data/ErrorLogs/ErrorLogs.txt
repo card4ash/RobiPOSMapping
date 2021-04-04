@@ -1,0 +1,336 @@
+Created on: 13-May-2015, 06.20.57 PM
+Error Description: Retailer Id is invalid/out of range.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\Dsr\Controllers\SearchRetailerController.cs
+Method: SearchByRetailerId
+Line: 145
+Column: 21
+________________________________________________________________________
+
+Created on: 13-May-2015, 06.28.56 PM
+Error Description: Retailer Id is invalid/out of range.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\Dsr\Controllers\SearchRetailerController.cs
+Method: SearchByRetailerId
+Line: 145
+Column: 21
+________________________________________________________________________
+
+Created on: 14-May-2015, 12.12.48 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 202
+Column: 17
+________________________________________________________________________
+
+Created on: 14-May-2015, 12.15.02 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 202
+Column: 17
+________________________________________________________________________
+
+Created on: 14-May-2015, 12.30.23 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 202
+Column: 17
+________________________________________________________________________
+
+Created on: 14-May-2015, 01.33.51 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 209
+Column: 17
+________________________________________________________________________
+
+Created on: 19-May-2015, 05.48.11 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 209
+Column: 17
+________________________________________________________________________
+
+Created on: 19-May-2015, 05.56.29 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 224
+Column: 17
+________________________________________________________________________
+
+Created on: 20-May-2015, 02.45.46 PM
+Error Description: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\Dsr\Controllers\LoginController.cs
+Method: Index
+Line: 49
+Column: 25
+________________________________________________________________________
+
+Created on: 20-May-2015, 02.45.50 PM
+Error Description: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\Dsr\Controllers\LoginController.cs
+Method: Index
+Line: 49
+Column: 25
+________________________________________________________________________
+
+Created on: 24-May-2015, 02.09.27 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 238
+Column: 17
+________________________________________________________________________
+
+Created on: 24-May-2015, 02.27.55 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 250
+Column: 17
+________________________________________________________________________
+
+Created on: 24-May-2015, 03.24.00 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 262
+Column: 17
+________________________________________________________________________
+
+Created on: 24-May-2015, 03.42.59 PM
+Error Description: Object reference not set to an instance of an object.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 262
+Column: 17
+________________________________________________________________________
+
+Created on: 24-May-2015, 05.49.33 PM
+Error Description: Column 'RetailerQuantiry' does not belong to table .
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 271
+Column: 21
+________________________________________________________________________
+
+Created on: 24-May-2015, 05.53.11 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 266
+Column: 17
+________________________________________________________________________
+
+Created on: 24-May-2015, 05.57.12 PM
+Error Description: Index was outside the bounds of the array.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 263
+Column: 21
+________________________________________________________________________
+
+Created on: 24-May-2015, 06.16.52 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 266
+Column: 17
+________________________________________________________________________
+
+Created on: 24-May-2015, 06.38.14 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 266
+Column: 17
+________________________________________________________________________
+
+Created on: 25-May-2015, 11.53.04 AM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 266
+Column: 17
+________________________________________________________________________
+
+Created on: 25-May-2015, 01.00.09 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 266
+Column: 17
+________________________________________________________________________
+
+Created on: 25-May-2015, 02.22.26 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 274
+Column: 17
+________________________________________________________________________
+
+Created on: 25-May-2015, 02.22.29 PM
+Error Description: Column 'RegaionName' does not belong to table .
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 291
+Column: 21
+________________________________________________________________________
+
+Created on: 25-May-2015, 02.24.43 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 274
+Column: 17
+________________________________________________________________________
+
+Created on: 25-May-2015, 03.03.44 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 274
+Column: 17
+________________________________________________________________________
+
+Created on: 26-May-2015, 11.58.40 AM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 267
+Column: 17
+________________________________________________________________________
+
+Created on: 26-May-2015, 11.59.59 AM
+Error Description: Input string was not in a correct format.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 50
+Column: 16
+________________________________________________________________________
+
+Created on: 26-May-2015, 12.00.03 PM
+Error Description: Input string was not in a correct format.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 50
+Column: 16
+________________________________________________________________________
+
+Created on: 26-May-2015, 12.00.13 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 267
+Column: 17
+________________________________________________________________________
+
+Created on: 27-May-2015, 11.22.38 AM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 276
+Column: 17
+________________________________________________________________________
+
+Created on: 27-May-2015, 12.26.35 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 283
+Column: 17
+________________________________________________________________________
+
+Created on: 27-May-2015, 01.39.26 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 295
+Column: 17
+________________________________________________________________________
+
+Created on: 28-May-2015, 05.19.01 PM
+Error Description: Input string was not in a correct format.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 50
+Column: 16
+________________________________________________________________________
+
+Created on: 28-May-2015, 05.24.39 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 295
+Column: 17
+________________________________________________________________________
+
+Created on: 04-Jun-2015, 03.56.19 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 295
+Column: 17
+________________________________________________________________________
+
+Created on: 07-Jun-2015, 12.41.52 PM
+Error Description: There is no row at position 0.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RSP\Controllers\HomeController.cs
+Method: DefaultContent
+Line: 234
+Column: 17
+________________________________________________________________________
+
+Created on: 05-Oct-2015, 07.21.50 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 342
+Column: 21
+________________________________________________________________________
+
+Created on: 05-Oct-2015, 07.28.10 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 342
+Column: 21
+________________________________________________________________________
+
+Created on: 14-Dec-2015, 07.05.42 PM
+Error Description: Attempted to divide by zero.
+Source File: d:\RobiPosMapper\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: Index
+Line: 295
+Column: 17
+________________________________________________________________________
+
+Created on: 14-Dec-2015, 08.00.26 PM
+Error Description: Attempted to divide by zero.
+Source File: f:\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: BrProfile
+Line: 1280
+Column: 17
+________________________________________________________________________
+
+Created on: 14-Dec-2015, 09.30.42 PM
+Error Description: Attempted to divide by zero.
+Source File: f:\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: CallCenterReport
+Line: 1628
+Column: 17
+________________________________________________________________________
+
+Created on: 14-Dec-2015, 10.36.05 PM
+Error Description: Attempted to divide by zero.
+Source File: f:\RobiPosMapper\RobiPosMapper\Areas\RobiAdmin\Controllers\HomeController.cs
+Method: CallCenterReport
+Line: 1628
+Column: 17
+________________________________________________________________________
+

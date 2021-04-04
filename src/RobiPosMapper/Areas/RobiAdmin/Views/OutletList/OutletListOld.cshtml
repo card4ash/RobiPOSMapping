@@ -1,0 +1,75 @@
+﻿<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script>
+
+    var markersArray=[];
+</script>
+
+
+
+
+<div class="table-overflow">
+    <table class="table table-striped" id="data-table">
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Area</th>
+                <th>RSP</th>
+                <th>Retailer</th>
+                <th>Address</th>
+                <th>Worked On</th>
+                <th>Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in ViewBag.Retailers.Rows)
+            {
+                <tr>
+                    <td>@row["RegionName"].ToString()</td>
+                    <td>@row["AreaName"].ToString()</td>
+                    <td>@row["RspName"].ToString()</td>
+                    <td><a target="_blank" href="~/RobiAdmin/OutletDetails/Index?user=@ViewBag.UserName&id=@row["RetailerId"]">  @row["RetailerName"].ToString() </a></td>
+                    <td>@row["Address"].ToString()</td>
+                    <td>@row["WorkDateTime"].ToString("dd MMM yyyy, hh:mm tt")</td>
+
+                    <td><img src="~/Photos/RetailerPhoto/@row["Photo"].ToString()" width="150" /> </td>
+                </tr>
+                <script>
+                      var marker=new Object();
+                      marker.title='@row["RetailerName"].ToString()';
+                      marker.lat='@row["Latitude"].ToString()';
+                      marker.lon = '@row["Longitude"].ToString()';
+                      markersArray.push(marker);
+               </script>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<div id="map_canvas" style="width: 100%; height: 500px; "></div>
+
+<!--google map-->
+<script>
+
+
+
+    var centerLocation = new google.maps.LatLng(23.564587, 90.569874);
+    var opts = {
+        zoom: 10,
+        center: centerLocation,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById('map_canvas'), opts);
+    for (i = 0; i < markersArray.length; i++) {
+        var data = markersArray[i]
+        var myLatlng = new google.maps.LatLng(data.lat, data.lon);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: data.title
+        });
+    }
+
+</script>
+<!--google map-->

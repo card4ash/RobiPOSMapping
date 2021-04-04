@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OverlappingOutletList</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td style="width:300px !important;">Retailer Id -</td>
+                <td>Multiple SR Quantity</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in ViewBag.Retailers.Rows)
+            {
+               <tr>
+                <td> @row[0].ToString()</td>
+                <td>@row[1].ToString()</td>
+
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "Surveyor Management > Show All Surveyors";
+}
+
+<style>
+    a.topicon {
+        margin-right: 15px;
+    }
+    a.traffic {
+        display: block;
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        width: 50px;
+    }
+
+        a.traffic span {
+            background: url('../../../../Assets/MyImages/TrafficSprite.png') no-repeat;
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        a.traffic:hover span {
+            background-position: -48px 0;
+        }
+
+    a.inactive {
+        display: block;
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        width: 50px;
+    }
+
+        a.inactive span {
+            background: url('../../../../Assets/MyImages/TrafficSprite.png') no-repeat;
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            background-position: -48px 0;
+            top: 0;
+            width: 100%;
+        }
+</style>
+
+<div class="row-fluid">
+    <div class="span12">
+
+        <a class="topicon" title="Add new surveyor." href="~/RobiAdmin/SurveyorManagement/AddNewSurveyor?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/AddNewSurveyors48.png" /></a>
+        <a class="topicon" title="Show only active surveyors." href="~/RobiAdmin/SurveyorManagement/ShowActiveSurveyors?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowActiveSurveyors48.png" /></a>
+        <a class="topicon" title="Show both active/inactive surveyors." href="~/RobiAdmin/SurveyorManagement/ShowAll?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowAllSureveyors48.png" /> </a>
+
+
+        <div class="block well">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h5>@ViewBag.Surveyors.Rows.Count.ToString() Surveyors  </h5>
+                </div>
+            </div>
+            <div class="table-overflow">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>SR/Login Name</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Region</th>
+                            <th>Description</th>
+                            <th>Work Quantity</th>
+                            <th>Status</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var row in ViewBag.Surveyors.Rows)
+                        {
+                            <tr>
+                                <td>@row["SurveyorId"].ToString()</td>
+                                <td>@row["LoginName"].ToString().ToUpper()</td>
+                                <td>@row["SurveyorName"].ToString()</td>
+                                <td>@row["ContactNo"].ToString()</td>
+                                <td>@row["RegionName"].ToString()</td>
+                                <td>@CropText(row["Description"].ToString())</td>
+                                <td>
+
+                                    <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?srid=@row["SurveyorId"].ToString()&user=@ViewBag.UserName&moid=@ViewBag.MoId&statusid=2"><span style="background-color:#cbc8c8;" title="Updated quantity. Click to view the list.">   <img title="Updated quantity" src="~/Assets/MyImages/EditBlue16.png" />&nbsp;@row["UpdatedQuantity"].ToString()&nbsp;</span></a>&nbsp;&nbsp; 
+                                
+                                
+                                    <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?srid=@row["SurveyorId"].ToString()&user=@ViewBag.UserName&moid=@ViewBag.MoId&statusid=3">
+                                        <span style="background-color:#cbc8c8;" title="New quantity. Click to view the list.">
+                                            <img title="New quantity." src="~/Assets/MyImages/PlusSky16.png" />&nbsp;@row["NewQuantity"].ToString()&nbsp;
+                                        </span>
+                                    </a>
+
+</td>
+                                <td>@Html.Raw(IsActive(row))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@functions{
+
+    public string IsActive(System.Data.DataRow row)
+    {
+        bool isActive = Convert.ToBoolean(row["IsActive"]);
+        String src = "";
+        if (isActive)
+        {
+            src = "<a class=\"traffic\" onclick=\"return confirmDeactivate()\" href=\"../../../../RobiAdmin/SurveyorManagement/DeactivateSurveyor?user=" + @ViewBag.UserName + "&moid=" + @ViewBag.MoId + "&srid=" + row["SurveyorId"].ToString() + "\" title=\"" + row["LoginName"].ToString().ToUpper() + " is currently active. Click here to inactive.\"><span></span></a>";
+        }
+        else
+        {
+            src = "<a class=\"inactive\" href=\"\" title=\"" + row["LoginName"].ToString().ToUpper() + " is currently inactive.\"><span></span></a>";
+        }
+       // return Convert.ToBoolean(row["IsActive"]) == true ? "Yes" : "No";
+        return src;
+    }
+
+
+    public string CropText(String text)
+    {
+        if (text.Length > 10)
+        {
+            return text.Substring(0, 10);
+        }
+        else
+        {
+            return text;
+        }
+    }
+
+
+}
+
+<script>
+
+    function confirmDeactivate() {
+        if (confirm("Are you sure to deactivate this surveyor?") == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

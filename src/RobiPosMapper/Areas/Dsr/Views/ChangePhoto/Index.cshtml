@@ -1,0 +1,261 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="FamousThemes" />
+    <meta name="description" content="Robi App" />
+    <meta name="keywords" content="app" />
+    <title>Search Retailer</title>
+    
+    <style>
+        input[type=text], textarea, select {
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;
+            padding: 10px 0px 10px 0px;
+            margin: 5px 0px 3px 0px;
+            border: 1px solid #DDDDDD;
+            width: 100%;
+            border-radius: 3px;
+        }
+
+        input[type=text], textarea {
+            text-indent: 10px;
+        }
+
+        input[type=text]:focus, textarea:focus, select:focus {
+            box-shadow: 0px 0px 10px #FFB606;
+        }
+
+    </style>
+
+    <!-- style for buttons-->
+    <style>
+
+        #SearchByRetailerId, #SearchByElMsisdn, #SearchBySimPosCode, #SubmitQr {
+            height: 2.9em;
+            margin: 0;
+            border: 1px solid #999;
+            border-radius: 3px;
+            /*padding: 10px 8px;*/
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+            background-color: #FFB606;
+        }
+
+        .IncreaseWidth{
+            width:150px;
+        }
+    </style>
+
+    <!--style for file input-->
+    <style>
+        .custom-file-input {
+            color: transparent;
+        }
+
+        .custom-file-input::-webkit-file-upload-button {
+             visibility: hidden;
+        }
+
+        .custom-file-input::before {
+            content: 'Select Photo';
+            color: black;
+            display: inline-block;
+            /*background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);*/
+            background-color: #FFB606;
+            border: 1px solid #999;
+            border-radius: 3px;
+            padding: 10px 8px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+
+        .custom-file-input:hover::before {
+            border-color: black;
+        }
+
+        .custom-file-input:active {
+            outline: 0;
+        }
+
+        .custom-file-input:active::before {
+            background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+        }
+    </style>
+
+    
+
+
+
+    <link href="~/Assets/SimpleModal/simplemodal.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link href="~/Assets/GoMobile/css/idangerous.swiper.scrollbar.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+    <script src="../../../Assets/GoMobile/js/jquery.validate.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="gohome radius6"><a href="~/dsr/Home/Index?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/CallCenterHelp?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/phone.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/NewRetailer/Index?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/clients.png" alt="" title="" /></a></div>
+        
+    </div>
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+            <!--Part 1:-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Retailer Search</h2>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Search by Retailer Id:</label>
+                                                <input type="text" class="form_input radius4" id="RetailerId"  />
+                                                <p>
+                                                    <button id="SearchByRetailerId">Search &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                                </p>
+                                                <input type="hidden" id="SessionId" value="@ViewBag.SessionDigest" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="pagination"></div>
+    </div>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/codes.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>
+    <script src="~/Assets/SimpleModal/jquery.simplemodal.1.4.4.min.js"></script>
+
+    <script>
+
+        $(function () {
+
+
+            //Search By Retailer Id
+            $('#SearchByRetailerId').click(function (e) {
+                e.preventDefault();
+                var $button = $(this);
+                var $searchInput = $(this).closest('form').find('#RetailerId');
+                var retailerId =$.trim( $searchInput.val());
+                if (retailerId=='') {
+                    //alert('Please enter retailer id.');
+                    $.modal('<h3 style="color:red;">Please enter retailer id.</h3>');
+                    return;
+                }
+
+                if (isNaN(retailerId)) {
+                    //alert('You entered an invalid Retailer Id. It must be numeric.');
+                    $.modal('<h3 style="color:red;">You entered an invalid Retailer Id. It must be numeric.</h3>');
+                    return;
+                }
+
+                var fd = new FormData(); fd.append('RetailerId', retailerId); fd.append("SessionId",$("#SessionId").val());
+                //ajax call-->
+                var urlData = 'ChangePhoto/SearchByRetailerId';
+                $.ajax({
+                    url: urlData,
+                    type: "POST",
+                    data: fd,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    beforeSend: function () {
+                        $($button).attr('disabled', 'disabled');
+                        $($button).html('Working...');
+                    },
+                    success: function (response) {
+                        if (response.SearchResult == 'notfound') {
+                            $.modal('<h3 style="color:red;">Retailer Id not found in database.</h3>');
+                            $($button).removeAttr("disabled");
+                            $($button).html('Search');
+                        }
+                        else if (response.SearchResult == 'systemerror') {
+                            $.modal('<h3 style="color:red;">Error in searching Retailer Id. Please try again.</h3>');
+                            $($button).removeAttr("disabled");
+                            $($button).html('Search');
+                        }
+                        else if (response.SearchResult == 'found') {
+                            $button.html('Retailer found. Please wait..');
+                            window.location = response.url;
+                        }
+                        else if (response.SearchResult == 'sessiontimeout') {
+                            console.log(response.url);
+                            window.location = response.url;
+                        }
+                        else if (response.SearchResult == 'usererror') {
+                            $.modal('<h3 style="color:red;">' + response.ErrorDetail + '</h3>');
+                            $($button).removeAttr("disabled");
+                            $($button).html('Search');
+                        }
+                        //else if (response.SearchResult == 'dsrmismatch') {
+                        //    $.modal('<h3 style="color:red;">Unauthorized access. This retailer belongs to other DSR.</h3>');
+                        //    $($button).removeAttr("disabled");
+                        //    $($button).html('Search');
+                        //}
+                    },
+                    error: function (request, status, error) {
+                        $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                        $($button).removeAttr("disabled");
+                        $($button).html('Search');
+                    }
+                });
+                //<-- alax call
+            });
+            //<-- Search By Retailer Id
+
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
+

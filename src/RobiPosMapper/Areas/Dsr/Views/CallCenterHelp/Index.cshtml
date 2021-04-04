@@ -1,0 +1,108 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="Saumitra Kumar Paul" />
+    <meta name="description" content="Robi App" />
+    <meta name="keywords" content="app" />
+    <title>Call Center Help</title>
+
+    <style>
+        input[type=text], textarea, select {
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;
+            padding: 10px 2px 10px 3px;
+            margin: 5px 1px 3px 0px;
+            border: 1px solid #DDDDDD;
+            width: 100%;
+            border-radius: 3px;
+        }
+
+            input[type=text]:focus, textarea:focus, select:focus {
+                /*box-shadow: 0 0 5px rgba(81, 203, 238, 1);*/
+                /*padding: 3px 0px 3px 3px;
+                margin: 5px 1px 3px 0px;*/
+                box-shadow: 0px 0px 10px #FFB606;
+                /*border: 1px solid rgba(81, 203, 238, 1);*/
+            }
+    </style>
+
+
+    <link href="~/Assets/SimpleModal/simplemodal.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link href="~/Assets/GoMobile/css/idangerous.swiper.scrollbar.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="gohome radius6"><a href="~/dsr/Home/Index?userid=@ViewBag.UserId&ud=@ViewBag.UserIdDigest"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+        
+        
+        <div class="gomenu radius6"><a href="~/dsr/SearchRetailer?userid=@ViewBag.UserId&ud=@ViewBag.UserIdDigest"><img src="../../../Assets/GoMobile/images/icons/docs.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/NewRetailer/Index?userid=@ViewBag.UserId&ud=@ViewBag.UserIdDigest"><img src="../../../Assets/GoMobile/images/icons/clients.png" alt="" title="" /></a></div>
+    </div>
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+           
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Help Center</h2>
+                                    <blockquote>You can ask for help from support team. Please call to the following numbers-</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <h2>018 61 589 211, 018 51 028 070</h2>
+                                               
+
+                                            </form>
+                                        </div>
+                                    </div>
+         
+                                    <br />
+                                    <br />
+                                    <br />
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>*@
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/codes.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>*@
+    <script src="~/Assets/SimpleModal/jquery.simplemodal.1.4.4.min.js"></script>
+
+</body>
+
+</html>

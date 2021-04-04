@@ -1,0 +1,1570 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="Saumitra Kumar Paul" />
+    <meta name="description" content="Robi App" />
+    <meta name="keywords" content="app" />
+    <title>Update Retailer Information</title>
+
+    <link href="~/Areas/Dsr/Assets/css/mystyle.css" rel="stylesheet" />
+    <link href="~/Assets/SimpleModal/simplemodal.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link href="~/Assets/GoMobile/css/idangerous.swiper.scrollbar.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="gohome radius6"><a href="~/dsr/Home/Index?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/CallCenterHelp?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/phone.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/SearchRetailer?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/docs.png" alt="" title="" /></a></div>
+    </div>
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+            <!--Part 1: Retailer name and address-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 1</h2>
+                                    <blockquote>Retailer name, address and POS category -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Retailer Name:</label>
+                                                <input type="text" id="RetailerName" value="@ViewBag.Retailer.Rows[0]["RetailerName"].ToString()" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Retailer Address:</label>
+                                                <textarea id="RetailerAddress">@ViewBag.Retailer.Rows[0]["Address"].ToString()</textarea>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--PosCategoryId-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>POS Category :</label>
+                                                <select id="PosCategoryId">
+                                                    <option value="-1">select category</option>
+                                                    @foreach (var category in ViewBag.PosCategoryList)
+                                                    {
+                                                        <option value="@category.PosCategoryId" @IsItemSelected("PosCategoryId", category.PosCategoryId.ToString())>@category.PosCategoryName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 2: EasyLoad POS, SIM POS, SC Code -->
+            <div class="swiper-slide sliderbg purple">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 2</h2>
+                                    <blockquote>EasyLoad MSISDN, SIM POS Code & Scratch Card POS information -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                @if (Convert.ToBoolean(ViewBag.Retailer.Rows[0]["IsElPos"]))
+                                                {
+                                                    <label class="checkboxLabel"><input type="checkbox" id="IsElPos" checked disabled /> EasyLoad POS </label>
+
+                                                    foreach (System.Data.DataRow row in ViewBag.ElMsisdns.Rows)
+                                                    {
+                                                        <div class="ElMsisdnDiv"><input type="text" value="@row[0].ToString()" placeholder="enter EasyLoad MSISDN" class="ElMsisdnInput Old" disabled><button class="RemoveElMsisdn Old">X</button></div>
+                                                    }
+                                                    <button id="AddElMsisdn">Add EasyLoad MSISDN</button>
+                                                }
+                                                else
+                                                {
+                                                    <label class="checkboxLabel"><input type="checkbox" id="IsElPos" /> EasyLoad POS </label>
+                                                    <button id="AddElMsisdn" style="display:none">Add EasyLoad MSISDN</button>
+                                                }
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                @if (Convert.ToBoolean(ViewBag.Retailer.Rows[0]["IsSimPos"]))
+                                                {
+                                                    <label class="checkboxLabel"><input type="checkbox" id="IsSimPos" checked disabled /> SIM POS</label>
+
+                                                    foreach (System.Data.DataRow row in ViewBag.SimPosCodes.Rows)
+                                                    {
+                                                        <div class="SimPosCodeDiv"><input type="text" value="@row[0].ToString()" placeholder="enter SIM POS code" class="SimPosCodeInput Old" disabled><button class="RemoveSimPosCode Old">X</button></div>
+                                                    }
+                                                    <p><button id="AddSimPosCode">Add SIM POS Code</button></p>
+                                                }
+                                                else
+                                                {
+                                                    <label class="checkboxLabel">  <input type="checkbox" id="IsSimPos" /> SIM POS</label>
+                                                    <button id="AddSimPosCode" style="display:none;">Add SIM POS Code</button>
+                                                }
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                @if (Convert.ToBoolean(ViewBag.Retailer.Rows[0]["IsScPos"]))
+                                                {
+                                                    <label class="checkboxLabel"><input type="checkbox" id="IsScPos" checked>&nbsp; Scratch Card POS</label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="checkboxLabel">  <input type="checkbox" id="IsScPos" /> Scratch Card POS</label>
+                                                }
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                @if (Convert.ToBoolean(ViewBag.Retailer.Rows[0]["HasTradeLicense"]))
+                                                {
+                                                <label class="checkboxLabel"><input type="checkbox" id="HasTradeLicense" checked>&nbsp; Trade License</label>
+                                                }
+                                                else
+                                                {
+                                                <label class="checkboxLabel"><input type="checkbox" id="HasTradeLicense" />&nbsp; Trade License</label>
+                                                }
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 3: Region to Village -->
+            <div class="swiper-slide sliderbg bluegreen">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 3</h2>
+                                    <blockquote>Regional information -</blockquote>
+
+                                    <!--Region-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Region :</label>
+                                                <select id="RegionId">
+                                                    <option value="-1">select region</option>
+                                                    @foreach (var region in ViewBag.RegionList)
+                                                    {
+                                                        <option value="@region.RegionId" @IsItemSelected("RegionId", region.RegionId.ToString())>@region.RegionName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--area-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Area :</label>
+                                                <select id="AreaId">
+                                                    <option value="-1">select area</option>
+                                                    @foreach (var area in ViewBag.AreaList)
+                                                    {
+                                                        <option value="@area.AreaId" @IsItemSelected("AreaId", area.AreaId.ToString())>@area.AreaName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--thana-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Upazila/Thana :</label>
+                                                <select name="ThanaId" id="ThanaId">
+                                                    <option value="-1">select thana</option>
+                                                    @foreach (var item in ViewBag.ThanaList)
+                                                    {
+                                                        <option value="@item.ThanaId" @IsItemSelected("ThanaId", item.ThanaId.ToString())>@item.ThanaName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--union/ward-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Union/Ward :</label>
+                                                <select id="WardId">
+                                                    <option value="0">select ward</option>
+                                                    @foreach (var item in ViewBag.WardList)
+                                                    {
+                                                        <option value="@item.WardId" @IsItemSelected("WardId", item.WardId.ToString())>@item.WardName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--mauza/mahalla-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Mauza/Mohalla :</label>
+                                                <select name="MauzaId" id="MauzaId">
+                                                    <option value="0">select mauza</option>
+                                                    @foreach (var item in ViewBag.MauzaList)
+                                                    {
+                                                        <option value="@item.MauzaId" @IsItemSelected("MauzaId", item.MauzaId.ToString())>@item.MauzaName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--village-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Village :</label>
+                                                <select id="VillageId">
+                                                    <option value="0">select village</option>
+                                                    @foreach (var item in ViewBag.VillageList)
+                                                    {
+                                                        <option value="@item.VillageId" @IsItemSelected("VillageId", item.VillageId.ToString())>@item.VillageName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 4: POS Structure, Visit Day, Shop signage, Shop type -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 4</h2>
+                                    <blockquote>Select POS structure, visit day, shop signage & shop type -</blockquote>
+
+                                    <!--PosStructureId (Pucca, etc)-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>POS Structure :</label>
+                                                <select id="PosStructureId">
+                                                    <option value="-1">select structure</option>
+                                                    @foreach (var structure in ViewBag.PosStructureList)
+                                                    {
+                                                        <option value="@structure.PosStructureId" @IsCurrentStructure(structure.PosStructureId.ToString())>
+                                                            @structure.PosStructureName
+                                                        </option>
+                                                    }
+
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!-- visit day -->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Visit days :</label>
+                                                <select id="VisitDayId">
+                                                    <option value="-1">select days</option>
+
+                                                    @foreach (var visitday in ViewBag.VisitDayList)
+                                                    {
+                                                        <option value="@visitday.VisitDayId" @IsItemSelected("VisitDayId", visitday.VisitDayId.ToString())>@visitday.VisitDayName</option>
+                                                    }
+
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--ShopSignageId-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Shop Signage :</label>
+                                                <select id="ShopSignageId">
+                                                    <option value="-1">select company</option>
+                                                    @foreach (var sign in ViewBag.ShopSignageList)
+                                                    {
+                                                        <option value="@sign.ShopSignageId" @IsItemSelected("ShopSignageId", sign.ShopSignageId.ToString())>@sign.ShopSignageName</option>
+                                                    }
+                                                    <option value="0" @IsItemSelected("ShopSignageId", "0")>None</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!--shop type (telecom, etc.)-->
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Shop Type :</label>
+                                                <select name="ShopTypeId" id="ShopTypeId">
+                                                    <option value="-1">select shop type</option>
+                                                    @foreach (var shop in ViewBag.ShopTypeList)
+                                                    {
+                                                        <option value="@shop.ShopTypeId" @IsItemSelected("ShopTypeId", shop.ShopTypeId.ToString())>@shop.ShopTypeName</option>
+                                                    }
+                                                </select>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 5: Locality-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 5</h2>
+                                    <blockquote>Locality type -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsApartments" @IsItemChecked("IsApartments")> Apartments
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsSlums" @IsItemChecked("IsSlums")> Slums
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsSemiUrbunHousing" @IsItemChecked("IsSemiUrbunHousing")> Semi-urban housing
+                                                </label>
+
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRuralHousing" @IsItemChecked("IsRuralHousing")> Rural housing
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsShoppingMall" @IsItemChecked("IsShoppingMall")> Shopping mall
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRetailHub" @IsItemChecked("IsRetailHub")> Retail hub
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsMobileDeviceMarket" @IsItemChecked("IsMobileDeviceMarket")> Mobile device market
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsBazaar" @IsItemChecked("IsBazaar")> Bazaar
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsOfficeArea" @IsItemChecked("IsOfficeArea")> Office area
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsGarmentsMajorityArea" @IsItemChecked("IsGarmentsMajorityArea")> Garments-majority area
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsGeneralIndustrialArea" @IsItemChecked("IsGeneralIndustrialArea")> General industrial area
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsUrbanTransitPoints" @IsItemChecked("IsUrbanTransitPoints")> Urban transit points
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRuralTransitPoints" @IsItemChecked("IsRuralTransitPoints")> Rural transit points
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsUrbanYouthHangouts" @IsItemChecked("IsUrbanYouthHangouts")> Urban youth hangouts
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsSemiUrbanYouthHangouts" @IsItemChecked("IsSemiUrbanYouthHangouts")> Semi-urban youth hangouts
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsRuralYouthHangouts" @IsItemChecked("IsRuralYouthHangouts")> Rural youth hangouts
+                                                </label>
+
+                                                <label class="checkboxLabel">
+                                                    <input type="checkbox" id="IsTouristDestinations" @IsItemChecked("IsTouristDestinations")> Tourist/Leisure destinations
+                                                </label>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 6: Retailer photo-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 6</h2>
+                                    <blockquote>If you want to change the photo, please go here <a href="~/dsr/ChangePhoto?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest">go here</a></blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                               
+                                                <input type='file' style="display:none;" class="custom-file-input" id="RetailerPhotoInput" accept="image/jpeg,image/png,jpg|png;capture=camera" />
+                                                <br /><br />
+                                                <img id="RetailerPhotoPreview" src="~/Photos/RetailerPhoto/@ViewBag.Retailer.Rows[0]["DefaultPhotoName"].ToString()" alt="your image" style="width:100%;" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 7: QR -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 7</h2>
+                                    <blockquote>
+                                        QR code - @ViewBag.Retailer.Rows[0]["QrCodeId"].ToString()
+                                        <input type="text" id="NewQrId" placeholder="new QR code" />
+                                    </blockquote>
+
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform" id="qr-form" enctype="multipart/form-data" method="post">
+                                                <img id="QrPhotoPreview" src="~/Photos/QRPhoto/@String.Format("{0}.{1}", ViewBag.Retailer.Rows[0]["QrCodeId"].ToString(),"png")" alt="QR Code" style="width:100%;" />
+                                                <input type="hidden" id="OldQrId" value="@ViewBag.Retailer.Rows[0]["QrCodeId"].ToString()" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 8: GeoService -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 8</h2>
+                                    <blockquote>Location on map -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform"><button id="GeoServiceToggle">Start</button>
+                                            <br />
+                                                <div id="map_canvas" style="width: 100%; height:250px;"></div>
+                                                <input type="hidden" id="Latitude" value="@ViewBag.Retailer.Rows[0]["Latitude"]" />
+                                                <input type="hidden" id="Longitude" value="@ViewBag.Retailer.Rows[0]["Longitude"]" />
+                                                <input type="hidden" id="Accuracy" value="@ViewBag.Retailer.Rows[0]["AccuracyLevel"]" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 9: Submit -->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Part: 9</h2>
+                                    <blockquote>Submit data -</blockquote>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Remarks</label>
+                                                <textarea id="Remarks">@ViewBag.Retailer.Rows[0]["Remarks"].ToString()</textarea>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <input type="hidden" id="SessionId" value="@ViewBag.SessionDigest" />
+                                                <input type="hidden" id="RetailerId" value="@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()" />
+                                                <button id="SubmitRetailer">Update</button> &nbsp;&nbsp;
+                                                <!--  <button id="DeleteRetailer">Retailer not found</button> -->
+                                                <p id="ErrorDetails"></p>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="pagination">
+            <button class="left" id="GoToFirst">First</button>
+            <button class="left" id="GoToPrevious">Prev.</button>
+
+            <button class="right" id="GoToLast">Last</button>
+            <button class="right" id="GoToNext">Next</button>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/codes.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>*@
+    <script src="~/Assets/SimpleModal/jquery.simplemodal.1.4.4.min.js"></script>
+    <script src="~/Areas/Dsr/Assets/js/BottomNavInitialize.js"></script>
+    <script src="~/Areas/Dsr/Assets/js/RegionalData.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <script>
+        var $IsElPosCheckbox = $('#IsElPos');
+        var $IsSimPosCheckBox = $("#IsSimPos");
+        var $IsScPosCheckBox = $("#IsScPos");
+        var $HasTradeLicense = $("#HasTradeLicense");
+        var $RegionCombo = $("#RegionId");
+        var $AreaCombo = $("#AreaId");
+        var $ThanaCombo = $("#ThanaId");
+        var $WardCombo = $("#WardId");
+        var $MauzaCombo = $("#MauzaId");
+        var $VillageCombo = $("#VillageId");
+        var $Remarks = $("#Remarks");
+
+        var $RetailerPhotoInput = $("#RetailerPhotoInput"), clearBn = $("#clear");
+
+
+        $(function () {
+
+            $('#SubmitQr').hide();
+
+            //if already has el number, show the 'Add El' button, bcz checkbox event is disabled
+            if ($IsElPosCheckbox.is(':checked')) {
+                $IsElPosCheckbox.closest('form').find("#AddElMsisdn").show();
+            }
+
+            //if already has sim pos code, show the 'add sim pos code' button, bcz checkbox event is disabled
+            if ($IsSimPosCheckBox.is(':checked')) {
+                $IsSimPosCheckBox.closest('form').find('#AddSimPosCode').show();
+            }
+
+            $($IsElPosCheckbox).click(function () {
+                var thisCheck = $(this);
+
+                if ($IsElPosCheckbox.is(':checked')) {
+                    $IsElPosCheckbox.closest('form').find("#AddElMsisdn").show();
+                }
+                else {
+                    $IsElPosCheckbox.closest('form').find('.ElMsisdnDiv').remove().end().find("#AddElMsisdn").hide();
+                }
+            });
+
+            $('#AddElMsisdn').on('click', function (e) {
+                e.preventDefault();
+                $('<div/>').addClass('ElMsisdnDiv')
+                .html($('<input type="text" placeholder="enter EasyLoad MSISDN"/>').addClass('ElMsisdnInput New'))
+                .append($('<button/>').addClass('RemoveElMsisdn New').text('X'))
+                .insertBefore(this);
+
+            });
+            $(document).on('click', 'button.RemoveElMsisdn.New', function (e) {
+                e.preventDefault();
+                $(this).closest('div.ElMsisdnDiv').remove();
+            });
+
+            $(document).on('click', 'button.RemoveElMsisdn.Old', function (e) {
+                e.preventDefault();
+                var $button = $(this);
+                var elNumber = $(this).closest('div.ElMsisdnDiv').find('.ElMsisdnInput').val();
+                if (confirm("Are you sure to delete EasyLoad MSISDN - " + elNumber + " ?") == true) {
+                    var fd = new FormData(); fd.append('ElMsisdn', elNumber); fd.append("RetailerId", $('#RetailerId').val());
+                    //ajax call-->
+                    var urlData = '../EditRetailer/RemoveElMsisdn';
+                    $.ajax({
+                        url: urlData,
+                        type: "POST",
+                        data: fd,
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,   // tell jQuery not to set contentType
+                        beforeSend: function () {
+                            $($button).attr('disabled', 'disabled');
+                            $($button).html('...');
+                        },
+                        success: function (response) {
+
+                            if (response.IsDeleted == true) {
+                                $button.closest('div.ElMsisdnDiv').remove();
+
+                                var newEls = $('.ElMsisdnInput.New').length; //this is New EasyLoad
+                                var oldEls = $('.ElMsisdnInput.Old').length;
+                                if (newEls + oldEls == 0) {
+                                    $IsElPosCheckbox.removeAttr("disabled");
+                                    $IsElPosCheckbox.prop('checked', false);
+                                    $("#AddElMsisdn").hide();
+                                }
+                                //alert("EasyLoad MSISDN successfully deleted from this retailer.");
+                                $.modal('<h3 style="color:green;">EasyLoad MSISDN successfully deleted from this retailer.</h3>');
+                                return;
+                            }
+                            else {
+                                //alert('Failed to delete this EasyLoad MSISDN.');
+                                $.modal('<h3 style="color:red;">Failed to delete this EasyLoad MSISDN. Please try again.</h3>');
+                            }
+                        },
+                        error: function (request, status, error) {
+                            //alert("Failed to delete. Please try again.");
+                            $.modal('<h3 style="color:red;">' + ajaErrorMessage + '</h3>');
+
+                        }
+
+                    });
+                    //<-- alax call
+                }
+            });
+
+            $(document).on('click', '.ElMsisdnInput', function (e) {
+                e.preventDefault();
+                $(this).focus();
+            });
+
+            $(document).on('click', '#Remarks', function (e) {
+                e.preventDefault();
+                $(this).focus();
+            });
+
+            //SIM POS checkbox click handler IsSimPos
+            $($IsSimPosCheckBox).click(function () {
+                if ($IsSimPosCheckBox.is(':checked')) {
+                    $IsSimPosCheckBox.closest('form').find('#AddSimPosCode').show();
+                    //$('#AddSimPosCode').show();
+                }
+                else {
+                    $IsSimPosCheckBox.closest('form').find('.SimPosCodeDiv').remove().end().find('#AddSimPosCode').hide();
+                }
+            });
+
+            //adding new sim pos code
+            $('#AddSimPosCode').on('click', function (e) {
+                e.preventDefault();
+                $('<div/>').addClass('SimPosCodeDiv')
+                .html($('<input type="text" placeholder="enter SIM POS code"/>').addClass('SimPosCodeInput New'))
+                .append($('<button/>').addClass('RemoveSimPosCode New').text('X'))
+                .insertBefore(this);
+
+            });
+            //removing newly inserted sim pos code
+            $(document).on('click', 'button.RemoveSimPosCode.New', function (e) {
+                e.preventDefault();
+                $(this).closest('div.SimPosCodeDiv').remove();
+            });
+
+            //removeing old sim pos code
+            $(document).on('click', 'button.RemoveSimPosCode.Old', function (e) {
+                e.preventDefault();
+                var $button = $(this);
+                var elNumber = $(this).closest('div.SimPosCodeDiv').find('.SimPosCodeInput').val();
+                if (confirm("Are you sure to delete SIM POS Code - " + elNumber + " ?") == true) {
+                    var fd = new FormData(); fd.append('SimPosCode', elNumber); fd.append("RetailerId", $('#RetailerId').val());
+                    //ajax call-->
+                    var urlData = '../EditRetailer/RemoveSimPosCode';
+                    $.ajax({
+                        url: urlData,
+                        type: "POST",
+                        data: fd,
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,   // tell jQuery not to set contentType
+                        beforeSend: function () {
+                            $($button).attr('disabled', 'disabled');
+                            $($button).html('...');
+                        },
+                        success: function (response) {
+
+                            if (response.IsDeleted == true) {
+                                $button.closest('div.SimPosCodeDiv').remove();
+
+                                var newEls = $('.SimPosCodeInput.New').length; //this is New
+                                var oldEls = $('.SimPosCodeInput.Old').length;
+                                if (newEls + oldEls == 0) {
+                                    $IsSimPosCheckBox.removeAttr("disabled");
+                                    $IsSimPosCheckBox.prop('checked', false);
+                                    $("#AddSimPosCode").hide();
+                                }
+                                //alert("SIM POS Code successfully deleted from this retailer.");
+                                $.modal('<h3 style="color:green;">SIM POS Code successfully deleted from this retailer.</h3>');
+
+                            }
+                            else {
+                                //alert('Failed to delete.');
+                                $.modal('<h3 style="color:red;">Failed to delete this SIM POS Code.</h3>');
+                                $($button).removeAttr('disabled');
+                                $($button).html('X');
+                            }
+                        },
+                        error: function (request, status, error) {
+                            //alert("Failed to delete. Please try again.");
+                            $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                            $($button).removeAttr('disabled');
+                            $($button).html('X');
+                        }
+
+                    });
+                    //<-- alax call
+                }
+            });
+
+            //Set focus
+            $(document).on('click', '.SimPosCodeInput', function (e) {
+                e.preventDefault();
+                $(this).focus();
+            });
+
+            $(document).on('click', '.GeoLocationDiv', function (e) {
+                e.preventDefault();
+                $('.GeoLocationDiv').not(this).remove();
+
+                $(this).closest('form').find('#Latitude').val($(this).find('.lat').val());
+                $(this).closest('form').find('#Longitude').val($(this).find('.lon').val());
+                $(this).closest('form').find('#Accuracy').val($(this).find('.acc').val());
+
+            });
+
+            $("#RetailerPhotoInput").change(function () {
+                PreviewRetailerPhoto(this);
+            });
+
+            $("#QrPhotoInput").change(function () {
+                PreviewQrPhoto(this);
+            });
+
+            $(document).on('click', '#NewQrId', function (e) {
+                e.preventDefault();
+                $(this).focus();
+            });
+
+            //QR Submission starts
+            $("#SubmitQr").click(function () {
+                var file = document.getElementById('QrPhotoInput').files[0];
+                var fd = new FormData();
+                fd.append("QrImage", file);
+                var urlData = '../../../Common/ReadQrCode';
+                $.ajax({
+                    url: urlData,
+                    type: "POST",
+                    data: fd,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    beforeSend: function () {
+                        $('#SubmitQr').attr('disabled', 'disabled');
+                        $('#SubmitQr').html('Working...');
+                    },
+                    success: function (response) {
+
+                        switch (response.status) {
+                            case 1:
+                                $('#QrId').val(response.qrdata);
+                                $('#QrValueInHand').val(response.qrdata);
+                                $.modal('<h3 style="color:green;">QR image is valid.</h3>');
+                                break;
+                            case 2:
+                                $('#QrId').val('');
+                                $('#QrValueInHand').val('');
+                                $.modal('<h3 style="color:red;">QR image is not valid. Please try again.</h3>');
+                                break;
+                            case 3:
+                                $('#QrId').val('');
+                                $('#QrValueInHand').val('');
+                                $.modal('<h3 style="color:red;">QR code not found in this image. Please try again.</h3>');
+                                break;
+                            default:
+                                $('#QrId').val('');
+                                $('#QrValueInHand').val('');
+                                $.modal('<h3 style="color:red;">Valid QR code not found in this image. Please try again.</h3>');
+                                break;
+                        }
+                    },
+                    error: function (request, status, error) {
+                        $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                    },
+                    complete: function () {
+                        $('#SubmitQr').removeAttr("disabled");
+                        $('#SubmitQr').html('Validate');
+                    }
+                });
+            });
+            //QR Submission ends
+
+            $("#GeoServiceToggle").click(function (e) {
+                e.preventDefault();
+                var buttonText = $(this).html();
+                if (buttonText === 'Start') {
+                    StartGeoService();
+                    $(this).html('Stop');
+                }
+                else {
+                    StopTimer(myTimer); //Timer code
+                    StopGeoService();
+                    $(this).html('Start');
+                }
+            });
+
+            //Data saving starts
+            $("#SubmitRetailer").click(function (e) {
+                e.preventDefault();
+
+                var fd = new FormData();
+                var ErrorFound = false; var ErrorText = "";
+
+                var RetailerName = $.trim($('#RetailerName').val());
+                if (RetailerName.length == 0) {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(0);">Please enter retailer name.</a>';
+                }
+                else {
+                    fd.append('RetailerName', RetailerName);
+                }
+
+                var RetailerAddress = $.trim($('#RetailerAddress').val());
+                if (RetailerAddress.length == 0) {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(0);">Please enter retailer address.</a>';
+                }
+                else {
+                    fd.append('RetailerAddress', RetailerAddress);
+                }
+
+                //POS category check
+                var PosCategoryId = $('#PosCategoryId').val();
+                if (PosCategoryId == '' || PosCategoryId == '-1') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(0);">Please select POS category.</a>';
+                }
+                else {
+                    fd.append('PosCategoryId', PosCategoryId);
+                }
+
+                //Checking EasyLoad Pos checkbox and textboxes (if any)--------------------->
+                if ($IsElPosCheckbox.is(':checked')) {
+
+                    var ElMsisdnInputQuantity = $('.ElMsisdnInput.New').length; //this is New EasyLoad
+                    var OldElMsisdnInputQuantity = $('.ElMsisdnInput.Old').length;
+
+                    if (ElMsisdnInputQuantity + OldElMsisdnInputQuantity == 0) {
+                        ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);">Please add EasyLoad MSISDN.</a>';
+                    }
+                    else {
+                        var ElMsisdnArray = [];
+                        var counter = 1;
+                        $('.ElMsisdnInput.New').each(function (i, item) {
+
+                            var elMsisdn = $.trim($(item).val());
+
+                            if (elMsisdn.length == 0) {
+                                ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);"> Please enter EasyLoad MSISDN at position ' + counter + '.</a>';
+                            }
+                            else {
+                                if (isNaN(elMsisdn)) {
+                                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);">EasyLoad MSISDN must be nemeric at position ' + counter + '.</a>';
+                                }
+                                else {
+                                    if (elMsisdn.length == 10) {
+                                        var firstTwoCharacters = elMsisdn.substring(0, 2);
+
+                                        if (firstTwoCharacters == '18') {
+                                            ElMsisdnArray.push(elMsisdn);
+                                        }
+                                        else {
+                                            ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);">You entered an invalid EL MSISDN. It must start with 18 at position ' + counter + '.</a>';
+                                        }
+                                    }
+                                    else {
+                                        if (elMsisdn.length == 11) {
+                                            var firstThreeCharacters = elMsisdn.substring(0, 3);
+                                            if (firstThreeCharacters == '018') {
+                                                ElMsisdnArray.push(elMsisdn);
+                                            }
+                                            else {
+                                                ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);">You entered an invalid EL MSISDN. It must start with 018 at position ' + counter + '.</a>';
+                                            }
+                                        }
+                                        else {
+                                            ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);">You entered an invalid EL MSISDN. It contains invalid number of digits at position ' + counter + '.</a>';
+                                        }
+                                    }
+                                }
+                            }
+                            counter++;
+                        });
+                        fd.append("IsElMsisdn", true);
+
+                        fd.append("ElMsisdn", ElMsisdnArray);
+                    }
+                }
+                else {
+                    fd.append("IsElMsisdn", false);
+                }
+                //<------------------------
+
+
+                //Checking SIM Pos checkbox and textbox --------------------->
+                if ($IsSimPosCheckBox.is(':checked')) {
+
+                    var SimPosCodeInputQuantity = $('.SimPosCodeInput.New').length;
+                    var OldSimPosCodeInputQuantity = $('.SimPosCodeInput.Old').length;
+
+                    if (SimPosCodeInputQuantity + OldSimPosCodeInputQuantity == 0) {
+                        ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);">Please add SIM POS code.</a>';
+                    }
+                    else {
+                        var SimPosCodeArray = [];
+                        var counter = 1;
+                        $('.SimPosCodeInput.New').each(function (i, item) {
+                            var simPosCode = $.trim($(item).val());
+                            if (simPosCode.length == 0) {
+                                ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(1);"> Please enter SIM POS code at position ' + counter + '.</a>';
+                            }
+                            else {
+                                SimPosCodeArray.push(simPosCode);
+                            }
+                            counter++;
+                        });
+                        fd.append("IsSimPos", true);
+
+                        fd.append("SimPosCode", SimPosCodeArray);
+                    }
+                }
+                else {
+                    fd.append("IsSimPos", false);
+                }//<--------------------
+
+                fd.append("IsScPos", $IsScPosCheckBox.is(':checked'));
+                fd.append("HasTradeLicense", $HasTradeLicense.is(':checked'));
+
+                //Region to Thana
+                if ($ThanaCombo.val() == '' || $ThanaCombo.val() == '-1') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(2);">Please select thana.</a>';
+                }
+                else {
+                    fd.append('RegionId', $RegionCombo.val());
+                    fd.append('AreaId', $AreaCombo.val());
+                    fd.append('ThanaId', $ThanaCombo.val());
+                }
+
+                //Union/Ward
+                if ($WardCombo.val() == '') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(2);">Union/Ward information can not be empty.</a>';
+                }
+                else {
+                    fd.append('WardId', $WardCombo.val());
+                }
+
+                //Mauza/Mohalla
+                if ($MauzaCombo.val() == '') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(2);">Mauza/Mohalla information can not be empty.</a>';
+                }
+                else {
+                    //fd.append('MauzaId', $MauzaCombo.val());
+                    if (CheckAccuracy == false) {
+                        if ($MauzaCombo.val() == '0') {
+                            ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(2);">Please select mauza/mohalla.</a>';
+                        }
+                        else {
+                            fd.append('MauzaId', $MauzaCombo.val());
+                        }
+                    }
+                    else {
+                        fd.append('MauzaId', $MauzaCombo.val());
+                    }
+                }
+
+                //Village
+                if ($VillageCombo.val() == '') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(2);">Village information can not be empty.</a>';
+                }
+                else {
+                    fd.append('VillageId', $VillageCombo.val());
+                }
+
+                //checking PosStructureId (pucca, etc.)
+                var $PosStructureId = $('#PosStructureId').val();
+                if ($PosStructureId == -1) {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(3);">Please select POS structure type.</a>';
+                }
+                else {
+                    fd.append('PosStructureId', $PosStructureId);
+                }
+
+                //checking VisitDayId
+                var $VisitDayId = $('#VisitDayId').val();
+                if ($VisitDayId == -1) {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(3);">Please select visit day.</a>';
+                }
+                else {
+                    fd.append('VisitDayId', $VisitDayId);
+                }
+
+                //checking ShopSignageId
+                var $ShopSignageId = $('#ShopSignageId').val();
+                if ($ShopSignageId == -1) {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(3);">Please select shop signage.</a>';
+                }
+                else {
+                    fd.append('ShopSignageId', $ShopSignageId);
+                }
+
+                //checking ShopTypeId
+                var $ShopTypeId = $('#ShopTypeId').val();
+                if ($ShopTypeId == -1) {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(3);">Please select shop type.</a>';
+                }
+                else {
+                    fd.append('ShopTypeId', $ShopTypeId);
+                }
+
+                //checking Locality
+                fd.append("IsApartments", $('#IsApartments').is(':checked'));
+                fd.append("IsSlums", $('#IsSlums').is(':checked'));
+                fd.append("IsSemiUrbunHousing", $('#IsSemiUrbunHousing').is(':checked'));
+                fd.append("IsRuralHousing", $('#IsRuralHousing').is(':checked'));
+                fd.append("IsShoppingMall", $('#IsShoppingMall').is(':checked'));
+                fd.append("IsRetailHub", $('#IsRetailHub').is(':checked'));
+                fd.append("IsMobileDeviceMarket", $('#IsMobileDeviceMarket').is(':checked'));
+                fd.append("IsBazaar", $('#IsBazaar').is(':checked'));
+                fd.append("IsOfficeArea", $('#IsOfficeArea').is(':checked'));
+                fd.append("IsGarmentsMajorityArea", $('#IsGarmentsMajorityArea').is(':checked'));
+                fd.append("IsGeneralIndustrialArea", $('#IsGeneralIndustrialArea').is(':checked'));
+                fd.append("IsUrbanTransitPoints", $('#IsUrbanTransitPoints').is(':checked'));
+                fd.append("IsRuralTransitPoints", $('#IsRuralTransitPoints').is(':checked'));
+                fd.append("IsUrbanYouthHangouts", $('#IsUrbanYouthHangouts').is(':checked'));
+                fd.append("IsSemiUrbanYouthHangouts", $('#IsSemiUrbanYouthHangouts').is(':checked'));
+                fd.append("IsRuralYouthHangouts", $('#IsRuralYouthHangouts').is(':checked'));
+                fd.append("IsTouristDestinations", $('#IsTouristDestinations').is(':checked'));
+
+                //checking retailer photo
+                var RetailerPhotoSrc = $('#RetailerPhotoPreview').attr('src');
+
+                if (RetailerPhotoSrc === '#' || RetailerPhotoSrc === '/Photos/RetailerPhoto/default.png') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(5);">Please add retailer photo.</a>';
+                }
+                else {
+                    var RetailerPhoto = document.getElementById('RetailerPhotoInput').files[0];
+                    fd.append("RetailerPhoto", RetailerPhoto);
+                    fd.append("RetailerPhotoName", RetailerPhotoSrc);
+                }
+                
+                //--->checking new qr id
+                var newQrCode = $.trim($('#NewQrId').val());
+                if (newQrCode.length > 0) {
+                    if (isNaN(newQrCode)) {
+                        ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(6);">QR code must be numeric.</a>';
+                    }
+                    else {
+                        if (newQrCode.length != 6) {
+                            ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(6);">QR code must be 6 digits.</a>';
+                        }
+                        else {
+                            //fd.append("IsReevaluating", true);
+                            fd.append("IsQrChanged", true);
+                            fd.append("NewQrCode", newQrCode);
+                        }
+                    }
+                }
+                else {
+                    fd.append("IsQrChanged", false);
+                }
+                //<---checking new qr id
+
+                var Latitude = $('#Latitude').val();
+                var Longitude = $('#Longitude').val();
+                var Accuracy = $('#Accuracy').val();
+
+                if (Latitude == '' || Longitude == '') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(7);">Please locate your position.</a>';
+                }
+                else {
+
+                    if (Accuracy > 20.0) {
+                        //ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(7);">Geolocation accuracy is out of limit.</a>';
+                        if (CheckAccuracy == true) {
+                            ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(7);">Geolocation accuracy is out of limit.</a>';
+                        }
+                        else {
+                            fd.append('Latitude', Latitude);
+                            fd.append('Longitude', Longitude);
+                            fd.append('Accuracy', Accuracy);
+                        }
+                    }
+                    else {
+                        fd.append('Latitude', Latitude);
+                        fd.append('Longitude', Longitude);
+                        fd.append('Accuracy', Accuracy);
+                    }
+                }
+
+                fd.append("Remarks", $Remarks.val());
+
+                fd.append("SessionId", $('#SessionId').val());
+
+                fd.append("RetailerId", $("#RetailerId").val());
+
+                //raise error(s), if any
+                if (ErrorFound) {
+                    $('#ErrorDetails').html(ErrorText); return;
+                }
+                else {
+                    $('#ErrorDetails').html('');
+                }
+
+                var urlData = '../EditRetailer/PartialRetailerUpdate';
+                $.ajax({
+                    url: urlData,
+                    type: "POST",
+                    data: fd,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    beforeSend: function () {
+                        $('#SubmitRetailer').attr('disabled', 'disabled');
+                        $('#SubmitRetailer').html('Working...');
+                    },
+                    success: function (response) {
+                        if (response.IsError == true) {
+                            if (response.IsSessionTimeOut == true) {
+                                window.location = response.url;
+                            }
+                            else {
+                                $.modal('<h3 style="color:red;">' + response.ErrorDetails + '</h3>');
+                            }
+                        }
+                        else {
+
+                            $.modal('<h3 style="color:green;">Retailer information successfully updated.</h3>');
+                            ResetForm();
+                        }
+                    },
+                    error: function (request, status, error) {
+                        //alert("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                        $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                    },
+                    complete: function () {
+                        $('#SubmitRetailer').removeAttr("disabled");
+                        $('#SubmitRetailer').html('Update');
+                    }
+                });
+            });
+            //Data saving starts
+
+            //Delete Retailer
+            $("#DeleteRetailer").click(function (e) {
+                e.preventDefault();
+                var $button = $(this);
+                if (confirm("Are you sure to inactive this retailer ?") == true) {
+                    var fd = new FormData(); fd.append("RetailerId", $('#RetailerId').val()); fd.append("SessionId", $('#SessionId').val());
+                    //ajax call-->
+                    var urlData = '../EditRetailer/DeleteRetailer';
+                    $.ajax({
+                        url: urlData,
+                        type: "POST",
+                        data: fd,
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,   // tell jQuery not to set contentType
+                        beforeSend: function () {
+                            $($button).attr('disabled', 'disabled');
+                            $($button).html('Working..');
+                        },
+                        success: function (response) {
+                            if (response.IsDeleted == true) {
+                                $.modal('<h3 style="color:green;">Retailer information updated successfully.</h3>');
+                                ResetForm();
+                                return;
+                            }
+                            else {
+                                if (response.IsSessionTimeOut == true) {
+                                    window.location = response.url;
+                                }
+                                else {
+                                    $.modal('<h3 style="color:red;">Failed to update this retailer. Please try again.</h3>');
+                                    $($button).removeAttr('disabled');
+                                    $($button).html('Delete');
+                                }
+                            }
+                        },
+                        error: function (request, status, error) {
+                            $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                            $($button).removeAttr('disabled');
+                            $($button).html('Delete');
+                        }
+                    });
+                    //<-- alax call
+                }
+            });
+            //Delete Retaler ends
+        });
+    </script>
+
+
+    <!-- image preview -->
+    <script>
+        function PreviewRetailerPhoto(input) {
+            if (input.files && input.files[0]) {
+
+                var photoSize = input.files[0].size;
+                photoSize = photoSize / 1024;
+                if (photoSize > 600) {
+                    ClearRetailerPhoto();
+                    //alert('Please select smaller photo less than 600KB in size.');
+                    $.modal('<h3 style="color:red;">Please select smaller photo less than 600KB in size.</h3>');
+                }
+                else {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#RetailerPhotoPreview').attr('src', e.target.result);
+                        $('#RetailerPhotoPreview').show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        }
+
+        function ClearRetailerPhoto() {
+            $RetailerPhotoInput.replaceWith($RetailerPhotoInput.val('').clone(true));
+            $("#RetailerPhotoPreview").hide();
+            $('#RetailerPhotoPreview').attr('src', '#');
+        }
+
+
+
+
+
+        function PreviewQrPhoto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#QrPhotoPreview').attr('src', e.target.result);
+                    $('#QrPhotoPreview').show();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+                $('#SubmitQr').show();
+            }
+        }
+
+        function ClearQrPhoto() {
+            $QrPhotoInput = $('#QrPhotoInput');
+            $QrPhotoInput.replaceWith($QrPhotoInput.val('').clone(true));
+            $("#QrPhotoPreview").hide();
+            $('#SubmitQr').hide();
+        }
+    </script>
+
+    <!-- GeoLocation Service -->
+    <script>
+        var WatchId = null;
+        var CheckAccuracy = true;
+        var myTimer;
+        function StartGeoService() {
+
+            try {
+                if (navigator.geolocation) {
+                    //if it gets gps, start the timer
+                    StartTimer(); //Timer code
+
+                    navigator.geolocation.getCurrentPosition(
+                            processGeolocationResult,
+                            html5Error,
+                            {
+                                maximumAge: 250,
+                                timeout: 60000,
+                                enableHighAccuracy: true
+                            }
+                    );
+
+                    WatchId = navigator.geolocation.watchPosition(
+                           processGeolocationResult,
+                           html5Error,
+                           {
+                               maximumAge: 250,
+                               timeout: 60000,
+                               enableHighAccuracy: true
+                           }
+                   );
+
+                    //For more info on maximumAge (milliseconds): http://dev.w3.org/geo/api/spec-source.html#max-age
+                    //For more info on timeout (milliseconds): http://dev.w3.org/geo/api/spec-source.html#timeout
+                    //For more info on enableHighAccuracy: http://dev.w3.org/geo/api/spec-source.html#high-accuracy
+                }
+                else {
+                    alert("Sorry, your browser does not support geolocation");
+                }
+            }
+            catch (err) {
+                alert("Unable to start geolocation. See console.log for message.")
+                console.log("startGeolocation: " + err.message);
+            }
+
+        }
+
+        //-->Timer function
+        function StartTimer() {
+            myTimer = setTimeout(function () {
+                //code to execute after the timeout.
+                StopGeoService();
+                $("#GeoServiceToggle").html('Start');
+                var firstspan = $('div.GeoLocationDiv:last');
+                CheckAccuracy = false;
+                firstspan.addClass('green');
+                console.log('timer timeout');
+            }, 420000); // 420000= 7 minutes.
+            console.log('timer on');
+        }
+
+        function StopTimer(timer) {
+            clearTimeout(timer);
+            console.log('timer off');
+        }
+        //<--Timer function
+
+        function processGeolocationResult(position) {
+            displayGeocodedLocation(position);
+        }
+
+        function html5Error(error) {
+            var error_value = "null";
+
+            switch (error.code) {
+                case 1:
+                    error_value = "PERMISSION_DENIED";
+                    // this.geoSliderOnOff.val("off");
+                    break;
+                case 2:
+                    error_value = "POSITION_UNAVAILABLE";
+                    break;
+                case 3:
+                    //Read more at http://dev.w3.org/geo/api/spec-source.html#timeout
+                    error_value = "TIMEOUT";
+                    break;
+            }
+
+
+            alert('There was a problem retrieving your location: ' + error_value);
+            console.log('There was a problem retrieving your location: ' + error_value);
+        }
+
+        function displayGeocodedLocation(position) {
+            if (position.coords.accuracy < 20) {
+                $('<div/>').addClass('GeoLocationDiv green').html(position.coords.accuracy.toFixed(0) + ' meters <input type="hidden" class="lat" value="' + position.coords.latitude + '"/><input type="hidden" class="lon" value="' + position.coords.longitude + '"/><input type="hidden" class="acc" value="' + position.coords.accuracy.toFixed(0) + '"/>').insertAfter($('#GeoServiceToggle'));
+                StopTimer(myTimer); //Timer code
+            }
+            else {
+                $('<div/>').addClass('GeoLocationDiv').html(position.coords.accuracy.toFixed(0) + ' meters <input type="hidden" class="lat" value="' + position.coords.latitude + '"/><input type="hidden" class="lon" value="' + position.coords.longitude + '"/><input type="hidden" class="acc" value="' + position.coords.accuracy.toFixed(0) + '"/>').insertAfter($('#GeoServiceToggle'));
+            }
+        }
+
+        function StopGeoService() {
+            try {
+                // swipernested.reInit();
+                navigator.geolocation.clearWatch(WatchId);
+                WatchId = null;
+
+            }
+            catch (err) {
+                console.log("stopGeolocation error: " + err.toString());
+            }
+        }
+    </script>
+    <!-- GeoLocation Service -->
+
+
+    <!--google map-->
+    <script>
+        $(function () {
+            var retailerLat = document.getElementById('Latitude').value;
+            var retailerLon = document.getElementById('Longitude').value;
+            var retailerLocation = new google.maps.LatLng(retailerLat, retailerLon);
+            var opts = {
+                zoom: 10,
+                center: retailerLocation,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById('map_canvas'), opts);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: retailerLocation
+            });
+        });
+    </script>
+    <!--google map-->
+
+
+
+    <!-- Reset Form -->
+    <script>
+
+        function ResetForm() {
+            $('#SubmitRetailer').hide();
+            $('#DeleteRetailer').hide();
+        }
+
+    </script>
+    <!-- Reset Form -->
+
+</body>
+
+</html>
+
+@functions {
+    public string IsCurrentStructure(string page)
+    {
+        return ViewBag.Retailer.Rows[0]["PosStructureId"].ToString() == page ? "selected" : null;
+    }
+
+    public string IsItemSelected(string columnName, String optionValue)
+    {
+        return ViewBag.Retailer.Rows[0][columnName].ToString() == optionValue ? "selected" : null;
+    }
+
+    public string IsItemChecked(string columnName)
+    {
+        return Convert.ToBoolean(ViewBag.Retailer.Rows[0][columnName]) == true ? "checked" : null;
+    }
+}

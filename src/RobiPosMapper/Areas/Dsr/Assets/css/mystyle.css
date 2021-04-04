@@ -1,0 +1,215 @@
+﻿input[type=text], textarea, select {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 10px 0px 10px 0px;
+    margin: 5px 0px 3px 0px;
+    border: 1px solid #DDDDDD;
+    width: 100%;
+    border-radius: 3px;
+    font-family:  sans-serif; /*'Lato',*/
+    
+}
+
+input[type=text], textarea {
+    text-indent: 10px;
+}
+
+input[type=text]:focus, textarea:focus, select:focus {
+     /*box-shadow: 0 0 5px rgba(81, 203, 238, 1);*/
+     /*padding: 3px 0px 3px 3px;
+     margin: 5px 1px 3px 0px;*/
+     box-shadow: 0px 0px 10px #FFB606;
+     /*border: 1px solid rgba(81, 203, 238, 1);*/
+}
+
+
+ /*style for ElMsisdnDiv & SimPosCodeDiv*/
+.SimPosCodeDiv, .ElMsisdnDiv {
+     /*background-color: #5eb4ed;*/
+     margin: 7px 0 7px 0;
+     padding: 2px 0 2px 0px;
+ }
+
+.SimPosCodeDiv input[type=text], .ElMsisdnDiv input[type=text] {
+     width: 80%;
+}
+
+.RemoveElMsisdn, .RemoveSimPosCode {
+    padding: 10px 2px 10px 3px;
+    margin: 5px 1px 3px 5px;
+    /*width: 15%;*/
+    /*height: 2.5em; */
+    width: 2.6em;
+    /*============*/
+    border: 1px solid #999;
+    border-radius: 3px;
+    /*padding: 10px 8px;*/
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    background-color: #FFB606;
+}
+
+
+ #AddElMsisdn, #AddSimPosCode, #SubmitRetailer, #SubmitQr, #DeleteRetailer {
+    height: 2.9em;
+    margin: 0;
+    border: 1px solid #999;
+    border-radius: 3px;
+    /*padding: 10px 8px;*/
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    background-color: #FFB606;
+}
+
+/*style for file input*/
+
+.custom-file-input {
+    color: transparent;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Select Photo';
+    color: black;
+    display: inline-block;
+    /*background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);*/
+    background-color: #FFB606;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 10px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+
+.custom-file-input:active {
+    outline: 0;
+}
+
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+/*GeoLocationDiv*/
+#GeoServiceToggle {
+    padding: 10px 18px;
+    margin-bottom: 20px;
+    height: 2.9em;
+    border: 1px solid #999;
+    border-radius: 3px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    background-color: #FFB606;
+} 
+        
+.GeoLocationDiv {
+    margin-top: 9px;
+    padding: 12px 5px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    background-color: #c4c19e;
+}
+
+.GeoLocationDiv.green {
+    background-color:#217a0f;
+}
+
+#ErrorDetails a {
+    margin-top: 5px;
+    /*margin-bottom: 20px;*/
+    padding: 12px 5px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    /*padding: 10px 8px;*/
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    color:black;
+    background-color: #999;
+    display:block;
+}
+
+.checkboxLabel {
+    /*display: block;*/
+    /*padding-left: 15px;*/
+    /*text-indent: -15px;*/
+    line-height: 3em;
+    vertical-align: middle;
+}
+
+.checkboxLabel input {
+    width: 2.5em !important;
+    height: 2.5em !important;
+    padding: 15px;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+
+
+.pagination button {
+    height: 2.2em;
+    border: 1px solid #999;
+    border-radius: 3px;
+    margin: 0;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    background-color: #FFB606;
+}
+
+.pagination button.left{
+    float:left;
+}
+
+.pagination button#GoToFirst {
+    margin: 0 4px 0 7px;
+}
+
+.pagination button.right {
+    float: right;
+}
+
+.pagination button#GoToLast {
+    margin: 0 7px 0 4px;
+}

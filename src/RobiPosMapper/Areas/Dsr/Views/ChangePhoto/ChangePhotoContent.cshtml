@@ -1,0 +1,277 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="Saumitra Kumar Paul" />
+    <meta name="description" content="Robi App" />
+    <meta name="keywords" content="app" />
+    <title>Update Retailer Information</title>
+
+    <link href="~/Areas/Dsr/Assets/css/mystyle.css" rel="stylesheet" />
+    <link href="~/Assets/SimpleModal/simplemodal.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link href="~/Assets/GoMobile/css/idangerous.swiper.scrollbar.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="gohome radius6"><a href="~/dsr/Home/Index?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/home.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/CallCenterHelp?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/phone.png" alt="" title="" /></a></div>
+        <div class="gomenu radius6"><a href="~/dsr/SearchRetailer?sid=@ViewBag.SessionId&sd=@ViewBag.SessionDigest"><img src="../../../Assets/GoMobile/images/icons/docs.png" alt="" title="" /></a></div>
+    </div>
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+            <!--Part 1: Retailer name and address-->
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+                                    <h2 class="page_title">Update Retailer Photo - @ViewBag.RetailerId</h2>
+                                    @*<blockquote>Retailer name, address and POS category -</blockquote>*@
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Retailer Name:</label>
+                                                <input type="text" id="RetailerName" value="@ViewBag.RetailerName" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <label>Retailer Address:</label>
+                                                <textarea id="RetailerAddress">@ViewBag.Address</textarea>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <input type='file' class="custom-file-input" id="RetailerPhotoInput" accept="image/jpeg,image/png,jpg|png;capture=camera" />
+                                                <br /><br />
+                                                <img id="RetailerPhotoPreview" src="~/Photos/RetailerPhoto/@ViewBag.PhotoName" alt="your image" style="width:100%;" />
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="service_box">
+                                        <div class="form">
+                                            <form class="cmxform">
+                                                <input type="hidden" id="SessionId" value="@ViewBag.SessionDigest" />
+                                                <input type="hidden" id="RetailerId" value="@ViewBag.RetailerId" />
+                                                <button id="SubmitRetailer">Update</button> &nbsp;&nbsp;
+                                                <!--  <button id="DeleteRetailer">Retailer not found</button> -->
+                                                <p id="ErrorDetails"></p>
+                                            </form>
+                                        </div>
+                                    </div>
+        
+                                    <div class="clearfix"></div>
+                                    <div class="scrolltop radius20"><a href="#"><img src="../../../Assets/GoMobile/images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+            <!-- page 2: EasyLoad POS, SIM POS, SC Code -->
+
+        </div>
+        @*<div class="pagination">
+            <button class="left" id="GoToFirst">First</button>
+            <button class="left" id="GoToPrevious">Prev.</button>
+
+            <button class="right" id="GoToLast">Last</button>
+            <button class="right" id="GoToNext">Next</button>
+        </div>*@
+
+    </div>
+
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/codes.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>*@
+    <script src="~/Assets/SimpleModal/jquery.simplemodal.1.4.4.min.js"></script>
+    <script src="~/Areas/Dsr/Assets/js/BottomNavInitialize.js"></script>
+    
+   
+
+    <script>
+
+        var $RetailerPhotoInput = $("#RetailerPhotoInput"), clearBn = $("#clear");
+
+
+        $(function () {
+            $("#RetailerPhotoInput").change(function () {
+                PreviewRetailerPhoto(this);
+            });
+
+            //Data saving starts
+            $("#SubmitRetailer").click(function (e) {
+                e.preventDefault();
+
+                var fd = new FormData();
+                var ErrorFound = false; var ErrorText = "";
+
+                //checking retailer photo
+                var RetailerPhotoSrc = $('#RetailerPhotoPreview').attr('src');
+
+                if (RetailerPhotoSrc === '#' || RetailerPhotoSrc === '/Photos/RetailerPhoto/default.png') {
+                    ErrorFound = true; ErrorText += '<a href="#" onclick="swiperParent.swipeTo(5);">Please add retailer photo.</a>';
+                }
+                else {
+                    var RetailerPhoto = document.getElementById('RetailerPhotoInput').files[0];
+                    fd.append("RetailerPhoto", RetailerPhoto);
+                    fd.append("RetailerPhotoName", RetailerPhotoSrc);
+                }
+
+                fd.append("SessionId", $('#SessionId').val());
+
+                fd.append("RetailerId", $("#RetailerId").val());
+
+                //raise error(s), if any
+                if (ErrorFound) {
+                    $('#ErrorDetails').html(ErrorText); return;
+                }
+                else {
+                    $('#ErrorDetails').html('');
+                }
+
+                var urlData = '../ChangePhoto/UpdatePhoto';
+                $.ajax({
+                    url: urlData,
+                    type: "POST",
+                    data: fd,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    beforeSend: function () {
+                        $('#SubmitRetailer').attr('disabled', 'disabled');
+                        $('#SubmitRetailer').html('Working...');
+                    },
+                    success: function (response) {
+                        if (response.IsError == true) {
+                            if (response.IsSessionTimeOut == true) {
+                                window.location = response.url;
+                            }
+                            else {
+                                $.modal('<h3 style="color:red;">' + response.ErrorDetails + '</h3>');
+                            }
+                        }
+                        else {
+
+                            $.modal('<h3 style="color:green;">Retailer information successfully updated.</h3>');
+                            ResetForm();
+                        }
+                    },
+                    error: function (request, status, error) {
+                        //alert("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                        $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                    },
+                    complete: function () {
+                        $('#SubmitRetailer').removeAttr("disabled");
+                        $('#SubmitRetailer').html('Update');
+                    }
+                });
+            });
+            //Data saving starts
+
+        });
+    </script>
+
+
+    <!-- image preview -->
+    <script>
+        function PreviewRetailerPhoto(input) {
+            if (input.files && input.files[0]) {
+
+                var photoSize = input.files[0].size;
+                photoSize = photoSize / 1024;
+                if (photoSize > 600) {
+                    ClearRetailerPhoto();
+                    //alert('Please select smaller photo less than 600KB in size.');
+                    $.modal('<h3 style="color:red;">Please select smaller photo less than 600KB in size.</h3>');
+                }
+                else {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#RetailerPhotoPreview').attr('src', e.target.result);
+                        $('#RetailerPhotoPreview').show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        }
+
+        function ClearRetailerPhoto() {
+            $RetailerPhotoInput.replaceWith($RetailerPhotoInput.val('').clone(true));
+            $("#RetailerPhotoPreview").hide();
+            $('#RetailerPhotoPreview').attr('src', '#');
+        }
+
+
+
+
+
+        function PreviewQrPhoto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#QrPhotoPreview').attr('src', e.target.result);
+                    $('#QrPhotoPreview').show();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+                $('#SubmitQr').show();
+            }
+        }
+
+        function ClearQrPhoto() {
+            $QrPhotoInput = $('#QrPhotoInput');
+            $QrPhotoInput.replaceWith($QrPhotoInput.val('').clone(true));
+            $("#QrPhotoPreview").hide();
+            $('#SubmitQr').hide();
+        }
+    </script>
+
+
+    <!-- Reset Form -->
+    <script>
+
+        function ResetForm() {
+            $('#SubmitRetailer').hide();
+            $('#DeleteRetailer').hide();
+        }
+
+    </script>
+    <!-- Reset Form -->
+
+</body>
+
+</html>
+

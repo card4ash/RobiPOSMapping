@@ -1,0 +1,233 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    string prevId = String.Empty;
+    string prevColorCode = String.Empty;
+    
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Duplicate Photos</title>
+
+    <style>
+        table a:link {
+            color: #666;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        table a:visited {
+            color: #999999;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        table a:active,
+        table a:hover {
+            color: #bd5a35;
+            text-decoration: underline;
+        }
+
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000000;
+            font-size: 12px;
+            /*text-shadow: 1px 1px 0px #fff;*/
+            background: #eaebec;
+            margin: 20px;
+            border: #ccc 1px solid;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            -moz-box-shadow: 0 1px 2px #d1d1d1;
+            -webkit-box-shadow: 0 1px 2px #d1d1d1;
+            box-shadow: 0 1px 2px #d1d1d1;
+        }
+
+            table th {
+                padding: 21px 25px 22px 25px;
+                border-top: 1px solid #fafafa;
+                border-bottom: 1px solid #e0e0e0;
+                background: #ededed;
+                background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+                background: -moz-linear-gradient(top, #ededed, #ebebeb);
+            }
+
+                table th:first-child {
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+            table tr:first-child th:first-child {
+                -moz-border-radius-topleft: 3px;
+                -webkit-border-top-left-radius: 3px;
+                border-top-left-radius: 3px;
+            }
+
+            table tr:first-child th:last-child {
+                -moz-border-radius-topright: 3px;
+                -webkit-border-top-right-radius: 3px;
+                border-top-right-radius: 3px;
+            }
+
+            table tr {
+                text-align: center;
+                padding-left: 20px;
+            }
+
+            table td:first-child {
+                text-align: left;
+                padding-left: 20px;
+                border-left: 0;
+            }
+
+            table td {
+                padding: 18px;
+                border-top: 1px solid #ffffff;
+                border-bottom: 1px solid #e0e0e0;
+                border-left: 1px solid #e0e0e0;
+                /*background: #fafafa;
+                background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+                background: -moz-linear-gradient(top, #fbfbfb, #fafafa);*/
+            }
+
+            table tr.even td {
+                background: #f6f6f6;
+                background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+                background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6);
+            }
+
+            table tr:last-child td {
+                border-bottom: 0;
+            }
+
+                table tr:last-child td:first-child {
+                    -moz-border-radius-bottomleft: 3px;
+                    -webkit-border-bottom-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                }
+
+                table tr:last-child td:last-child {
+                    -moz-border-radius-bottomright: 3px;
+                    -webkit-border-bottom-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                }
+
+            /*table tr:hover td {
+                background: #f2f2f2;
+                background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+                background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+            }*/
+
+
+            table tfoot td {
+                padding: 21px 25px 22px 25px;
+                border-top: 1px solid #fafafa;
+                border-bottom: 1px solid #e0e0e0;
+                background: #284462; /*#ededed;*/
+                background: -webkit-gradient(linear, left top, left bottom, from(#284462), to(#284462));
+                background: -moz-linear-gradient(top, #284462, #284462);
+            }
+    </style>
+
+</head>
+<body>
+    <h2>Duplicate Photos (@ViewBag.Retailers.Rows.Count.ToString() found)</h2>
+    <table>
+        <thead>
+            <!--GroupId, DefaultPhotoName, RetailerId, RetailerName, ,  , , , -->
+            <tr>
+                <th>Group Id</th>
+                <th>Photo</th>
+                <th>Retailer ID</th>
+                <th>Retailer Name</th>
+                <th>WorkedBySurveyor</th>
+                <th>RemovedBySurveyor</th>
+                <th>UploadDateTime</th>
+                <th>ResolvedBy</th>
+                <th>ResolvedDateTime</th>
+                <th> ShopSignageName </th>
+                <th> PosStructureName </th>
+                <th> Address </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var row in ViewBag.Retailers.Rows)
+                {
+                  <text>
+                         <tr >
+                             <td style="background-color:@ConvertToCode(row["GroupId"].ToString()) !important">
+                                 <a target="_blank" href="~/RobiAdmin/DuplicatePhotos/ViewByGroupId?id=@row["GroupId"].ToString()&user=">
+                                     @row["GroupId"].ToString()
+                                 </a>
+                             </td>
+                             <td >
+
+                                 <img src="http://www.tmnd.com.bd/Photos/RetailerPhoto/@row["defaultphotoname"].ToString()" width="150" /> <br />
+                                 
+                             </td>
+                            <td> @row["RetailerId"].ToString()</td>
+                            <td>
+                                <a title="Retaile Name. Click for more details." style="color:blue;" target="_blank" href="~/RSP/OutletDetails/Index?user=@ViewBag.UserName&moid=@ViewBag.MoId&retailerid=@row["RetailerId"]">@row["RetailerName"].ToString()</a>
+                           </td>
+                             <td title="Surveyor Worked">@row["WorkedBySurveyor"].ToString()</td>
+                             <td title="new photo uploaded by surveyro">@row["RemovedBySurveyor"].ToString()</td>
+                             <td title="upload date time">@row["UploadDateTime"].ToString()</td>
+                           
+                            <td title="resolved by">@row["ResolvedBy"].ToString().ToUpper()</td>
+                             <td title="resoled date time">@row["ResolvedDateTime"].ToString().ToUpper()</td>
+                             <td title="shop signage">@row["ShopSignageName"].ToString()</td>
+                             <td title="structure">@row["PosStructureName"].ToString()</td>
+                             <td title="address">@row["Address"].ToString()</td>
+                        </tr>
+                    </text>
+                }
+
+        </tbody>
+    </table>
+
+</body>
+</html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+
+
+
+@functions {
+
+    public string ConvertToCode(string value)
+    {
+        return String.Format("#{0}", (Convert.ToInt32(value)*2663).ToString("X6"));
+         
+    }
+
+
+    public Boolean ShowUpdatedImage(System.Data.DataRow row)
+    {
+        bool showImage = false;
+        if (Convert.ToBoolean(row["IsRemovedLaterOn"]))
+        {
+            showImage = true;
+        }
+
+        return showImage;
+    }
+    
+    public string ManageUpdatedImage(System.Data.DataRow row)
+    {
+        string str = String.Empty;
+        if (Convert.ToBoolean(row["IsRemovedLaterOn"]))
+        {
+            str = " <img src=\"~/Assets/MyImages/UpdatedGreenAnimated.gif\" /> ";
+        }
+
+        return str;
+    }
+}

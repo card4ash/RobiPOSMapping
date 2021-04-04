@@ -1,0 +1,481 @@
+﻿
+<style>
+    .topbutton {
+        box-shadow: rgb(238, 238, 238) 0px 1px 2px 0px;
+        color: rgb(98, 98, 98);
+        cursor: pointer;
+        display: block;
+        height: 89px;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+        white-space: nowrap;
+        width: 89px;
+        perspective-origin: 43px 43px;
+        transform-origin: 43px 43px;
+        background: rgba(0, 0, 0, 0) -webkit-linear-gradient(top, rgb(255, 255, 255) 0%, rgb(244, 244, 244) 100%) repeat scroll 0% 0% / auto padding-box border-box;
+        border: 1px solid rgb(213, 213, 213);
+        border-radius: 3px 3px 3px 3px;
+        font: normal normal bold normal 12px/22px Arial, Helvetica, sans-serif;
+        list-style: none outside none;
+        outline: rgb(98, 98, 98) none 0px;
+        padding: 10px 10px 10px 10px;
+        margin-bottom:20px;
+        margin-left:10px;
+        margin-top:10px;
+
+        float:left;
+    }
+
+
+</style>
+
+
+
+
+
+<!--top summary -->
+<section id="widget-grid" class="">
+    <!-- Table-->
+    <div class="row">
+        <!-- All -->
+        <article class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false">
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                    <h2>Surveyor Work Status: Overall</h2>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <div class="widget-body no-padding">
+                        <div class="topbutton" style="cursor:default;">
+                            Total<br /> 
+                            <img src="~/Assets/MyImages/Shop32.png" /><br /> 
+                            <strong>@ViewBag.TotalOutlets.ToString()</strong>
+                        </div>
+                        <div class="topbutton" style="cursor:default;">
+                            Updated<br />
+                            <img src="~/Assets/MyImages/EditBlue32.png" /> <br />
+                            <strong>@ViewBag.UpdatedOutlets.ToString()</strong>
+                        </div>
+                        <div class="topbutton" style="cursor:default;">
+                            New<br />
+                            <img src="~/Assets/MyImages/PlusSky32.png" /><br />
+                            <strong>@ViewBag.NewOutlets.ToString()</strong>
+                        </div>
+                        <div class="topbutton" style="cursor:default;">
+                            Not Found<br />
+                            <img src="~/Assets/MyImages/NotFound32.png" /><br />
+                            <strong>@ViewBag.NotFoundOutlets.ToString()</strong>
+                        </div>
+                        <div class="topbutton" style="cursor:default;">
+                            Pending<br />
+                            <img src="~/Assets/MyImages/MyPending.png" /><br />
+                            <strong>@ViewBag.PendingOutlets.ToString()</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- All -->
+        <article class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false">
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                    <h2>Surveyor Work Status: Today</h2>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <div class="widget-body no-padding">
+                        <div class="topbutton" style="cursor:default;">
+                            Updated<br />
+                            <img src="~/Assets/MyImages/EditBlue32.png" /> <br />
+                            <strong>@ViewBag.TodayUpdatedRetailers.ToString()</strong>
+                        </div>
+                        <div class="topbutton" style="cursor:default;">
+                            New<br />
+                            <img src="~/Assets/MyImages/PlusSky32.png" /><br />
+                            <strong>@ViewBag.TodayNewRetailers.ToString()</strong>
+                        </div>
+                        <div class="topbutton" style="cursor:default;">
+                            Not Found<br />
+                            <img src="~/Assets/MyImages/NotFound32.png" /><br />
+                            <strong>@ViewBag.TodayNotFoundRetailers.ToString()</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+<!--/ top summary -->
+
+<!-- Pie Chart -->
+<section id="widget-grid" class="">
+    <!-- Table-->
+    <div class="row">
+        <!-- TABLE WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-editbutton="false">
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                    <h2>Workflow Progress</h2>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table style="width:100%;">
+                            <tr>
+                                <td width="20%">
+                                    &nbsp;&nbsp;&nbsp;<img src="~/Assets/MyImages/ChartLegendBlue.png" /> Total    &nbsp;&nbsp;&nbsp;<img src="~/Assets/MyImages/ChartLegendYellow.png" /> Updated
+                                    <div id="chart1" style="width:100%; height:240px;"></div>
+                                </td>
+                                <td><canvas id="canvas" height="85"></canvas></td>
+                            </tr>
+                        </table>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+<!--/ Pie Chart -->
+
+<!-- DSR data: in tabular form -->
+<section id="widget-grid" class="">
+    <!-- Table-->
+    <div class="row">
+        <!-- TABLE WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-7" data-widget-editbutton="false">
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                    <h2>DSR Status</h2>
+                </header>
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <div style="height:300px; width:100%; overflow:auto;">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>DSR Name</th>
+                                        <th style="text-align:right;">Total Retailers</th>
+                                        <th style="text-align:right;">Updated</th>
+                                        <th style="text-align:right;">Pending</th>
+                                        <th style="text-align:right;">Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var row in ViewBag.GraphData.Rows)
+                                    {
+                                        <tr>
+                                            <td>@row["DsrName"].ToString()</td>
+                                            <td style="text-align:right;">
+                                                 @row["TotalRetailers"].ToString()
+                                            </td>
+                                            <td style="text-align:right;">
+                                                <nav>
+                                                    <a href="../../RSP/OutletList/UpdatedOutletListForDsr?dsrid=@row["DsrId"].ToString()&dsrname=@row["DsrName"].ToString()&rspid=@ViewBag.RspId">@row["UpdatedRetailers"].ToString()</a>
+                                                </nav>
+                                            </td>
+                                            <td style="text-align:right;">@CalculateDsrWisePending(row).ToString()</td>
+                                            <td style="text-align:right;">  
+                                            
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-color-teal" aria-valuetransitiongoal="@CalculateDsrWiseProgress(row)" aria-valuenow="@CalculateDsrWiseProgress(row)" style="width: @CalculateDsrWiseProgress(row)%;">@CalculateDsrWiseProgress(row)%</div>
+                                                </div>
+                                            
+                                            
+                                            </td>
+                                        </tr>
+                                      }
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+        <!-- WIDGET END -->
+    </div>
+
+</section>
+<!-- DSR data: in tabular form -->
+
+
+
+<!--start Surveyor Work Status: Today -->
+<section id="widget-grid" class="">
+    <!-- Table-->
+    <div class="row">
+        <!-- TABLE WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-5" data-widget-editbutton="false">
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                    <h2>Surveyor Work Status: Today</h2>
+                </header>
+                <div>
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>SR</th>
+                                    <th>Name</th>
+                                    <th style="text-align:right;">Updated</th>
+                                    <th style="text-align:right;">New</th>
+                                    <th style="text-align:right;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var row in ViewBag.TodaysActivityOfSurveyors.Rows)
+                                {
+                                    <tr>
+                                        <td>@row["LoginName"].ToString()</td>
+                                        <td>@row["SurveyorName"].ToString()</td>
+                                        <td style="text-align:right;"><nav><a href="../../RSP/OutletList/UpdatedOutletList?srid=@row["SurveyorId"].ToString()&date=@DateTime.Today.ToString("yyyy-MM-dd")&rspid=@ViewBag.RspId&sr=@row["LoginName"].ToString()&name=@row["SurveyorName"].ToString()">@row["Updated"].ToString()</a></nav></td>
+                                        <td style="text-align:right;"><nav><a href="../../RSP/OutletList/NewOutletList?srid=@row["SurveyorId"].ToString()&date=@DateTime.Today.ToString("yyyy-MM-dd")&rspid=@ViewBag.RspId&sr=@row["LoginName"].ToString()&name=@row["SurveyorName"].ToString()">@row["NewRetailer"].ToString()</a></nav></td>
+                                        <td style="text-align:right;"><nav><a href="../../RSP/OutletList/TotalOutletList?srid=@row["SurveyorId"].ToString()&date=@DateTime.Today.ToString("yyyy-MM-dd")&rspid=@ViewBag.RspId&sr=@row["LoginName"].ToString()&name=@row["SurveyorName"].ToString()">@row["Total"].ToString()</a></nav></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+</section>
+<!--end Surveyor Work Status: Today -->
+
+<!-- Surveyor Work Status: life-time -->
+<section id="widget-grid" class="">
+    <!-- Table-->
+    <div class="row">
+        <!-- TABLE WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-6" data-widget-editbutton="false">
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                    <h2>Surveyor Work Status: Life-time</h2>
+                </header>
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>SR</th>
+                                    <th>Name</th>
+                                    <th style="text-align:right;">Updated</th>
+                                    <th style="text-align:right;">New</th>
+                                    <th style="text-align:right;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var row in ViewBag.OverallActivityOfSurveyors.Rows)
+                                {
+                                    <tr>
+                                        <td>@row["LoginName"].ToString()</td>
+                                        <td>@row["SurveyorName"].ToString()</td>
+                                        <td style="text-align:right;">
+                                            <nav>
+                                                <a href="../../RSP/OutletList/UpdatedOutletList?srid=@row["SurveyorId"].ToString()&date=&rspid=@ViewBag.RspId&sr=@row["LoginName"].ToString()&name=@row["SurveyorName"].ToString()">@row["Updated"].ToString()</a>
+                                            </nav>
+                                        </td>
+                                        <td style="text-align:right;"><nav><a href="../../RSP/OutletList/NewOutletList?srid=@row["SurveyorId"].ToString()&date=&rspid=@ViewBag.RspId&sr=@row["LoginName"].ToString()&name=@row["SurveyorName"].ToString()">@row["NewRetailer"].ToString()</a></nav></td>
+                                        <td style="text-align:right;"><nav><a href="../../RSP/OutletList/TotalOutletList?srid=@row["SurveyorId"].ToString()&date=&rspid=@ViewBag.RspId&sr=@row["LoginName"].ToString()&name=@row["SurveyorName"].ToString()">@row["Total"].ToString()</a></nav></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+        <!-- WIDGET END -->
+    </div>
+
+</section>
+<!-- Surveyor Work Status: life-time -->
+
+
+@functions{
+
+    public string CalculateHeight()
+    {
+        int height = 0;
+        var rowCount = ViewBag.GraphData.Rows.Count;
+        height = rowCount * 48;
+        return height.ToString() + "px" ;
+    }
+
+    public int CalculateDsrWisePending(System.Data.DataRow row)
+    {
+        int total = Convert.ToInt32(row["TotalRetailers"]);
+        int updated = Convert.ToInt32(row["UpdatedRetailers"]);
+        int pending = total - updated;
+
+        return pending;
+    }
+
+    public int CalculateDsrWiseProgress(System.Data.DataRow row)
+    {
+        int total = Convert.ToInt32(row["TotalRetailers"]);
+        int updated = Convert.ToInt32(row["UpdatedRetailers"]);
+        int progress = 0;
+
+        if (updated>0)
+        {
+            progress = (updated * 100) / total;
+        }
+        
+        return progress;
+    }
+}
+
+<script type="text/javascript">
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+
+
+</script>
+
+    <!--Pie chart-->
+<script>
+        $(document).ready(function () {
+            var data = [
+              ['Pending', @ViewBag.PendingOutlets], ['Updated', @ViewBag.UpdatedOutlets]
+
+            ];
+            var plot1 = jQuery.jqplot('chart1', [data],
+              {
+                  seriesDefaults: {
+                      // Make this a pie chart.
+                      renderer: jQuery.jqplot.PieRenderer,
+                      rendererOptions: {
+                          // Put data labels on the pie slices.
+                          // By default, labels show the percentage of the slice.
+                          showDataLabels: true
+                      }
+                  },
+                  legend: { show: false, location: 'e' }
+              }
+            );
+        });
+
+
+
+</script>
+<!--/ Pie chart-->
+
+<!--Work progress-->
+<script>
+    var makeGraph = '@ViewBag.MakeGraph';
+    if (makeGraph=='true') {
+        var mylabels = [];
+        @foreach(var label in ViewBag.ChartLabel)
+        {
+            <text>
+                mylabels.push('@label');
+            </text>
+        }
+        var mychartdata = [];
+        @foreach (var item in ViewBag.ChartData)
+        {
+            <text>
+           mychartdata.push(@item);
+            </text>
+        }
+
+        var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+        var lineChartData = {
+            //labels : ["January","February","March","April","May","June","July"],
+            labels: mylabels,
+            datasets: [
+
+				{
+				    label: "My Second dataset",
+				    fillColor: "rgba(151,187,205,0.2)",
+				    strokeColor: "rgba(151,187,205,1)",
+				    pointColor: "rgba(151,187,205,1)",
+				    pointStrokeColor: "#fff",
+				    pointHighlightFill: "#fff",
+				    pointHighlightStroke: "rgba(151,187,205,1)",
+				    data: mychartdata
+				}
+            ]
+        }
+
+        window.onload = function () {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx).Line(lineChartData, {
+                responsive: true
+            });
+        }
+
+    }
+
+
+
+</script>
+
+

@@ -1,0 +1,284 @@
+﻿<style>
+    a.topicon {
+        margin-right: 15px;
+    }
+
+    span.absent{
+        margin-left:5px;
+        margin-top:5px;
+        
+    }
+</style>
+<script src="~/Assets/ChartsAndGraphs/Chart.js"></script>
+<script src="~/Assets/ChartsAndGraphs/jqplot/jquery.jqplot.min.js"></script>
+<script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.pieRenderer.min.js"></script>
+<script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.barRenderer.min.js"></script>
+<script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+<script src="~/Assets/ChartsAndGraphs/jqplot/jqplot.pointLabels.min.js"></script>
+
+<div class="row-fluid">
+    <div class="span12">
+        <a class="topicon" title="Add new surveyor." href="~/RobiAdmin/SurveyorManagement/AddNewSurveyor?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/AddNewSurveyors48.png" /></a>
+        <a class="topicon" title="Show only active surveyors." href="~/RobiAdmin/SurveyorManagement/ShowActiveSurveyors?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowActiveSurveyors48.png" /></a>
+        <a class="topicon" title="Show inactive surveyors." href="~/RobiAdmin/SurveyorManagement/ShowAll?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowAllSureveyors48.png" /> </a>
+
+    </div>
+</div>
+
+@if (ViewBag.MoId != 9) //hidden from amran
+{
+    <text>
+
+           <!--those who are not working today, but active -->
+        <div class="block well">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h5>Surveyors Not Found in Today's Field .  <span style="color: #ff6a00; font-style: italic;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;@ViewBag.TodayNotWorkingSrList.Rows.Count.ToString() surveyors absent in field out of @ViewBag.ActiveSrQuantity.</span></h5>
+                </div>
+            </div>
+            <div class="table-overflow">
+                <div style="height:150px; width:100%; overflow:auto;">
+                    @foreach (var sr in ViewBag.TodayNotWorkingSrList.Rows)
+                    {
+                        <span class="btn btn-large btn-danger absent">@sr["SurveyorId"].ToString()</span>
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div class="separator-doubled"></div>
+        <!--/ those who are not working today, but active -->
+
+        <!--Ajke kon Surveyor kotota kaj korlo tar data -->
+        <div class="block well">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h5>Surveyors Work Progress of Today.  <span style="color: #ff6a00; font-style: italic;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;@ViewBag.SurveyorRetailerOfToday.Rows.Count.ToString() surveyors working in field out of @ViewBag.ActiveSrQuantity.</span></h5>
+                </div>
+            </div>
+            <div class="table-overflow">
+                <div style="height:400px; width:100%; overflow:auto;">
+                    &nbsp;&nbsp;&nbsp;<img src="~/Assets/MyImages/ChartLegendBlue.png" /> Updated Retailers Quantity
+                    <div id="chart2b" style="margin-top:20px; margin-left:20px; width:95%; height:@CalculateHeight();"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="separator-doubled"></div>
+        <!--/Ajke kon Surveyor kotota kaj korlo tar data -->
+
+        <!-- protidin koto gulo Surveyor field-e chhilo tar graph data -->
+        <div class="block well">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h5>Date-wise surveyors' presence in field. <span style="color: #ff6a00; font-style: italic;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ViewBag.AvgSrPerDate</span></h5>
+                </div>
+            </div>
+            <div class="table-overflow">
+                
+                <div style="height:300px; width:100%; overflow:auto;">
+                    <canvas id="canvas" height="85"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="separator-doubled"></div>
+        <!--/ protidin koto gulo Surveyor field-e chhilo tar graph data -->
+    </text>
+}
+
+
+
+        <!-- Surveyors Avg Data -->
+<div class="block well">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h5>Looking for the right person? See the average</h5>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <div style="height:400px; width:100%; overflow:auto;">
+           <table class="table">
+               <thead>
+                   <tr>
+                       <th style="width:5%;">ID</th>
+                       <th style="width:15%;">Name</th>
+                       <th style="width:10%;">Retailers</th>
+                       <th style="width:10%;">Days</th>
+                       <th colspan="2" style="text-align:left;">Average outlets/day</th>
+                       
+                   </tr>
+               </thead>
+               <tbody>
+                   @foreach (var row in ViewBag.SurveyorAverageData.Rows)
+                   {
+                       <tr>
+                           <td style="width:5%;">
+                               @row["SurveyorId"].ToString()
+                           </td>
+                           <td style="width:15%;">
+                               @row["SurveyorName"].ToString()
+                           </td>
+                           <td style="width:10%;" title="Updated/Created retailers quantity.">
+                               @row["WorkQuantity"].ToString()
+                           </td>
+                           <td style="width:10%;" title="Working days">
+                               @row["DayQuantity"].ToString()
+                           </td>
+                           <td style="width:5%;">
+                               @row["Average"].ToString()
+                           </td>
+                           <td>
+                            <div class="control-group"><div class="progress @DefineGraphColor(row)"><div class="bar no-text" data-percentage="@row["Average"].ToString()"></div></div></div>
+                           </td>
+
+                       </tr>
+                   }
+               </tbody>
+           </table>
+        </div>
+
+    </div>
+</div>
+<div class="separator-doubled"></div>
+        <!-- Surveyors Avg Data -->
+
+
+
+@functions{
+
+    public string CalculateHeight()
+    {
+        int height = 0;
+        var rowCount = ViewBag.SurveyorRetailerOfToday.Rows.Count;
+        height = rowCount * 30;
+        return height.ToString() + "px";
+    }
+
+    public string DefineGraphColor(System.Data.DataRow row) 
+    {
+        int value = Convert.ToInt32(row["Average"]);
+        string className = "";
+        if (value>49)
+        {
+            className = "progress-success";
+        }
+        else if (value>34 && value <50)
+        {
+            className = "progress-info";
+        }
+        else if(value>19 && value<35)
+        {
+            className = "progress-warning";
+        }
+        else
+        {
+            className = "progress-danger";
+        }
+        
+        return className;
+    }
+    
+}
+
+<!--Ajke kon Surveyor kotota kaj korlo tar graph -->
+<script>
+    $(document).ready(function () {
+
+        var dsrTotalData = [];
+
+        @foreach (System.Data.DataRow row in ViewBag.SurveyorRetailerOfToday.Rows)
+	    {
+            <text>
+                var firstObject = []; 
+                var srName = 'SR' + '@row["SurveyorId"]';
+                var totalQuantity =@row["RetailerQuantity"];
+                firstObject.push(totalQuantity);   firstObject.push(srName);
+                dsrTotalData.push(firstObject);
+            </text>
+	    }
+
+        var finalArr=[];  finalArr.push(dsrTotalData);
+        //console.log(dsrTotalData); console.log(dsrUpdatedData);
+
+        //plot2b = $.jqplot('chart2b', [[[2, "test"], [4, 2], [6, 3], [3, 4], [6, "new"]], [[5, "test"], [1, 2], [3, 3], [4, 4], [7, "new"]]], {
+          plot2b = $.jqplot('chart2b', finalArr, {
+            seriesDefaults: {
+                renderer: $.jqplot.BarRenderer,
+                pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
+                shadowAngle: 135,
+                rendererOptions: {
+                    barDirection: 'horizontal'
+                }
+            },
+            axes: {
+                yaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer
+                }
+            }
+        });
+
+        $('#chart2b').bind('jqplotDataHighlight',
+            function (ev, seriesIndex, pointIndex, data) {
+                $('#info2b').html('series: ' + seriesIndex + ', point: ' + pointIndex + ', data: ' + data + ', pageX: ' + ev.pageX + ', pageY: ' + ev.pageY);
+            }
+        );
+        $('#chart2b').bind('jqplotDataClick',
+            function (ev, seriesIndex, pointIndex, data) {
+                $('#info2c').html('series: ' + seriesIndex + ', point: ' + pointIndex + ', data: ' + data + ', pageX: ' + ev.pageX + ', pageY: ' + ev.pageY);
+            }
+        );
+
+        $('#chart2b').bind('jqplotDataUnhighlight',
+            function (ev) {
+                $('#info2b').html('Nothing');
+            }
+        );
+    });</script>
+
+<!-- protidin koto gulo Surveyor field-e chhilo tar graph data -->
+<script>
+
+        var mylabels = [];
+        @foreach (var label in ViewBag.SurveyorWorkDateLabels)
+                {
+                    <text>
+                        mylabels.push('@label');
+                    </text>
+                }
+        var mychartdata = [];
+        @foreach (var item in ViewBag.SurveyorQuantityData)
+	    {
+		 <text>
+        mychartdata.push(@item);
+        </text>
+	    }
+
+    var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+    var lineChartData = {
+        //labels : ["January","February","March","April","May","June","July"],
+        labels: mylabels,
+            datasets: [
+
+				{
+				    label: "My Second dataset",
+				    fillColor: "rgba(151,187,205,0.2)",
+				    strokeColor: "rgba(151,187,205,1)",
+				    pointColor: "rgba(151,187,205,1)",
+				    pointStrokeColor: "#fff",
+				    pointHighlightFill: "#fff",
+				    pointHighlightStroke: "rgba(151,187,205,1)",
+				    data: mychartdata
+				}
+            ]
+        }
+
+        window.onload = function () {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx).Bar(lineChartData, {
+                responsive: true
+            });
+        }
+
+
+</script>
+<!--/ protidin koto gulo Surveyor field-e chhilo tar graph data -->

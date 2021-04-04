@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="94d12e1d15464160a62a759c247d166b" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="RobiPosMappingModel.Area" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.District" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Division" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.ElMsisdn" Width="1.5" PointX="18.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Language" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Locality" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Mauza" Width="1.5" PointX="12" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Person" Width="1.5" PointX="14.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.PersonType" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.PosStructure" Width="1.5" PointX="14.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.PosType" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.QrCode" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Region" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Retailer" Width="1.5" PointX="16.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.RetailerPhoto" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.RSP" Width="1.5" PointX="14.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.ShopSignage" Width="1.5" PointX="14.25" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.ShopType" Width="1.5" PointX="14.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.SimPosCode" Width="1.5" PointX="18.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.sysdiagram" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Thana" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.UserType" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Village" Width="1.5" PointX="14.25" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.VisitDay" Width="1.5" PointX="14.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.Ward" Width="1.5" PointX="9.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.WeekDay" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobiPosMappingModel.View_1" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Area_Region1" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_District_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Thana_District" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_ElMsisdn_Retailer" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_User_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Mauza_Union" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_Mauza" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Village_Mauza" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_PosStructure" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_RSP" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_ShopSignage" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_ShopType" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_Thana" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_Village" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_VisitDay" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_Ward" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_SimPosCode_Retailer" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Union_Thana" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_User_UserType" ManuallyRouted="false" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_Area" />
+        <AssociationConnector Association="RobiPosMappingModel.FK_Retailer_Region" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

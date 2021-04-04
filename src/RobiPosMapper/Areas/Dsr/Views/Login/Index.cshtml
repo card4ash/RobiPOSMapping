@@ -1,0 +1,261 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="../../../Assets/GoMobile/images/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="../../../Assets/GoMobile/images/apple-touch-startup-image-320x460.png" />
+    <meta name="author" content="Saumitra Kumar Paul" />
+    <meta name="description" content="Robi POS Mapping" />
+    <meta name="keywords" content="" />
+    <title>DSR Login</title>
+
+    <style>
+        input[type=text], input[type=password] {
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;
+            padding: 10px 2px 10px 3px;
+            margin: 5px 1px 3px 0px;
+            border: 1px solid #DDDDDD;
+            width: 100%;
+            border-radius: 3px;
+        }
+
+       input[type=text]:focus, input[type=password]:focus {
+                /*box-shadow: 0 0 5px rgba(81, 203, 238, 1);*/
+                /*padding: 3px 0px 3px 3px;
+                margin: 5px 1px 3px 0px;*/
+                box-shadow: 0px 0px 10px #FFB606; /*#61C5FA*/
+                /*border: 1px solid rgba(81, 203, 238, 1);*/
+            }
+    </style>
+
+    <style>
+
+        #submitlogin {
+            height: 3em;
+            width: 100%;
+            margin: 5px 5px 5px 0;
+            border: 1px solid #999;
+            border-radius: 3px;
+            /*padding: 10px 8px;*/
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            text-shadow: 1px 1px #fff;
+            font-weight: 700;
+            font-size: 10pt;
+            background-color:#FFB606;
+        }
+
+
+        .loadinggif {
+            background: url('../../../Assets/GoMobile/images/loader.gif') no-repeat right center;
+        }
+
+        .spinner {
+            position: absolute;
+            right: 5px;
+            top: 6px;
+            width: 25px;
+            height: 25px;
+            display: none;
+        }
+
+    </style>
+
+    <link href="~/Assets/SimpleModal/simplemodal.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/colors/green/green.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/idangerous.swiper.css" />
+    <link type="text/css" rel="stylesheet" href="../../../Assets/GoMobile/css/swipebox.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+
+            <!--Page 9 content contact form--> 
+            <div class="swiper-slide sliderbg">
+                <div class="swiper-container swiper-nested">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <div class="pages_container">
+
+                                    <h2 class="page_title">Surveyor login</h2>
+                                   
+                                    <div class="form">
+                                        <form class="cmxform">
+                                            <input type="text" name="DsrMsisdn" id="DsrMsisdn" placeholder="enter DSR MSISDN" value="" />
+                                            <input type="text" name="LoginName" id="LoginName" placeholder="enter your login name" value="" />
+                                            <input type="password" name="LoginPassword" id="LoginPassword"  placeholder="enter your password" value="" />
+                                            
+                                            <img src="../../../Assets/GoMobile/images/loader.gif" style="display:none;" alt="Loading..." id="loader" />
+                                            
+                                            <button name="submitlogin" id="submitlogin">
+                                            
+                                            Login</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--End of page container-->
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+            <!--End of pages-->
+
+        </div>
+       
+    </div>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.swipebox.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper-2.1.min.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/idangerous.swiper.scrollbar-2.1.js"></script>*@
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.tabify.js"></script>
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/jquery.fitvids.js"></script>*@
+    <script type="text/javascript" src="../../../Assets/GoMobile/js/codes.js"></script>
+    @*<script type="text/javascript" src="../../../Assets/GoMobile/js/load.js"></script>*@
+    <script src="~/Assets/SimpleModal/jquery.simplemodal.1.4.4.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        var $ = jQuery.noConflict();
+    </script>
+
+
+
+    <script>
+        $(function () {
+            $("#submitlogin").click(function (e) {
+                
+                e.preventDefault();
+                $button = $(this);
+                var DsrMsisdn = $("#DsrMsisdn").val();
+                var LoginName = $("#LoginName").val();
+                var LoginPassword = $("#LoginPassword").val();
+
+                //--> Check DSR MSISDN
+                if (DsrMsisdn == "") {
+                    $.modal('<h3 style="color:red;">Please enter DSR MSISDN number.</h3>');
+                    return;
+                }
+
+                if (isNaN(DsrMsisdn)) {
+                    $.modal('<h3 style="color:red;">Invalid MSISDN number. It must be numeric.</h3>');
+                    return;
+                }
+                else {
+                    if (DsrMsisdn.length == 10) {
+                        var firstTwoCharacters = DsrMsisdn.substring(0, 2);
+
+                        if (firstTwoCharacters != '18') {
+                            $.modal('<h3 style="color:red;">DSR MSISDN is invalid.</h3>');
+                            return;
+                        }
+
+                    }
+                    else {
+                        if (DsrMsisdn.length == 11) {
+                            var firstThreeCharacters = DsrMsisdn.substring(0, 3);
+                            if (firstThreeCharacters != '018') {
+                                $.modal('<h3 style="color:red;">DSR MSISDN is invalid.</h3>');
+                                return;
+                            }
+                        }
+                        else {
+                            $.modal('<h3 style="color:red;">DSR MSISDN is invalid.</h3>');
+                            return;
+                        }
+                    }
+                }
+                //--> Check DSR MSISDN
+
+                if (LoginName == "") {
+                    $.modal('<h3 style="color:red;">Please enter your login name.</h3>');
+                    return;
+                }
+
+
+                if (LoginPassword=="") {
+                    //alert("please enter your password.");
+                    $.modal('<h3 style="color:red;">Please enter your password.</h3>');
+                    return;
+                }
+
+                var fd = new FormData();
+                fd.append("DsrMsisdn", DsrMsisdn);
+                fd.append("LoginName", LoginName);
+                fd.append("LoginPassword", LoginPassword);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Dsr/Login/Index",
+                    data: fd,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    beforeSend: function () {
+                        $('#loader').fadeIn();
+                        $button.attr('disabled', 'disabled');
+                        $button.html('Working...');
+                    },
+                    success: function (response) {
+                        if (response.result === 'InvalidLogin') {
+                            $button.removeAttr("disabled");
+                            $button.html('User not found. Try again.');
+                            $('#loader').fadeOut();
+                            return;
+                        }
+                        else if (response.result === "InvalidPassword") {
+                            $button.removeAttr("disabled");
+                            $button.html('Invalid password. Try again');
+                            $('#loader').fadeOut();
+                            return;
+                        }
+                        else if (response.result === "InvalidDsr") {
+                            $button.removeAttr("disabled");
+                            $button.html('Invalid DSR. Try again');
+                            $('#loader').fadeOut();
+                            return;
+                        }
+                        else if (response.result == 'Error') {
+                            $button.removeAttr("disabled");
+                            $button.html('Unknown error. Try again.');
+                            $('#loader').fadeOut();
+                        }
+                        else if (response.result == 'Redirect') {
+                            window.location = response.url;
+                            $button.removeAttr("disabled");
+                            $button.html('User Found. Please wait..');
+                        }
+                    },
+                    error: function (request, status, error) {
+                        $.modal('<h3 style="color:red;">' + ajaxErrorMessage + '</h3>');
+                        $button.removeAttr("disabled");
+                        $button.html('Login'); $('#loader').fadeOut();
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+   
+</body>
+</html>

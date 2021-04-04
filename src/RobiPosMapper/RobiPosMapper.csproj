@@ -1,0 +1,1151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EBCBA665-F626-4C9A-B7E3-594EBA035A57}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RobiPosMapper</RootNamespace>
+    <AssemblyName>RobiPosMapper</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.76.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="sCommonLib">
+      <HintPath>G:\backup\New folder (3)\RobiPosMapper\RobiPosMapper\RobiPosMapper\bin\sCommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="zxing">
+      <HintPath>G:\backup\New folder (3)\RobiPosMapper\RobiPosMapper\RobiPosMapper\bin\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\ErrorLogs\ErrorLogs.txt" />
+    <Content Include="Areas\Dsr\Assets\css\mystyle.css" />
+    <Content Include="Areas\Dsr\Assets\js\BottomNavInitialize.js" />
+    <Content Include="Areas\Dsr\Assets\js\RegionalData.js" />
+    <Content Include="Areas\Dsr\Assets\js\SubmitNewRetailer.js" />
+    <Content Include="Assets\Amsterdam\css\bootstrap.css" />
+    <Content Include="Assets\Amsterdam\css\elfinder.css" />
+    <Content Include="Assets\Amsterdam\css\fancybox.css" />
+    <Content Include="Assets\Amsterdam\css\font.css" />
+    <Content Include="Assets\Amsterdam\css\main.css" />
+    <Content Include="Assets\Amsterdam\css\plugins.css" />
+    <Content Include="Assets\Amsterdam\css\ui_custom.css" />
+    <Content Include="Assets\Amsterdam\images\backgrounds\bg.png" />
+    <Content Include="Assets\Amsterdam\images\backgrounds\default.jpg" />
+    <Content Include="Assets\Amsterdam\images\backgrounds\opacity.png" />
+    <Content Include="Assets\Amsterdam\images\backgrounds\opacity2.png" />
+    <Content Include="Assets\Amsterdam\images\chat-user1.png" />
+    <Content Include="Assets\Amsterdam\images\chat-user2.png" />
+    <Content Include="Assets\Amsterdam\images\chat-user3.png" />
+    <Content Include="Assets\Amsterdam\images\colorpicker\alpha.png" />
+    <Content Include="Assets\Amsterdam\images\div.png" />
+    <Content Include="Assets\Amsterdam\images\elements\checkboxes\ibutton-slider-default.png" />
+    <Content Include="Assets\Amsterdam\images\elements\checkboxes\no.png" />
+    <Content Include="Assets\Amsterdam\images\elements\checkboxes\yes.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\add_files.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\checkboxes.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\clear_results.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\radios.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\select-arrow.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\sidebar_checkboxes.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\sidebar_dropdown_usual.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\sidebar_radios.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\spinner-bottom.png" />
+    <Content Include="Assets\Amsterdam\images\elements\forms\spinner-top.png" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\1.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\10.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\10s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\1s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\2.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\2s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\3.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\3s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\4.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\4s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\5.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\5s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\6.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\6s %281%29.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\6s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\7.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\7s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\8.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\8s %281%29.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\8s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\9.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\loaders\9s.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\other\contact_status.png" />
+    <Content Include="Assets\Amsterdam\images\elements\other\dropped.png" />
+    <Content Include="Assets\Amsterdam\images\elements\other\grown.png" />
+    <Content Include="Assets\Amsterdam\images\elements\other\link.png" />
+    <Content Include="Assets\Amsterdam\images\elements\other\photo.png" />
+    <Content Include="Assets\Amsterdam\images\elements\other\search.png" />
+    <Content Include="Assets\Amsterdam\images\elements\ui\dateArrows.png" />
+    <Content Include="Assets\Amsterdam\images\elements\ui\handle.png" />
+    <Content Include="Assets\Amsterdam\images\elements\ui\progress_overlay.png" />
+    <Content Include="Assets\Amsterdam\images\elements\wysiwyg\buttons.gif" />
+    <Content Include="Assets\Amsterdam\images\elements\wysiwyg\toolbar.gif" />
+    <Content Include="Assets\Amsterdam\images\icons\active_state.png" />
+    <Content Include="Assets\Amsterdam\images\icons\calendar.png" />
+    <Content Include="Assets\Amsterdam\images\icons\color\addNew.png" />
+    <Content Include="Assets\Amsterdam\images\icons\color\config.png" />
+    <Content Include="Assets\Amsterdam\images\icons\color\donate.png" />
+    <Content Include="Assets\Amsterdam\images\icons\color\hire-me.png" />
+    <Content Include="Assets\Amsterdam\images\icons\color\issue.png" />
+    <Content Include="Assets\Amsterdam\images\icons\color\order-149.png" />
+    <Content Include="Assets\Amsterdam\images\icons\color\undone.png" />
+    <Content Include="Assets\Amsterdam\images\icons\icon-search.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\buttons-icons.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\calendar.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\charts.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\components.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\dashboard.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\error-pages.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\file-manipulations.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\form-elements.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\messages.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\page-layouts.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\tables.png" />
+    <Content Include="Assets\Amsterdam\images\icons\mainnav\typography.png" />
+    <Content Include="Assets\Amsterdam\images\icons\plus.png" />
+    <Content Include="Assets\Amsterdam\images\icons\topnav\top-buttons.png" />
+    <Content Include="Assets\Amsterdam\images\live\face.png" />
+    <Content Include="Assets\Amsterdam\images\live\face1.png" />
+    <Content Include="Assets\Amsterdam\images\live\face2.png" />
+    <Content Include="Assets\Amsterdam\images\live\face3.png" />
+    <Content Include="Assets\Amsterdam\images\live\face4.png" />
+    <Content Include="Assets\Amsterdam\images\live\face5.png" />
+    <Content Include="Assets\Amsterdam\images\live\face6.png" />
+    <Content Include="Assets\Amsterdam\images\logo.png" />
+    <Content Include="Assets\Amsterdam\images\sprites\glyphicons-halflings-white.png" />
+    <Content Include="Assets\Amsterdam\images\sprites\glyphicons-halflings.png" />
+    <Content Include="Assets\Amsterdam\images\user.png" />
+    <Content Include="Assets\Amsterdam\js\charts\bar.js" />
+    <Content Include="Assets\Amsterdam\js\charts\bar_side.js" />
+    <Content Include="Assets\Amsterdam\js\charts\chart.js" />
+    <Content Include="Assets\Amsterdam\js\charts\chart_side.js" />
+    <Content Include="Assets\Amsterdam\js\charts\filled.js" />
+    <Content Include="Assets\Amsterdam\js\charts\hBar.js" />
+    <Content Include="Assets\Amsterdam\js\charts\horizontal_bar_side.js" />
+    <Content Include="Assets\Amsterdam\js\charts\pie.js" />
+    <Content Include="Assets\Amsterdam\js\charts\threshold.js" />
+    <Content Include="Assets\Amsterdam\js\charts\updating.js" />
+    <Content Include="Assets\Amsterdam\js\functions\custom.js" />
+    <Content Include="Assets\Amsterdam\js\globalize\globalize.culture.de-DE.js" />
+    <Content Include="Assets\Amsterdam\js\globalize\globalize.culture.ja-JP.js" />
+    <Content Include="Assets\Amsterdam\js\globalize\globalize.js" />
+    <Content Include="Assets\Amsterdam\js\jquery_ui_custom.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\bootstrap\bootstrap-bootbox.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\bootstrap\bootstrap-colorpicker.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\bootstrap\bootstrap-progressbar.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\bootstrap\bootstrap.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\excanvas.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\jquery.flot.fillbetween.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\jquery.flot.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\jquery.flot.orderBars.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\jquery.flot.pie.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\jquery.flot.resize.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\jquery.flot.threshold.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\charts\jquery.sparkline.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.autosize.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.cleditor.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.dualListBox.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.ibutton.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.inputlimiter.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.maskedinput.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.select2.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.tagsinput.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.uniform.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\forms\jquery.validate.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\tables\jquery.dataTables.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.collapsible.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.elfinder.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.fancybox.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.fullcalendar.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.jgrowl.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.mousewheel.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.pie.chart.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\ui\jquery.timepicker.min.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\uploader\jquery.plupload.queue.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\uploader\plupload.html4.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\uploader\plupload.html5.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\uploader\plupload.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\wizard\jquery.form.js" />
+    <Content Include="Assets\Amsterdam\js\plugins\wizard\jquery.form.wizard.js" />
+    <Content Include="Assets\ChartsAndGraphs\Chart.js" />
+    <Content Include="Assets\ChartsAndGraphs\Chart.min.js" />
+    <Content Include="Assets\ChartsAndGraphs\jqplot\jqplot.barRenderer.min.js" />
+    <Content Include="Assets\ChartsAndGraphs\jqplot\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Assets\ChartsAndGraphs\jqplot\jqplot.donutRenderer.min.js" />
+    <Content Include="Assets\ChartsAndGraphs\jqplot\jqplot.pieRenderer.min.js" />
+    <Content Include="Assets\ChartsAndGraphs\jqplot\jqplot.pointLabels.min.js" />
+    <Content Include="Assets\ChartsAndGraphs\jqplot\jquery.jqplot.min.css" />
+    <Content Include="Assets\ChartsAndGraphs\jqplot\jquery.jqplot.min.js" />
+    <Content Include="Assets\GoMobile\colors\green\green.css" />
+    <Content Include="Assets\GoMobile\colors\green\images\bg-green.jpg" />
+    <Content Include="Assets\GoMobile\colors\green\images\bullet_checked.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\bullet_cross.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\bullet_cross_big.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\bullet_cross_white.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\comments.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\logo.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\toggle.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\toggle_blog.png" />
+    <Content Include="Assets\GoMobile\colors\green\images\transparent_circle.png" />
+    <Content Include="Assets\GoMobile\colors\metro\metro.css" />
+    <Content Include="Assets\GoMobile\css\idangerous.swiper.css" />
+    <Content Include="Assets\GoMobile\css\idangerous.swiper.scrollbar.css" />
+    <Content Include="Assets\GoMobile\css\style.css" />
+    <Content Include="Assets\GoMobile\css\swipebox.css" />
+    <Content Include="Assets\GoMobile\images\apple-touch-icon.png" />
+    <Content Include="Assets\GoMobile\images\apple-touch-startup-image-320x460.png" />
+    <Content Include="Assets\GoMobile\images\icons\about.png" />
+    <Content Include="Assets\GoMobile\images\icons\admin.png" />
+    <Content Include="Assets\GoMobile\images\icons\bangla.png" />
+    <Content Include="Assets\GoMobile\images\icons\blog.png" />
+    <Content Include="Assets\GoMobile\images\icons\clients.png" />
+    <Content Include="Assets\GoMobile\images\icons\code.png" />
+    <Content Include="Assets\GoMobile\images\icons\contact %281%29.png" />
+    <Content Include="Assets\GoMobile\images\icons\contact.png" />
+    <Content Include="Assets\GoMobile\images\icons\docs.png" />
+    <Content Include="Assets\GoMobile\images\icons\dsr.png" />
+    <Content Include="Assets\GoMobile\images\icons\english.png" />
+    <Content Include="Assets\GoMobile\images\icons\home.png" />
+    <Content Include="Assets\GoMobile\images\icons\layout.png" />
+    <Content Include="Assets\GoMobile\images\icons\map_pin.png" />
+    <Content Include="Assets\GoMobile\images\icons\pencil.png" />
+    <Content Include="Assets\GoMobile\images\icons\phone.png" />
+    <Content Include="Assets\GoMobile\images\icons\photos.png" />
+    <Content Include="Assets\GoMobile\images\icons\rsp.png" />
+    <Content Include="Assets\GoMobile\images\icons\security.png" />
+    <Content Include="Assets\GoMobile\images\icons\services.png" />
+    <Content Include="Assets\GoMobile\images\icons\social\digg.png" />
+    <Content Include="Assets\GoMobile\images\icons\social\facebook.png" />
+    <Content Include="Assets\GoMobile\images\icons\social\flickr.png" />
+    <Content Include="Assets\GoMobile\images\icons\social\google.png" />
+    <Content Include="Assets\GoMobile\images\icons\social\pinterest.png" />
+    <Content Include="Assets\GoMobile\images\icons\social\twitter.png" />
+    <Content Include="Assets\GoMobile\images\icons\tools.png" />
+    <Content Include="Assets\GoMobile\images\icons\top.png" />
+    <Content Include="Assets\GoMobile\images\icons\travel.png" />
+    <Content Include="Assets\GoMobile\images\icons\twitter.png" />
+    <Content Include="Assets\GoMobile\images\icons\videos.png" />
+    <Content Include="Assets\GoMobile\images\loader.gif" />
+    <Content Include="Assets\GoMobile\images\photos\photo1.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo10.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo11.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo2.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo3.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo4.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo5.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo6.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo7.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo8.jpg" />
+    <Content Include="Assets\GoMobile\images\photos\photo9.jpg" />
+    <Content Include="Assets\GoMobile\js\code-inner.js" />
+    <Content Include="Assets\GoMobile\js\code.js" />
+    <Content Include="Assets\GoMobile\js\codes.js" />
+    <Content Include="Assets\GoMobile\js\idangerous.swiper-2.1.min.js" />
+    <Content Include="Assets\GoMobile\js\idangerous.swiper.scrollbar-2.1.js" />
+    <Content Include="Assets\GoMobile\js\jquery-1.10.1.min.js" />
+    <Content Include="Assets\GoMobile\js\jquery.fitvids.js" />
+    <Content Include="Assets\GoMobile\js\jquery.swipebox.js" />
+    <Content Include="Assets\GoMobile\js\jquery.tabify.js" />
+    <Content Include="Assets\GoMobile\js\jquery.validate.min.js" />
+    <Content Include="Assets\GoMobile\js\load.js" />
+    <Content Include="Assets\GoMobile\js\twitter\jquery.tweet.js" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\ajax-loader.gif" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\action-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\action-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\alert-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\alert-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-d-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-d-l-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-d-l-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-d-r-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-d-r-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-d-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-l-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-l-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-r-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-r-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-u-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-u-l-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-u-l-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-u-r-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-u-r-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\arrow-u-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\audio-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\audio-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\back-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\back-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\bars-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\bars-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\bullets-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\bullets-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\calendar-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\calendar-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\camera-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\camera-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-d-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-d-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-l-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-l-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-r-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-r-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-u-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\carat-u-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\check-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\check-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\clock-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\clock-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\cloud-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\cloud-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\comment-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\comment-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\delete-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\delete-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\edit-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\edit-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\eye-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\eye-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\forbidden-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\forbidden-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\forward-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\forward-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\gear-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\gear-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\grid-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\grid-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\heart-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\heart-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\home-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\home-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\info-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\info-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\location-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\location-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\lock-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\lock-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\mail-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\mail-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\minus-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\minus-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\navigation-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\navigation-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\phone-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\phone-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\plus-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\plus-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\power-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\power-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\recycle-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\recycle-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\refresh-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\refresh-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\search-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\search-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\shop-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\shop-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\star-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\star-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\tag-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\tag-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\user-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\user-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\video-black.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-png\video-white.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\action-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\action-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\alert-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\alert-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-d-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-d-l-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-d-l-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-d-r-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-d-r-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-d-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-l-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-l-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-r-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-r-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-u-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-u-l-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-u-l-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-u-r-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-u-r-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\arrow-u-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\audio-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\audio-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\back-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\back-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\bars-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\bars-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\bullets-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\bullets-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\calendar-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\calendar-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\camera-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\camera-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-d-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-d-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-l-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-l-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-r-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-r-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-u-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\carat-u-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\check-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\check-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\clock-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\clock-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\cloud-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\cloud-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\comment-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\comment-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\delete-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\delete-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\edit-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\edit-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\eye-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\eye-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\forbidden-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\forbidden-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\forward-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\forward-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\gear-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\gear-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\grid-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\grid-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\heart-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\heart-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\home-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\home-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\info-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\info-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\location-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\location-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\lock-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\lock-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\mail-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\mail-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\minus-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\minus-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\navigation-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\navigation-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\phone-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\phone-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\plus-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\plus-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\power-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\power-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\recycle-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\recycle-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\refresh-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\refresh-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\search-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\search-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\shop-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\shop-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\star-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\star-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\tag-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\tag-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\user-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\user-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\video-black.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\images\icons-svg\video-white.svg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\jquery.mobile-1.4.2.min.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\jquery.mobile.external-png-1.4.2.min.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\jquery.mobile.icons-1.4.2.min.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\jquery.mobile.inline-png-1.4.2.min.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\jquery.mobile.inline-svg-1.4.2.min.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\jquery.mobile.structure-1.4.2.min.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\css\themes\default\jquery.mobile.theme-1.4.2.min.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\js\jquery.js" />
+    <Content Include="Assets\jquery.mobile-1.4.2\js\jquery.mobile-1.4.2.js" />
+    <Content Include="Assets\jquery.mobile-1.4.2\js\jquery.mobile-1.4.2.min.js" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\css\jqm-demos.css" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-af.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-ag.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-bb.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-bk.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-hc.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-k.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-mg.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-ok.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-p.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-rh.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-ws.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\album-xx.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\apple.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\bg-pattern.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\bike.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\blackberry_10.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\bmw-thumb.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\bmw.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\buenosaires.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\capetown.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\de.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\devices.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\fi.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\firefox-logo.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\firefox_os.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\galaxy_express.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\gb.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\gf.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\09-chat2.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\100-coffee.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\18-envelope.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\19-gear.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\21-skull.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\30-key.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\34-coffee.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\88-beermug.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\glyphish-icons\Read me first - license.txt" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\jquery-logo.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\landrover-thumb.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\landrover.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\lumia_800.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\newyork.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\nexus_7.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\paris.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\phone_galaxy3.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\phone_iphone5.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\phone_lumia920.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\phone_onex.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\photo-landscape.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\photo-portrait.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\photo-run.jpeg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\seoul.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\sydney.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\tesla-thumb.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\tesla.jpg" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\tizen.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\img\us.png" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\js\h2widget.js" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\js\index.html" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\js\index.js" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\js\jqm-demos.js" />
+    <Content Include="Assets\jquery.mobile-1.4.2\_assets\js\view-source.js" />
+    <Content Include="Assets\js\notifications.js" />
+    <Content Include="Assets\MyImages\AddNewSurveyors48.png" />
+    <Content Include="Assets\MyImages\AddYellow32.png" />
+    <Content Include="Assets\MyImages\arrow_notebook.png" />
+    <Content Include="Assets\MyImages\b.gif" />
+    <Content Include="Assets\MyImages\Calender16.png" />
+    <Content Include="Assets\MyImages\ChartLegendBlue.png" />
+    <Content Include="Assets\MyImages\ChartLegendYellow.png" />
+    <Content Include="Assets\MyImages\dashboardfavicon.ico" />
+    <Content Include="Assets\MyImages\EditBlue16.png" />
+    <Content Include="Assets\MyImages\EditBlue32.png" />
+    <Content Include="Assets\MyImages\EditWhite16.png" />
+    <Content Include="Assets\MyImages\EditYellow16.png" />
+    <Content Include="Assets\MyImages\EditYellow32.png" />
+    <Content Include="Assets\MyImages\ElMsisdn16.png" />
+    <Content Include="Assets\MyImages\eye.png" />
+    <Content Include="Assets\MyImages\FolderBlue16.png" />
+    <Content Include="Assets\MyImages\FormValidationError.png" />
+    <Content Include="Assets\MyImages\GreenTick32Png.png" />
+    <Content Include="Assets\MyImages\icon-updated.gif" />
+    <Content Include="Assets\MyImages\InactivateSurveyor.gif" />
+    <Content Include="Assets\MyImages\Information16.png" />
+    <Content Include="Assets\MyImages\ListGreen16.png" />
+    <Content Include="Assets\MyImages\loading-icon.gif" />
+    <Content Include="Assets\MyImages\Loading.gif" />
+    <Content Include="Assets\MyImages\MultipleSr24.png" />
+    <Content Include="Assets\MyImages\MyPending.png" />
+    <Content Include="Assets\MyImages\New.gif" />
+    <Content Include="Assets\MyImages\NoElMsisdn16.png" />
+    <Content Include="Assets\MyImages\NotFound32.png" />
+    <Content Include="Assets\MyImages\oops-sign.jpg" />
+    <Content Include="Assets\MyImages\PencilBlue16.png" />
+    <Content Include="Assets\MyImages\PencilNarrow.png" />
+    <Content Include="Assets\MyImages\PencilYellow16.png" />
+    <Content Include="Assets\MyImages\percent.png" />
+    <Content Include="Assets\MyImages\PlusSky16.png" />
+    <Content Include="Assets\MyImages\PlusSky32.png" />
+    <Content Include="Assets\MyImages\RefreshDoubleArrow16.png" />
+    <Content Include="Assets\MyImages\Retailer16.png" />
+    <Content Include="Assets\MyImages\Retailer24.png" />
+    <Content Include="Assets\MyImages\RetailerDetails16.png" />
+    <Content Include="Assets\MyImages\RetailerIcon.ico" />
+    <Content Include="Assets\MyImages\RightArrowBlue16.png" />
+    <Content Include="Assets\MyImages\RightArrowBlueBig16.png" />
+    <Content Include="Assets\MyImages\Search16.png" />
+    <Content Include="Assets\MyImages\Shop32.png" />
+    <Content Include="Assets\MyImages\ShowActiveSurveyors48.png" />
+    <Content Include="Assets\MyImages\ShowAllSureveyors48.png" />
+    <Content Include="Assets\MyImages\SimPosCode16.png" />
+    <Content Include="Assets\MyImages\SingleSr16.png" />
+    <Content Include="Assets\MyImages\SingleSr24.png" />
+    <Content Include="Assets\MyImages\Tick16.png" />
+    <Content Include="Assets\MyImages\TrafficLightOff16.png" />
+    <Content Include="Assets\MyImages\TrafficLightOn16.png" />
+    <Content Include="Assets\MyImages\TrafficSprite.png" />
+    <Content Include="Assets\MyImages\UpdatedGreenAnimated.gif" />
+    <Content Include="Assets\MyImages\UpdatedGreenStatic.gif" />
+    <Content Include="Assets\MyImages\updatedlegend.png" />
+    <Content Include="Assets\MyImages\UpdatedTwo.gif" />
+    <Content Include="Assets\MyImages\VDOIcon.png" />
+    <Content Include="Assets\MyImages\verifiedlegend.png" />
+    <Content Include="Assets\MyImages\WhiteBulb32.png" />
+    <Content Include="Assets\MyImages\YellowBulb32.png" />
+    <Content Include="Assets\NativeDroid\css\font-awesome.min.css" />
+    <Content Include="Assets\NativeDroid\css\font\fontawesome-webfont.svg" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.color.blue.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.color.green.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.color.purple.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.color.red.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.color.yellow.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.dark.css" />
+    <Content Include="Assets\NativeDroid\css\jquerymobile.nativedroid.light.css" />
+    <Content Include="Assets\NativeDroid\js\nativedroid.script.js" />
+    <Content Include="Assets\Plugins\pnotify\jquery.pnotify.default.css" />
+    <Content Include="Assets\Plugins\pnotify\jquery.pnotify.min.js" />
+    <Content Include="Assets\Plugins\Validate\jquery.validate.min.js" />
+    <Content Include="Assets\Plugins\Validate\validate.css" />
+    <Content Include="Assets\SimpleModal\simplemodal.css" />
+    <Content Include="Assets\SimpleModal\jquery.simplemodal-1.4.4.js" />
+    <Content Include="Assets\SimpleModal\jquery.simplemodal.1.4.4.min.js" />
+    <Content Include="Assets\SimpleModal\x.png" />
+    <Content Include="Assets\SmartAdmin\css\bootstrap.min.css" />
+    <Content Include="Assets\SmartAdmin\css\demo.css" />
+    <Content Include="Assets\SmartAdmin\css\font-awesome.min.css" />
+    <Content Include="Assets\SmartAdmin\css\lockscreen.css" />
+    <Content Include="Assets\SmartAdmin\css\smartadmin-production.css" />
+    <Content Include="Assets\SmartAdmin\css\smartadmin-skins.css" />
+    <Content Include="Assets\SmartAdmin\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\SmartAdmin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\SmartAdmin\img\ajax-loader.gif" />
+    <Content Include="Assets\SmartAdmin\img\alpha.png" />
+    <Content Include="Assets\SmartAdmin\img\avatars\5.png" />
+    <Content Include="Assets\SmartAdmin\img\avatars\admin5.png" />
+    <Content Include="Assets\SmartAdmin\img\avatars\male.png" />
+    <Content Include="Assets\SmartAdmin\img\avatars\sunny-big.png" />
+    <Content Include="Assets\SmartAdmin\img\avatars\sunny.png" />
+    <Content Include="Assets\SmartAdmin\img\blue_MarkerR.png" />
+    <Content Include="Assets\SmartAdmin\img\demo\iphoneview.png" />
+    <Content Include="Assets\SmartAdmin\img\dropzone\spritemap.png" />
+    <Content Include="Assets\SmartAdmin\img\favicon\favicon.ico" />
+    <Content Include="Assets\SmartAdmin\img\flags\de.png" />
+    <Content Include="Assets\SmartAdmin\img\flags\es.png" />
+    <Content Include="Assets\SmartAdmin\img\flags\us.png" />
+    <Content Include="Assets\SmartAdmin\img\gradient\login.png" />
+    <Content Include="Assets\SmartAdmin\img\hue.png" />
+    <Content Include="Assets\SmartAdmin\img\loading.gif" />
+    <Content Include="Assets\SmartAdmin\img\logo-blue.png" />
+    <Content Include="Assets\SmartAdmin\img\logo-main.png" />
+    <Content Include="Assets\SmartAdmin\img\logo-o.png" />
+    <Content Include="Assets\SmartAdmin\img\logo-white.png" />
+    <Content Include="Assets\SmartAdmin\img\mybg.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\graphy-xs.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\graphy.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\nistri-xs.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\nistri.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\overlay-pattern.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\paper-xs.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\paper.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\sneaker_mesh_fabric-xs.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\sneaker_mesh_fabric.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\tileable_wood_texture-xs.png" />
+    <Content Include="Assets\SmartAdmin\img\pattern\tileable_wood_texture.png" />
+    <Content Include="Assets\SmartAdmin\img\saturation.png" />
+    <Content Include="Assets\SmartAdmin\img\select2-spinner.gif" />
+    <Content Include="Assets\SmartAdmin\img\sort_asc.png" />
+    <Content Include="Assets\SmartAdmin\img\sort_asc_disabled.png" />
+    <Content Include="Assets\SmartAdmin\img\sort_both.png" />
+    <Content Include="Assets\SmartAdmin\img\sort_desc.png" />
+    <Content Include="Assets\SmartAdmin\img\sort_desc_disabled.png" />
+    <Content Include="Assets\SmartAdmin\jquery\ajax\libs\jqueryui\1.10.3\jquery-ui.min.js" />
+    <Content Include="Assets\SmartAdmin\jquery\ajax\libs\jquery\2.0.2\jquery.min.js" />
+    <Content Include="Assets\SmartAdmin\js\app.js" />
+    <Content Include="Assets\SmartAdmin\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Assets\SmartAdmin\js\demo.js" />
+    <Content Include="Assets\SmartAdmin\js\libs\jquery-2.0.2.min.js" />
+    <Content Include="Assets\SmartAdmin\js\libs\jquery-ui-1.10.3.min.js" />
+    <Content Include="Assets\SmartAdmin\js\notification\SmartNotification.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\bootstrap-slider\bootstrap-slider.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\dropzone\dropzone.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\easy-pie-chart\jquery.easy-pie-chart.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\flot\jquery.flot.cust.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\flot\jquery.flot.resize.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\flot\jquery.flot.tooltip.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\fullcalendar\jquery.fullcalendar.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\jquery-form\jquery-form.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\jquery-validate\jquery.validate.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\masked-input\jquery.maskedinput.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\msie-fix\jquery.mb.browser.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\pace\pace.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\select2\select2.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\smartclick\smartclick.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\vectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Assets\SmartAdmin\js\plugin\vectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Assets\SmartAdmin\js\smartwidgets\jarvis.widget.min.js" />
+    <Content Include="Assets\TableCSSCode.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\Dsr\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Dsr\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Dsr\Views\NewRetailer\Index.cshtml" />
+    <Content Include="Assets\jquery.mobile-1.4.2\js\jquery.mobile-1.4.2.min.map" />
+    <Content Include="Assets\SmartAdmin\fonts\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\SmartAdmin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\SmartAdmin\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\SmartAdmin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\SmartAdmin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\SmartAdmin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\SmartAdmin\img\avatars\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\avatars\Thumbs.db" />
+    <Content Include="Assets\SmartAdmin\img\demo\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\dropzone\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\favicon\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\flags\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\gradient\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\pattern\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\img\Thumbs.db" />
+    <Content Include="Assets\SmartAdmin\jquery\ajax\libs\jqueryui\1.10.3\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\bootstrap\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\notification\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\bootstrap-slider\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\easy-pie-chart\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\jquery-validate\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\masked-input\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\msie-fix\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\pace\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\select2\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\smartclick\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\plugin\sparkline\Descr.WD3" />
+    <Content Include="Assets\SmartAdmin\js\smartwidgets\Descr.WD3" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Dsr\Views\QrSearch\Index.cshtml" />
+    <Content Include="Areas\Dsr\Views\SearchRetailer\Index.cshtml" />
+    <EntityDeploy Include="DataAccess\RobiPos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RobiPos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccess\RobiPos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RobiPos.edmx</DependentUpon>
+      <LastGenOutput>RobiPos.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\RobiPos.edmx.diagram">
+      <DependentUpon>RobiPos.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataAccess\RobiPos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RobiPos.edmx</DependentUpon>
+      <LastGenOutput>RobiPos.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Dsr\Views\EditRetailer\PartiallyEditableRetailer.Old.cshtml" />
+    <Content Include="Areas\Dsr\Views\EditRetailer\FullyEditableRetailer.cshtml" />
+    <Content Include="Areas\Dsr\Views\NewRetailer\Index.bn.cshtml" />
+    <Content Include="Areas\Dsr\Views\SearchRetailer\Index.bn.cshtml" />
+    <Content Include="Areas\Dsr\Views\EditRetailer\FullyEditableRetailer.bn.cshtml" />
+    <Content Include="Areas\Dsr\Views\EditRetailer\PartiallyEditableRetailer.bn.Old.cshtml" />
+    <Content Include="Areas\Dsr\Views\CallCenterHelp\Index.cshtml" />
+    <Content Include="Areas\Dsr\Views\ChangePassword\Index.cshtml" />
+    <Content Include="Areas\Dsr\Views\ChangePassword\Index.bn.cshtml" />
+    <Content Include="Areas\Dsr\Views\CallCenterHelp\Index.bn.cshtml" />
+    <Content Include="Assets\Amsterdam\css\font\fontawesome-webfont.woff" />
+    <Content Include="Areas\Dsr\Views\Error\Index.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Home\advanceSearch.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Home\ErrorContent.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Home\sratfield.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\web.config" />
+    <Content Include="Areas\RSP\Views\Home\DefaultContent.cshtml" />
+    <Content Include="Areas\RSP\Views\Home\ErrorContent.cshtml" />
+    <Content Include="Areas\RSP\Views\Home\Index.cshtml" />
+    <Content Include="Areas\RSP\Views\Home\POSDetail.cshtml" />
+    <Content Include="Areas\RSP\Views\Home\Search.cshtml" />
+    <Content Include="Areas\RSP\Views\Login\Index.cshtml" />
+    <Content Include="Areas\RSP\Views\web.config" />
+    <Content Include="Areas\Dsr\Views\EditRetailer\PartiallyEditableRetailer.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletList\OutletListOld.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletList\Partial1.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletList\Partial2.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletDetails\OutletDetailsOld.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletList\OverlappingOutletListOld.cshtml" />
+    <Content Include="Areas\RSP\Views\OutletList\OutletList.cshtml" />
+    <Content Include="Areas\RSP\Views\OutletDetails\OutletDetails.cshtml" />
+    <Content Include="Areas\RSP\Views\OutletDetails\View1.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletList\SrToRetailersCount.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\DuplicatePhotos\DuplicatePhotos.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Reports\ReportViewer.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletDetails\OutletDetails.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Reports\SelectedRspStatus.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\SurveyorManagement\SurveyorManagement.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletList\OutletList.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\SurveyorManagement\ShowAll.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\SurveyorManagement\AddNewSurveyor.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\SurveyorManagement\SurveyorAdded.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\SurveyorManagement\ShowActiveSurveyors.cshtml" />
+    <Content Include="Areas\RSP\Views\OutletDetails\RetailerNotFound.cshtml" />
+    <Content Include="Areas\RSP\Views\OutletDetails\UnauthorizedAccess.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletList\OverlappingOutletList.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletSearch\Index.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\OutletSearch\SearchResult.cshtml" />
+    <Content Include="Areas\Dsr\Views\ChangePhoto\Index.cshtml" />
+    <Content Include="Areas\Dsr\Views\ChangePhoto\ChangePhotoContent.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\MiscGraphs\Index.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\DuplicatePhotos\DuplicatePhotosForUs.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Home\BrProfile.cshtml" />
+    <Content Include="Areas\RobiAdmin\Views\Home\CallCenterReport.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Photos\0bee8fc6-e71f-4d6a-ad64-70a05fb4e55c.png" />
+    <Content Include="Photos\2d5995ab-3faf-47f1-af6b-506515d0e4de.png" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\HomeController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\CallCenterHelpController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\ChangePasswordController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\ChangePhotoController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\EditRetailerController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\NewRetailerController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\QrSearchController.cs" />
+    <Compile Include="Areas\Dsr\Controllers\SearchRetailerController.cs" />
+    <Compile Include="Areas\Dsr\DsrAreaRegistration.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\DuplicatePhotosController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\MiscGraphsController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\OutletDetailsController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\OutletEditController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\OutletListController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\OutletSearchController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\ReportsController.cs" />
+    <Compile Include="Areas\RobiAdmin\Controllers\SurveyorManagementController.cs" />
+    <Compile Include="Areas\RobiAdmin\Models\CustomLINQtoDataSetMethods.cs" />
+    <Compile Include="Areas\RobiAdmin\RobiAdminAreaRegistration.cs" />
+    <Compile Include="Areas\RSP\Controllers\HomeController.cs" />
+    <Compile Include="Areas\RSP\Controllers\LoginController.cs" />
+    <Compile Include="Areas\RSP\Controllers\OutletDetailsController.cs" />
+    <Compile Include="Areas\RSP\Controllers\OutletEditController.cs" />
+    <Compile Include="Areas\RSP\Controllers\OutletListController.cs" />
+    <Compile Include="Areas\RSP\Models\BrVisitsGraphData.cs" />
+    <Compile Include="Areas\RSP\Models\DateGraphData.cs" />
+    <Compile Include="Areas\RSP\Models\HouseVisitGraphData.cs" />
+    <Compile Include="Areas\RSP\RSPAreaRegistration.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\ErrorLogsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OutletDetailsController.cs" />
+    <Compile Include="Controllers\SrDetailsController.cs" />
+    <Compile Include="DataAccess\Area.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\District.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Division.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ElMsisdn.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Language.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Locality.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Mauza.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Person.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PersonType.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PosStructure.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\PosType.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\QrCode.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Region.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Retailer.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RetailerPhoto.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RobiPos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RobiPos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RobiPos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RobiPos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RobiPos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\RSP.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShopSignage.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ShopType.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SimPosCode.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\sysdiagram.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Thana.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\User.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserType.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\View_1.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Village.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\VisitDay.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Ward.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\WeekDay.cs">
+      <DependentUpon>RobiPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\Mauza.cs" />
+    <Compile Include="Models\PosCategory.cs" />
+    <Compile Include="Models\PosStructure.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionSummary.cs" />
+    <Compile Include="Models\Rsp.cs" />
+    <Compile Include="Models\RspSummary.cs" />
+    <Compile Include="Models\ShopSignage.cs" />
+    <Compile Include="Models\ShopType.cs" />
+    <Compile Include="Models\Thana.cs" />
+    <Compile Include="Models\Village.cs" />
+    <Compile Include="Models\VisitDay.cs" />
+    <Compile Include="Models\Ward.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RazorViewToString.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Areas\Dsr\Views\web.config" />
+    <Content Include="Assets\NativeDroid\css\font\fontawesome-webfont.eot" />
+    <Content Include="Assets\NativeDroid\css\font\fontawesome-webfont.ttf" />
+    <Content Include="Assets\NativeDroid\css\font\fontawesome-webfont.woff" />
+    <Content Include="Assets\NativeDroid\css\font\FontAwesome.otf" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\LangSel.cshtml" />
+    <Content Include="Views\ErrorLogs\Index.cshtml" />
+    <Content Include="Views\SrDetails\SurveyorDetails.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\Excels\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Dsr\Models\" />
+    <Folder Include="Areas\Dsr\Views\Shared\" />
+    <Folder Include="Areas\RobiAdmin\Views\OutletEdit\" />
+    <Folder Include="Areas\RSP\Views\OutletEdit\" />
+    <Folder Include="Areas\RSP\Views\Shared\" />
+    <Folder Include="Photos\QRPhoto\" />
+    <Folder Include="Photos\RetailerPhoto\" />
+    <Folder Include="Photos\SubmittedQr\" />
+    <Folder Include="Views\Common\" />
+    <Folder Include="Views\ExcelTest\" />
+    <Folder Include="Views\OutletDetails\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QueryStringEncryption\QueryStringEncryption.csproj">
+      <Project>{75527433-2d99-49bc-bc72-a1f7bae5f664}</Project>
+      <Name>QueryStringEncryption</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>10675</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:10675/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

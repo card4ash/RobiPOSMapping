@@ -1,0 +1,35 @@
+﻿<div class="block well">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <h5>RSP Status - Today</h5>
+        </div>
+    </div>
+    <div class="table-overflow">
+        <table class="table table-striped" id="data-table">
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Area</th>
+                    <th>RSP</th>
+                    <th>Retailer</th>
+                    <th>Address</th>
+                    <th>Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in ViewBag.Retailers.Rows)
+                {
+                    <tr>
+                        <td>@row["RegionName"].ToString()</td>
+                        <td>@row["AreaName"].ToString()</td>
+                        <td>@row["RspName"].ToString()</td>
+                        <td>@row["RetailerName"].ToString()</td>
+                        <td>@row["Address"].ToString()</td>
+                        <td>@row["Photo"].ToString()</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

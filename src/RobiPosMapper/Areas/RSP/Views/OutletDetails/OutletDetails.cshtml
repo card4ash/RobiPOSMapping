@@ -1,0 +1,1371 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>@ViewBag.Retailer.Rows[0]["RetailerName"].ToString()</title>
+   
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="~/Assets/MyImages/RetailerIcon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Assets/MyImages/RetailerIcon.ico" type="image/x-icon">
+
+
+
+    <link href="~/Assets/Amsterdam/css/main.css" rel="stylesheet" type="text/css" />
+    <!--[if IE]> <link href="css/ie.css" rel="stylesheet" type="text/css"> <![endif]-->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/jquery_ui_custom.js"></script>
+    <link href="~/Assets/Plugins/pnotify/jquery.pnotify.default.css" rel="stylesheet" />
+
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/excanvas.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/charts/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.inputlimiter.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.autosize.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.ibutton.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.dualListBox.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.select2.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/forms/jquery.cleditor.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html4.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/plupload.html5.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/uploader/jquery.plupload.queue.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.wizard.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/wizard/jquery.form.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.jgrowl.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.pie.chart.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.elfinder.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/ui/jquery.fancybox.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/tables/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-bootbox.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-progressbar.js"></script>
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+    <script src="~/Assets/Plugins/pnotify/jquery.pnotify.min.js"></script>
+    <script src="~/Assets/js/notifications.js"></script>
+
+    <script type="text/javascript" src="~/Assets/Amsterdam/js/functions/custom.js"></script>
+
+    <style>
+        td b {
+            font-weight: bold;
+            color: #2F86B2;
+            /*#68B4DD;*/
+        }
+
+        td i {
+            font-style: italic;
+        }
+
+        td a.linkbutton {
+            font-style: italic;
+            text-decoration:underline;
+        }
+        td a.linkbutton:hover {
+            text-decoration: none;
+        }
+
+        .hidecontrol {
+            display: none !important;
+            border: 50px solid red !important;
+        }
+      
+        .toplink {
+            color: #FFFF00;
+        }
+
+            .toplink:hover {
+                color: #40FF00;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!--info notice -->
+    <div class="row-fluid">
+        <!--Verify part-->
+        <div class="span6">
+            @if (ViewBag.Retailer.Rows[0]["IsVerifiedByRsp"] == true)
+            {
+                <div class="notice outer">
+                    <div class="note note-success">
+                        <strong>
+                            This retailer is verified on @ViewBag.Retailer.Rows[0]["RspVerificationDateTime"].ToString("dd MMM yyyy, hh:mm tt").
+                            @if (ViewBag.ShowEditButton)
+                            {
+                                 <a class="toplink" href="~/RSP/OutletDetails/UnVerifyOutlet?moid=@ViewBag.MoId&retailerid=@ViewBag.RetailerId"> Click here to UNDO.</a>
+                            }
+                           
+                        </strong>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="notice outer">
+                    <div class="note note-danger">
+                        <strong>This Retailer is not verified yet. 
+                        @if (ViewBag.ShowEditButton)
+                        {
+                            <a class="toplink" href="~/RSP/OutletDetails/VerifyOutlet?moid=@ViewBag.MoId&retailerid=@ViewBag.RetailerId"> Click here to VERIFY.</a>
+                        }
+                        
+                        </strong>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--Verify part-->
+
+        <!--Active/Inactive part-->
+        <div class="span6">
+            @if (ViewBag.Retailer.Rows[0]["IsActive"] == true)
+            {
+                <div class="notice outer">
+                    <div class="note">
+                        <strong>
+                            This retailer is active.
+                            @if (ViewBag.ShowEditButton)
+                            {
+                                            <a class="toplink" href="~/RSP/OutletDetails/InactivateOutlet?moid=@ViewBag.MoId&retailerid=@ViewBag.RetailerId"> Click here to INACTIVE.</a>
+                            }
+                
+                        </strong>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="notice outer">
+                    <div class="note note-danger">
+                        <strong>This Retailer is inactive.
+                        @if (ViewBag.ShowEditButton)
+                        {
+                            <a class="toplink" href="~/RSP/OutletDetails/ActivateOutlet?moid=@ViewBag.MoId&retailerid=@ViewBag.RetailerId"> Click here to ACTIVE.</a>
+                        }
+                        
+                         
+                        
+                        </strong>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--Active/Inactive part-->
+
+    </div>
+    <!--info notice -->
+
+
+    <div class="outer">
+        <div class="inner">
+            <div class="page-header">
+                <!-- Page header -->
+                <h5><form method="post" action="/RSP/OutletDetails/SearchRetailerById?moid=@ViewBag.MoId" onsubmit="return ValidateRetailerIdToSearch()">Outlet Details &nbsp;&nbsp;&nbsp;  <input type="text" id="SearchRetailerTextBox" name="retailerid" value="@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()" title="type a Retailer ID here and click the button to search" placeholder="type Retailer ID" /> <input type="submit" style="height:30px;" value="Search for another retailer"/></form></h5>
+
+            </div><!-- /page header -->
+
+            <div class="body">
+                <div class="container">
+                    <div class=" well">
+                        <div class="table-overflow">
+                            <table class="table table-bordered table-block">
+                                <tbody>
+                                    <!-- Retailer Details -->
+                                    <tr>
+                                        <td>Retailer Details</td>
+                                        <td colspan="3">
+
+                                            <b>ID: </b>  @ViewBag.Retailer.Rows[0]["RetailerId"].ToString() &nbsp; &nbsp; &nbsp;&nbsp;
+                                            <b>Name: </b><span id="retailer-name"> @ViewBag.Retailer.Rows[0]["RetailerName"].ToString() </span> &nbsp;
+                                            @if (ViewBag.ShowEditButton)
+                                            {
+                                                
+                                            
+                                            <a href="#" id="edit-retailer-name-button" class="linkbutton" title="Click to edit retailer name.">
+                                            <img src="~/Assets/MyImages/PencilYellow16.png" />
+                                            </a>
+                                            }
+                                            <input id="retailer-name-textbox" type="text" value="" class="hidecontrol" />  &nbsp; <button id="save-retailer-name-button" class="hidecontrol" title="Click to save.">Save</button> <a href="#" id="cancel-retailer-name-button" class="linkbutton hidecontrol" title="Click to cancel.">cancel</a>
+                                            <br />
+                                            <b>Status: </b>  @ViewBag.Retailer.Rows[0]["ShortStatus"].ToString()&nbsp;&nbsp;
+                                           
+                                            <b>Work time: </b> @HandleSurveyorActivityDateTime()&nbsp;&nbsp;
+                                            <b>SR: </b>  @ViewBag.Retailer.Rows[0]["LoginName"].ToString().ToUpper()
+                                        </td>
+                                    </tr>
+                                    <!-- Retailer Details -->
+                                    <!-- RSP, Region to village, address -->
+                                    <tr>
+                                        <td rowspan="4">Location Details</td>
+                                        <td colspan="3">
+
+                                            <b>RSP: </b>  @ViewBag.Retailer.Rows[0]["RspName"].ToString() &nbsp; &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowspan"><b>Region: </b>  @ViewBag.Retailer.Rows[0]["RegionName"].ToString()</td>
+                                        <td><b> Area: </b>  @ViewBag.Retailer.Rows[0]["AreaName"].ToString()</td>
+                                        <td><b>Upazila/Thana: </b> @ViewBag.Retailer.Rows[0]["ThanaName"].ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowspan"><b>Union/Ward: </b> @ViewBag.Retailer.Rows[0]["WardName"].ToString()</td>
+                                        <td><b>Mauza/Mohalla: </b> @ViewBag.Retailer.Rows[0]["MauzaName"].ToString()</td>
+                                        <td><b>Village: </b> @ViewBag.Retailer.Rows[0]["VillageName"].ToString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rowspan" colspan="3">
+                                            <b>Detail Address:</b><span id="address"> @ViewBag.Retailer.Rows[0]["Address"].ToString() </span> &nbsp;
+                                            @if (ViewBag.ShowEditButton)
+                                            {
+                                            <a href="#" id="edit-address-button" class="linkbutton" title="Click to edit retailer address."><img src="~/Assets/MyImages/PencilYellow16.png" /></a>
+                                            }
+                                            <input id="address-textbox" type="text" value="" class="hidecontrol" />&nbsp;
+                                            <button id="save-address-button" class="hidecontrol" title="Click to save.">Save</button>
+                                            <a href="#" id="cancel-address-button" class="linkbutton hidecontrol" title="Click to cancel.">cancel</a>
+                                        </td>
+                                    </tr>
+                                    <!-- RSP, Region to village, address -->
+                                    <!-- visit day-->
+                                    <tr>
+                                        <td>Visit Days</td>
+                                        <td colspan="3"> @ViewBag.Retailer.Rows[0]["VisitDays"].ToString()</td>
+                                    </tr>
+                                    <!-- visit day-->
+                                    <!-- Pos Category, Strucute, Signage, Type -->
+                                    <tr>
+                                        <td>Characteristics</td>
+                                        <td colspan="3">
+                                            <!-- Pos Category: RSD, RSP, General-->
+                                            <input type="hidden" id="PosCategoryId" value="@ViewBag.Retailer.Rows[0]["PosCategoryId"].ToString()" />
+                                            <b>Category: </b><span id="PosCategoryName">  @ViewBag.Retailer.Rows[0]["PosCategoryName"].ToString() </span> &nbsp;
+                                            @if (ViewBag.ShowEditButton)
+                                            {
+
+                                            
+                                            <a href="#" id="edit-PosCategoryName-button" class="linkbutton" title="Click to edit POS category."><img src="~/Assets/MyImages/PencilYellow16.png" /></a>
+                                            }
+                                            <select id="PosCategoryNameCombo" class="hidecontrol">
+                                                @foreach (var category in ViewBag.PosCategoryList)
+                                                    {
+                                                <option value="@category.PosCategoryId" @IsItemSelected("PosCategoryName", category.PosCategoryName.ToString())>@category.PosCategoryName</option>
+                                                    }
+                                            </select>&nbsp;
+                                            <button id="save-PosCategoryName-button" class="hidecontrol" title="Click to save.">Save</button>
+                                            <a href="#" id="cancel-PosCategoryName-button" class="linkbutton hidecontrol" title="Click to cancel.">cancel</a>
+                                            <!-- Pos Category: RSD, RSP, General-->
+
+                                            <!-- Pos Structure: Pucca, katcha, ... -->
+                                            <input type="hidden" id="PosStructureId" value="@ViewBag.Retailer.Rows[0]["PosStructureId"].ToString()" />
+                                            <b>Structure: </b><span id="PosStructureName">  @ViewBag.Retailer.Rows[0]["PosStructureName"].ToString() </span> &nbsp;
+                                            @if (ViewBag.ShowEditButton)
+                                            {
+
+                                            
+                                            <a href="#" id="edit-PosStructureName-button" class="linkbutton" title="Click to edit."><img src="~/Assets/MyImages/PencilYellow16.png" /></a>
+                                            }
+                                            
+                                            <select id="PosStructureNameCombo" class="hidecontrol">
+                                                @foreach (var structure in ViewBag.PosStructureList)
+                                                    {
+                                                <option value="@structure.PosStructureId" @IsItemSelected("PosStructureName", structure.PosStructureName.ToString())>@structure.PosStructureName</option>
+                                                    }
+                                            </select>&nbsp;
+                                            <button id="save-PosStructureName-button" class="hidecontrol" title="Click to save.">Save</button>
+                                            <a href="#" id="cancel-PosStructureName-button" class="linkbutton hidecontrol" title="Click to cancel.">cancel</a>
+                                            <!-- Pos Structure: Pucca, katcha, ... -->
+                                            <!-- Shop Signage -->
+                                            <input type="hidden" id="ShopSignageId" value="@ViewBag.Retailer.Rows[0]["ShopSignageId"].ToString()" />
+                                            <b>Signage: </b><span id="ShopSignageName">  @ViewBag.Retailer.Rows[0]["ShopSignageName"].ToString() </span> &nbsp;
+                                            @if (ViewBag.ShowEditButton)
+                                            {
+
+                                            
+                                             <a href="#" id="edit-ShopSignageName-button" class="linkbutton" title="Click to edit."><img src="~/Assets/MyImages/PencilYellow16.png" /></a>
+                                            }
+                                            <select id="ShopSignageNameCombo" class="hidecontrol">
+                                                <option value="0" @IsItemSelected("ShopSignageName", "None")>None</option>
+
+                                                @foreach (var signage in ViewBag.ShopSignageList)
+                                                    {
+                                                <option value="@signage.ShopSignageId" @IsItemSelected("ShopSignageName", signage.ShopSignageName.ToString())>@signage.ShopSignageName</option>
+                                                    }
+                                            </select>&nbsp;
+                                            <button id="save-ShopSignageName-button" class="hidecontrol" title="Click to save.">Save</button>
+                                            <a href="#" id="cancel-ShopSignageName-button" class="linkbutton hidecontrol" title="Click to cancel.">cancel</a>
+                                            <!-- Shop Signage -->
+                                            <!-- Shop type -->
+                                            <input type="hidden" id="ShopTypeId" value="@ViewBag.Retailer.Rows[0]["ShopTypeId"].ToString()" />
+                                            <b>Type: </b><span id="ShopTypeName">  @ViewBag.Retailer.Rows[0]["ShopTypeName"].ToString() </span> &nbsp;
+                                            @if (ViewBag.ShowEditButton)
+                                            {
+                                             <a href="#" id="edit-ShopTypeName-button" class="linkbutton" title="Click to edit."><img src="~/Assets/MyImages/PencilYellow16.png" /></a>
+                                            }
+                                            <select id="ShopTypeNameCombo" class="hidecontrol">
+                                                <option value="0" @IsItemSelected("ShopTypeName", "None")>None</option>
+
+                                                @foreach (var shopType in ViewBag.ShopTypeList)
+                                                    {
+                                                <option value="@shopType.ShopTypeId" @IsItemSelected("ShopTypeName", shopType.ShopTypeName.ToString())>@shopType.ShopTypeName</option>
+                                                    }
+                                            </select>&nbsp;
+                                            <button id="save-ShopTypeName-button" class="hidecontrol" title="Click to save.">Save</button>
+                                            <a href="#" id="cancel-ShopTypeName-button" class="linkbutton hidecontrol" title="Click to cancel.">cancel</a>
+                                            <!-- Shop type -->
+                                            @*<b>Type: </b>  @ViewBag.Retailer.Rows[0]["ShopTypeName"].ToString()&nbsp;&nbsp;*@
+
+                                        </td>
+                                    </tr>
+                                    <!-- Pos Category, Strucute, Signage, Type -->
+                                    
+                                    <!--ELPOS, SimPos, ScPos-->
+                                    <tr>
+                                        <td>EasyLoad Status</td>
+                                        <td>
+                                            <b>EL POS: </b>  @IsItemChecked("IsElPos")
+                                            @foreach (var row in ViewBag.ElNumbers.Rows)
+                                                {
+                                                <br /> <text>&nbsp;- </text>@row[0].ToString()
+                                                }
+                                        </td>
+                                        <td>
+                                            <b>SIM POS: </b>  @IsItemChecked("IsSimPos")
+                                            @foreach (var row in ViewBag.SimPosCodes.Rows)
+                                                {
+                                                <br /> <text>&nbsp;- </text>@row[0].ToString()
+                                                }
+                                        </td>
+                                        <td>
+                                            <b>Trade Lincense: </b>  @IsItemChecked("HasTradeLicense")
+                                            <b>Scratch Card POS: </b>  @IsItemChecked("IsScPos")
+                                        </td>
+                                    </tr>
+                                    <!--ELPOS, SimPos, ScPos-->
+                                    <!-- Surveyor -->
+                                    <tr>
+                                        <td>Surveyor</td>
+                                        <td colspan="3">
+                                            <b>Name: </b>  @ViewBag.Retailer.Rows[0]["SurveyorName"].ToString() as  @ViewBag.Retailer.Rows[0]["LoginName"].ToString().ToUpper()&nbsp;&nbsp;
+                                            <b>Contact: </b>  @ViewBag.Retailer.Rows[0]["SurveyorContactNo"].ToString() &nbsp;&nbsp;
+                                            <b>Area: </b>  @ViewBag.Retailer.Rows[0]["SurveyorArea"].ToString() &nbsp;&nbsp; 
+                                        </td>
+                                    </tr>
+                                    <!-- Is surveyor -->
+                                    <!-- DSR -->
+                                    <tr>
+                                        <td>DSR</td>
+                                        <td colspan="3">
+                                            <b>Name: </b>  @ViewBag.Retailer.Rows[0]["DsrName"].ToString()&nbsp;&nbsp;
+                                            <b>MSISDN: </b>  @ViewBag.Retailer.Rows[0]["DsrMsisdn"].ToString()&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <!-- DSR -->
+                                    <!-- multiple SR -->
+                                    @if (ViewBag.SrRetailerLog.Rows.Count > 0)
+                                        {
+                                        <tr>
+                                            <td><span style="color:red;">Multiple SR Found !!</span></td>
+                                            <td colspan="3">
+                                                @foreach (var srs in ViewBag.SrRetailerLog.Rows)
+                                                    {
+                                                    <b># SR: </b>  @srs["LoginName"].ToString().ToUpper()  <text>&nbsp;&nbsp;&nbsp;</text>
+                                                    <b>Log Time: </b>  @srs["LogDateTime"].ToString("dd MMM yyyy, hh:mm tt") <text>&nbsp;&nbsp;&nbsp;</text>
+                                                    <b>Contact: </b>  @srs["ContactNo"].ToString()  <text>&nbsp;&nbsp;&nbsp;</text>
+                                                    <b>Name: </b>  @srs["SurveyorName"].ToString() <text>&nbsp;&nbsp;&nbsp;</text>
+                                                    <b>Area: </b>  @srs["AreaName"].ToString()  <text>&nbsp;&nbsp;&nbsp;</text>
+                                                    <b>DSR: </b>  @srs["DsrName"].ToString()  <text>&nbsp;&nbsp;&nbsp;</text>
+
+                                                    <text><br /></text>
+                                                    }
+
+                                            </td>
+                                        </tr>
+                                        }
+                                    <!-- multiple SR -->
+                                    <!-- Picture -->
+                                    <tr>
+                                        <td>Photo</td>
+                                        <td colspan="3">
+                                            <img src="~/Photos/RetailerPhoto/@ViewBag.Retailer.Rows[0]["Photo"].ToString()" width="100%" />
+                                        </td>
+                                    </tr>
+                                    <!-- picture -->
+                                    <!-- Map -->
+                                    <tr>
+                                        <td>Geo-Location</td>
+                                        <td colspan="3">
+                                            <b>Latitude: </b>  @ViewBag.Retailer.Rows[0]["Latitude"].ToString()&nbsp;&nbsp;
+                                            <b>Longitude: </b>  @ViewBag.Retailer.Rows[0]["Longitude"].ToString()&nbsp;&nbsp;
+                                            <b>Accuracy Level: </b>  @ViewBag.Retailer.Rows[0]["AccuracyLevel"].ToString()&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="3">
+                                            <div id="map_canvas" style="width: 100%; height:600px;"></div>
+                                            <input type="hidden" id="Latitude" value="@ViewBag.Retailer.Rows[0]["Latitude"]" />
+                                            <input type="hidden" id="Longitude" value="@ViewBag.Retailer.Rows[0]["Longitude"]" />
+                                            <input type="hidden" id="Accuracy" value="@ViewBag.Retailer.Rows[0]["AccuracyLevel"]" />
+                                        </td>
+                                    </tr>
+                                    <!-- map -->
+                                    <!-- Locality Type -->
+                                    <tr>
+                                        <td>Locality Type</td>
+                                        <td colspan="3">
+                                            @Html.Raw(IsApartments())
+                                            @Html.Raw(IsSlums())
+                                            @Html.Raw(IsSemiUrbunHousing())
+                                            @Html.Raw(IsRuralHousing())
+                                            @Html.Raw(IsShoppingMall())
+                                            @Html.Raw(IsRetailHub())
+                                            @Html.Raw(IsMobileDeviceMarket())
+                                            @Html.Raw(IsBazaar())
+                                            @Html.Raw(IsOfficeArea())
+                                            @Html.Raw(IsGarmentsMajorityArea())
+                                            @Html.Raw(IsGeneralIndustrialArea())
+                                            @Html.Raw(IsUrbanTransitPoints())
+                                            @Html.Raw(IsRuralTransitPoints())
+                                            @Html.Raw(IsUrbanYouthHangouts())
+                                            @Html.Raw(IsSemiUrbanYouthHangouts())
+                                            @Html.Raw(IsRuralYouthHangouts())
+                                            @Html.Raw(IsTouristDestinations())
+
+
+                                        </td>
+                                    </tr>
+                                    <!-- Locality Type  -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /content container -->
+
+            </div>
+        </div>
+    </div>
+    <!-- /main wrapper -->
+    @functions {
+        public string IsItemChecked(string columnName)
+        {
+            Object test = ViewBag.Retailer.Rows[0][columnName];
+            string value = "No";
+            if (test!=DBNull.Value)
+            {
+                value = Convert.ToBoolean(test) == true ? "Yes" : "No";
+            }
+
+            return value;
+        }
+
+
+        public string IsApartments()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsApartments"];
+           
+            if (test != DBNull.Value)
+            {
+               bool value = Convert.ToBoolean(test);
+               if (value)
+               {
+                   returnValue = "<b>Apartments</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+               }
+            }
+
+            return returnValue;
+        }
+
+        //IsSlums
+        public string IsSlums()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsSlums"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Slums</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsSemiUrbunHousing
+        public string IsSemiUrbunHousing()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsSemiUrbunHousing"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Semi-urbun Housing</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+
+        //IsRuralHousing
+        public string IsRuralHousing()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsRuralHousing"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Rural Housing</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+
+        //IsShoppingMall
+        public string IsShoppingMall()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsShoppingMall"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Shopping Mall</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+
+        //IsRetailHub
+        public string IsRetailHub()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsRetailHub"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Retail Hub</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsMobileDeviceMarket
+        public string IsMobileDeviceMarket()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsMobileDeviceMarket"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Mobile Device Market</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }        
+        
+        
+        //
+        public string IsBazaar()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsBazaar"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Bazaar</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsOfficeArea
+        public string IsOfficeArea()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsOfficeArea"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Office Area</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsGarmentsMajorityArea
+        public string IsGarmentsMajorityArea()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsGarmentsMajorityArea"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Garments Majority Area</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsGeneralIndustrialArea
+        public string IsGeneralIndustrialArea()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsGeneralIndustrialArea"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>General Industrial Area</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsUrbanTransitPoints
+        public string IsUrbanTransitPoints()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsUrbanTransitPoints"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Urban Transit Points</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+
+        //IsRuralTransitPoints
+        public string IsRuralTransitPoints()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsRuralTransitPoints"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Rural Transit Points</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+
+        //IsUrbanYouthHangouts
+        public string IsUrbanYouthHangouts()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsUrbanYouthHangouts"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Urban Youth Hangouts</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+
+        //IsSemiUrbanYouthHangouts
+        public string IsSemiUrbanYouthHangouts()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsSemiUrbanYouthHangouts"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Semi-urban Youth Hangouts</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsRuralYouthHangouts
+        public string IsRuralYouthHangouts()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsRuralYouthHangouts"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Rural Youth Hangouts</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+
+        //IsTouristDestinations
+        public string IsTouristDestinations()
+        {
+            string returnValue = "";
+
+            Object test = ViewBag.Retailer.Rows[0]["IsTouristDestinations"];
+
+            if (test != DBNull.Value)
+            {
+                bool value = Convert.ToBoolean(test);
+                if (value)
+                {
+                    returnValue = "<b>Tourist Destinations</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+
+            return returnValue;
+        }
+        
+        public string HandleSurveyorActivityDateTime()
+        {
+            string surveyorActivityDateTime = String.Empty;
+            
+            object dateTimeValue= ViewBag.Retailer.Rows[0]["SurveyorActivityDateTime"]; //.ToString("dd-MMM-yyyy, hh:mm tt")
+
+            if (dateTimeValue==null || dateTimeValue==DBNull.Value)
+            {
+                surveyorActivityDateTime = "No work";
+            }
+            else
+            {
+                surveyorActivityDateTime = Convert.ToDateTime(dateTimeValue).ToString("dd-MMM-yyyy, hh:mm tt");
+            }
+            return surveyorActivityDateTime;
+        }
+    }
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    
+    <script type="text/javascript">
+        var userip;
+    </script>
+
+    @*<script type="text/javascript" src="http://l2.io/ip.js?var=userip"></script>
+
+    <script type="text/javascript">
+        console.log(userip);
+    </script>*@
+    <script type='text/javascript'>
+        $.getJSON("http://jsonip.com?callback=?", function (data) {
+            //alert("Your ip: " + data.ip);
+            console.log(data.ip);
+            userip = data.ip;
+        });
+    </script>
+
+    <!--Search -->
+    <script>
+        function ValidateRetailerIdToSearch() {
+
+            var retailerIdTextBox = document.getElementById('SearchRetailerTextBox');
+            var retailerId = retailerIdTextBox.value.trim();
+            if (retailerId.length==0) {
+                alert('Please type Retailer ID.'); return false;
+            }
+            if (isNaN(retailerId)) {
+                alert('Retailer ID must be numeric.'); return false;
+            }
+
+            return true;
+        }
+
+
+    </script>
+
+    <!--retailer name edit part-->
+    <script>
+        $(function () {
+            $('#edit-retailer-name-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                //read html from span and put it in textbox
+                td.find('#retailer-name-textbox').val(td.find('#retailer-name').html());
+                td.find('#retailer-name').addClass('hidecontrol');
+                td.find('#retailer-name-textbox').removeClass('hidecontrol');
+                td.find('#save-retailer-name-button').removeClass('hidecontrol');
+                td.find('#cancel-retailer-name-button').removeClass('hidecontrol');
+            });
+
+            $('#save-retailer-name-button').click(function () {
+                var submitButton = $(this);
+                var retailerId = '@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()';
+
+                var td = $(this).closest('td');
+                var newName =escape($.trim(td.find('#retailer-name-textbox').val()));
+
+                //check length of retailer name. dont allow empty
+                if (newName.length==0) {
+                    AlertNotification('Information Required', 'Please type retailer name.');
+                    return;
+                }
+
+                var fd = new FormData();
+                fd.append("RetailerId", retailerId);
+                fd.append("RetailerName", newName);
+                fd.append("UserIp", userip);
+
+                //going for ajax
+                $.ajax({
+                    type: "POST",
+                    url: "/Rsp/OutletEdit/UpdateRetailerName",
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    data: fd,
+                    beforeSend: function () {
+                        submitButton.attr('disabled', 'disabled');
+                        submitButton.html('Working...');
+                    },
+                    success: function (result) {
+                        if (result == 'Success') {
+                            SuccessNotification('Name successfully updated.')
+                            td.find('#cancel-retailer-name-button').addClass('hidecontrol');
+                            td.find('#retailer-name').html(unescape(newName));
+                            td.find('#retailer-name').removeClass('hidecontrol');
+                            td.find('#retailer-name-textbox').addClass('hidecontrol');
+                            td.find('#save-retailer-name-button').addClass('hidecontrol');
+                            td.find('#edit-retailer-name-button').removeClass('hidecontrol');
+                        }
+                        else {
+                            ErrorNotification(result);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        ErrorNotification("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                    },
+                    complete: function () {
+                        submitButton.removeAttr('disabled');
+                        submitButton.html('Save');
+                    }
+                });
+            });
+
+            $('#cancel-retailer-name-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                td.find('#retailer-name').removeClass('hidecontrol');
+                td.find('#retailer-name-textbox').addClass('hidecontrol');
+                td.find('#save-retailer-name-button').addClass('hidecontrol');
+                td.find('#edit-retailer-name-button').removeClass('hidecontrol');
+                AlertNotification('Cancel', 'You have cancelled the task.');
+            });
+        })
+    </script>
+    <!--retailer name edit part-->
+    <!--address edit part-->
+    <script>
+        $(function () {
+            $('#edit-address-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                //read html from span and put it in textbox
+                td.find('#address-textbox').val(td.find('#address').html());
+                td.find('#address').addClass('hidecontrol');
+                td.find('#address-textbox').removeClass('hidecontrol');
+                td.find('#save-address-button').removeClass('hidecontrol');
+                td.find('#cancel-address-button').removeClass('hidecontrol');
+            });
+
+            $('#save-address-button').click(function () {
+                var submitButton = $(this);
+                var retailerId = '@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()';
+
+                var td = $(this).closest('td');
+                var newName = escape($.trim(td.find('#address-textbox').val()));
+
+                //check length of retailer name. dont allow empty
+                if (newName.length == 0) {
+                    AlertNotification('Information Required', 'Please type address.');
+                    return;
+                }
+
+                var fd = new FormData();
+                fd.append("RetailerId", retailerId);
+                fd.append("Address", newName);
+                fd.append("UserIp", userip);
+                //going for ajax
+                $.ajax({
+                    type: "POST",
+                    url: "/Rsp/OutletEdit/UpdateAddress",
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    data: fd,
+                    beforeSend: function () {
+                        submitButton.attr('disabled', 'disabled');
+                        submitButton.html('Working...');
+                    },
+                    success: function (result) {
+                        if (result == 'Success') {
+                            SuccessNotification('Address successfully updated.')
+                            td.find('#cancel-address-button').addClass('hidecontrol');
+                            td.find('#address').html(unescape(newName));
+                            td.find('#address').removeClass('hidecontrol');
+                            td.find('#address-textbox').addClass('hidecontrol');
+                            td.find('#save-address-button').addClass('hidecontrol');
+                            td.find('#edit-address-button').removeClass('hidecontrol');
+                        }
+                        else {
+                            ErrorNotification(result);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        ErrorNotification("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                    },
+                    complete: function () {
+                        submitButton.removeAttr('disabled');
+                        submitButton.html('Save');
+                    }
+                });
+            });
+
+            $('#cancel-address-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                td.find('#address').removeClass('hidecontrol');
+                td.find('#address-textbox').addClass('hidecontrol');
+                td.find('#save-address-button').addClass('hidecontrol');
+                td.find('#edit-address-button').removeClass('hidecontrol');
+                AlertNotification('Cancel', 'You have cancelled the task.');
+            });
+        })
+    </script>
+    <!-- address edit part-->
+    <!--POS Category edit part-->
+    <script>
+        $(function () {
+            $('#edit-PosCategoryName-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                //read id from hidden field and put it in textbox
+                td.find('#PosCategoryNameCombo').val(td.find('#PosCategoryId').val());
+                td.find('#PosCategoryName').addClass('hidecontrol');
+                td.find('#PosCategoryNameCombo').removeClass('hidecontrol');
+                td.find('#save-PosCategoryName-button').removeClass('hidecontrol');
+                td.find('#cancel-PosCategoryName-button').removeClass('hidecontrol');
+            });
+
+            $('#save-PosCategoryName-button').click(function () {
+                var submitButton = $(this);
+                var retailerId = '@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()';
+                var td = $(this).closest('td');
+                var newName = td.find('#PosCategoryNameCombo').val();
+
+                var fd = new FormData();
+                fd.append("RetailerId", retailerId);
+                fd.append("FieldName", "PosCategoryId");
+                fd.append("PosCategoryId", newName);
+                fd.append("UserIp", userip);
+
+                //going for ajax
+                $.ajax({
+                    type: "POST",
+                    url: "/Rsp/OutletEdit/UpdateLookupId",
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    data: fd,
+                    beforeSend: function () {
+                        submitButton.attr('disabled', 'disabled');
+                        submitButton.html('Working...');
+                    },
+                    success: function (result) {
+                        if (result == 'Success') {
+                            SuccessNotification('Category successfully updated.')
+                            td.find('#cancel-PosCategoryName-button').addClass('hidecontrol');
+                            td.find('#PosCategoryName').html($("#PosCategoryNameCombo option:selected").text());
+                            td.find('#PosCategoryId').val(newName);
+                            td.find('#PosCategoryName').removeClass('hidecontrol');
+                            td.find('#PosCategoryNameCombo').addClass('hidecontrol');
+                            td.find('#save-PosCategoryName-button').addClass('hidecontrol');
+                            td.find('#edit-PosCategoryName-button').removeClass('hidecontrol');
+                        }
+                        else {
+                            ErrorNotification(result);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        ErrorNotification("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                    },
+                    complete: function () {
+                        submitButton.removeAttr('disabled');
+                        submitButton.html('Save');
+                    }
+                });
+            });
+
+            $('#cancel-PosCategoryName-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                td.find('#PosCategoryName').removeClass('hidecontrol'); // show it
+                td.find('#PosCategoryNameCombo').addClass('hidecontrol'); // hide combo
+                td.find('#save-PosCategoryName-button').addClass('hidecontrol'); //hide save buttopn
+                td.find('#edit-PosCategoryName-button').removeClass('hidecontrol');
+                AlertNotification('Cancel', 'You have cancelled the task.');
+            });
+        })
+    </script>
+    <!--POS Category edit part-->
+    <!--POS Structure edit part-->
+    <script>
+            $(function () {
+                $('#edit-PosStructureName-button').click(function (e) {
+                    e.preventDefault();
+                    var td = $(this).closest('td');
+                    $(this).addClass('hidecontrol');
+                    //read id from hidden field and put it in textbox
+                    td.find('#PosStructureNameCombo').val(td.find('#PosStructureId').val());
+                    td.find('#PosStructureName').addClass('hidecontrol');
+                    td.find('#PosStructureNameCombo').removeClass('hidecontrol');
+                    td.find('#save-PosStructureName-button').removeClass('hidecontrol');
+                    td.find('#cancel-PosStructureName-button').removeClass('hidecontrol');
+                });
+
+                $('#save-PosStructureName-button').click(function () {
+                    var submitButton = $(this);
+                    var retailerId = '@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()';
+                    var td = $(this).closest('td');
+                    var newName = td.find('#PosStructureNameCombo').val();
+
+                    var fd = new FormData();
+                    fd.append("RetailerId", retailerId);
+                    fd.append("FieldName", "PosStructureId");
+                    fd.append("PosStructureId", newName); fd.append("UserIp", userip);
+                    //going for ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "/Rsp/OutletEdit/UpdateLookupId",
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,   // tell jQuery not to set contentType
+                        data: fd,
+                        beforeSend: function () {
+                            submitButton.attr('disabled', 'disabled');
+                            submitButton.html('Working...');
+                        },
+                        success: function (result) {
+                            if (result == 'Success') {
+                                SuccessNotification('Structure successfully updated.')
+                                td.find('#cancel-PosStructureName-button').addClass('hidecontrol');
+                                td.find('#PosStructureName').html($("#PosStructureNameCombo option:selected").text());
+                                td.find('#PosStructureId').val(newName);
+                                td.find('#PosStructureName').removeClass('hidecontrol');
+                                td.find('#PosStructureNameCombo').addClass('hidecontrol');
+                                td.find('#save-PosStructureName-button').addClass('hidecontrol');
+                                td.find('#edit-PosStructureName-button').removeClass('hidecontrol');
+                            }
+                            else {
+                                ErrorNotification(result);
+                            }
+                        },
+                        error: function (request, status, error) {
+                            ErrorNotification("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                        },
+                        complete: function () {
+                            submitButton.removeAttr('disabled');
+                            submitButton.html('Save');
+                        }
+                    });
+                });
+
+                $('#cancel-PosStructureName-button').click(function (e) {
+                    e.preventDefault();
+                    var td = $(this).closest('td');
+                    $(this).addClass('hidecontrol');
+                    td.find('#PosStructureName').removeClass('hidecontrol'); // show it
+                    td.find('#PosStructureNameCombo').addClass('hidecontrol'); // hide combo
+                    td.find('#save-PosStructureName-button').addClass('hidecontrol'); //hide save buttopn
+                    td.find('#edit-PosStructureName-button').removeClass('hidecontrol');
+                    AlertNotification('Cancel', 'You have cancelled the task.');
+                });
+            })
+    </script>
+    <!--POS Structure edit part-->
+    <!--Shop Signage edit part  ShopSignageName -->
+    <script>
+            $(function () {
+                $('#edit-ShopSignageName-button').click(function (e) {
+                    e.preventDefault();
+                    var td = $(this).closest('td');
+                    $(this).addClass('hidecontrol');
+                    //read id from hidden field and put it in textbox
+                    td.find('#ShopSignageNameCombo').val(td.find('#ShopSignageId').val());
+                    td.find('#ShopSignageName').addClass('hidecontrol');
+                    td.find('#ShopSignageNameCombo').removeClass('hidecontrol');
+                    td.find('#save-ShopSignageName-button').removeClass('hidecontrol');
+                    td.find('#cancel-ShopSignageName-button').removeClass('hidecontrol');
+                });
+
+
+
+                $('#save-ShopSignageName-button').click(function () {
+                    var submitButton = $(this);
+                    var retailerId = '@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()';
+                    var td = $(this).closest('td');
+                    var newName = td.find('#ShopSignageNameCombo').val();
+
+                    var fd = new FormData();
+                    fd.append("RetailerId", retailerId);
+                    fd.append("FieldName", "ShopSignageId");
+                    fd.append("ShopSignageId", newName);
+                    fd.append("UserIp", userip);
+
+
+                    //going for ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "/Rsp/OutletEdit/UpdateLookupId",
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,   // tell jQuery not to set contentType
+                        data: fd,
+                        beforeSend: function () {
+                            submitButton.attr('disabled', 'disabled');
+                            submitButton.html('Working...');
+                        },
+                        success: function (result) {
+                            if (result == 'Success') {
+                                SuccessNotification('Signage successfully updated.')
+                                td.find('#cancel-ShopSignageName-button').addClass('hidecontrol');
+                                td.find('#ShopSignageName').html($("#ShopSignageNameCombo option:selected").text());
+                                td.find('#ShopSignageId').val(newName);
+                                td.find('#ShopSignageName').removeClass('hidecontrol');
+                                td.find('#ShopSignageNameCombo').addClass('hidecontrol');
+                                td.find('#save-ShopSignageName-button').addClass('hidecontrol');
+                                td.find('#edit-ShopSignageName-button').removeClass('hidecontrol');
+                            }
+                            else {
+                                ErrorNotification(result);
+                            }
+                        },
+                        error: function (request, status, error) {
+                            ErrorNotification("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                        },
+                        complete: function () {
+                            submitButton.removeAttr('disabled');
+                            submitButton.html('Save');
+                        }
+                    });
+                });
+
+                $('#cancel-ShopSignageName-button').click(function (e) {
+                    e.preventDefault();
+                    var td = $(this).closest('td');
+                    $(this).addClass('hidecontrol');
+                    td.find('#ShopSignageName').removeClass('hidecontrol'); // show it
+                    td.find('#ShopSignageNameCombo').addClass('hidecontrol'); // hide combo
+                    td.find('#save-ShopSignageName-button').addClass('hidecontrol'); //hide save buttopn
+                    td.find('#edit-ShopSignageName-button').removeClass('hidecontrol');
+                    AlertNotification('Cancel', 'You have cancelled the task.');
+                });
+            })
+    </script>
+    <!--Shop Signage edit part-->
+    <!--ShopType -->
+    <script>
+        $(function () {
+            $('#edit-ShopTypeName-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                //read id from hidden field and put it in textbox
+                td.find('#ShopTypeNameCombo').val(td.find('#ShopTypeId').val());
+                td.find('#ShopTypeName').addClass('hidecontrol');
+                td.find('#ShopTypeNameCombo').removeClass('hidecontrol');
+                td.find('#save-ShopTypeName-button').removeClass('hidecontrol');
+                td.find('#cancel-ShopTypeName-button').removeClass('hidecontrol');
+            });
+
+
+
+            $('#save-ShopTypeName-button').click(function () {
+                var submitButton = $(this);
+                var retailerId = '@ViewBag.Retailer.Rows[0]["RetailerId"].ToString()';
+                var td = $(this).closest('td');
+                var newName = td.find('#ShopTypeNameCombo').val();
+
+                var fd = new FormData();
+                fd.append("RetailerId", retailerId);
+                fd.append("FieldName", "ShopTypeId");
+                fd.append("ShopTypeId", newName);
+                fd.append("UserIp", userip);
+
+
+                //going for ajax
+                $.ajax({
+                    type: "POST",
+                    url: "/Rsp/OutletEdit/UpdateLookupId",
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,   // tell jQuery not to set contentType
+                    data: fd,
+                    beforeSend: function () {
+                        submitButton.attr('disabled', 'disabled');
+                        submitButton.html('Working...');
+                    },
+                    success: function (result) {
+                        if (result == 'Success') {
+                            SuccessNotification('Shop type successfully updated.')
+                            td.find('#cancel-ShopTypeName-button').addClass('hidecontrol');
+                            td.find('#ShopTypeName').html($("#ShopTypeNameCombo option:selected").text());
+                            td.find('#ShopTypeId').val(newName);
+                            td.find('#ShopTypeName').removeClass('hidecontrol');
+                            td.find('#ShopTypeNameCombo').addClass('hidecontrol');
+                            td.find('#save-ShopTypeName-button').addClass('hidecontrol');
+                            td.find('#edit-ShopTypeName-button').removeClass('hidecontrol');
+                        }
+                        else {
+                            ErrorNotification(result);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        ErrorNotification("Failed to save. Error Details -  Request: " + request + ", Status: " + status + ", Error: " + error);
+                    },
+                    complete: function () {
+                        submitButton.removeAttr('disabled');
+                        submitButton.html('Save');
+                    }
+                });
+            });
+
+            $('#cancel-ShopTypeName-button').click(function (e) {
+                e.preventDefault();
+                var td = $(this).closest('td');
+                $(this).addClass('hidecontrol');
+                td.find('#ShopTypeName').removeClass('hidecontrol'); // show it
+                td.find('#ShopTypeNameCombo').addClass('hidecontrol'); // hide combo
+                td.find('#save-ShopTypeName-button').addClass('hidecontrol'); //hide save buttopn
+                td.find('#edit-ShopTypeName-button').removeClass('hidecontrol');
+                AlertNotification('Cancel', 'You have cancelled the task.');
+            });
+        })
+    </script>
+    <!--Shop Signage edit part-->
+    <!--google map-->
+    <script>
+            $(function () {
+                var retailerLat = document.getElementById('Latitude').value;
+                var retailerLon = document.getElementById('Longitude').value;
+                var retailerLocation = new google.maps.LatLng(retailerLat, retailerLon);
+                var opts = {
+                    zoom: 10,
+                    center: retailerLocation,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var map = new google.maps.Map(document.getElementById('map_canvas'), opts);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: retailerLocation
+                });
+            });
+    </script>
+    <!--google map-->
+    @functions {
+        public string IsCurrentStructure(string page)
+        {
+            return ViewBag.Retailer.Rows[0]["PosStructureId"].ToString() == page ? "selected" : null;
+        }
+
+        public string IsItemSelected(string columnName, String optionValue)
+        {
+            return ViewBag.Retailer.Rows[0][columnName].ToString() == optionValue ? "selected" : null;
+        }
+    }
+</body>
+
+</html>
+
+

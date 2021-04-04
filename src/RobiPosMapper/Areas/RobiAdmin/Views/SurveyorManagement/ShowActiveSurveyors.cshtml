@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Surveyor Management > Show " + ViewBag.ActiveInactiveText + " Surveyors";
+}
+
+<style>
+    a.topicon {
+        margin-right: 15px;
+    }
+
+    a.traffic {
+        display: block;
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        width: 50px;
+    }
+
+        a.traffic span {
+            background: url('../../../../Assets/MyImages/TrafficSprite.png') no-repeat;
+            display: block;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        a.traffic:hover span {
+            background-position:  -48px 0;
+        } 
+
+</style>
+
+<div class="row-fluid">
+    <div class="span12">
+     <a class="topicon" title="Add new surveyor." href="~/RobiAdmin/SurveyorManagement/AddNewSurveyor?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/AddNewSurveyors48.png" /></a>
+        <a class="topicon"  title="Show only active surveyors." href="~/RobiAdmin/SurveyorManagement/ShowActiveSurveyors?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowActiveSurveyors48.png" /></a>
+        <a class="topicon" title="Show both active/inactive surveyors." href="~/RobiAdmin/SurveyorManagement/ShowAll?user=@ViewBag.UserName&moid=@ViewBag.MoId"><img src="~/Assets/MyImages/ShowAllSureveyors48.png" /> </a>
+
+        <div class="block well">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h5>@ViewBag.Surveyors.Rows.Count.ToString() @ViewBag.ActiveInactiveText Surveyors. </h5>
+                </div>
+            </div>
+            <div class="table-overflow">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>SR/Login Name</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Region</th>
+                            <th>Description</th>
+                            <th style="text-align:center;" colspan="2">Work Quantity, Viewed & Verification Status</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var row in ViewBag.Surveyors.Rows)
+                        {
+                            <tr>
+                                <td>@row["SurveyorId"].ToString()</td>
+                                <td>@row["LoginName"].ToString().ToUpper()</td>
+                                <td>@row["SurveyorName"].ToString()</td>
+                                <td>@row["ContactNo"].ToString()</td>
+                                <td>@row["RegionName"].ToString()</td>
+                                <td>@CropText(row["Description"].ToString())</td>
+                                <!-- life time-->
+                                <td>
+                                    <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?srid=@row["SurveyorId"].ToString()&user=@ViewBag.UserName&moid=@ViewBag.MoId&statusid=2"><span style="background-color:#cbc8c8;" title="Overall Updated quantity. Click to view the list.">   <img title="Overall Updated quantity. Click to view the list." src="~/Assets/MyImages/EditBlue16.png" />&nbsp;@row["UpdatedQuantity"].ToString()&nbsp;</span></a>&nbsp;&nbsp;
+                                    
+                                    <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?srid=@row["SurveyorId"].ToString()&user=@ViewBag.UserName&moid=@ViewBag.MoId&statusid=3">
+                                        <span style="background-color:#cbc8c8;" title="Overall New quantity. Click to view the list.">
+                                            <img title="Overall New quantity. Click to view the list." src="~/Assets/MyImages/PlusSky16.png" />&nbsp;@row["NewQuantity"].ToString()&nbsp;
+                                        </span>
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <span style="background-color:#cbc8c8;" title="You viewed @row["ViewedQuantity"].ToString() outlets worked by him.">
+                                        <img title="View quantity." src="~/Assets/MyImages/eye.png" />&nbsp;@row["ViewedQuantity"].ToString()&nbsp;
+                                    </span>
+
+                                    &nbsp;&nbsp;
+                                    <span style="background-color:#cbc8c8;" title="Overall Verified quantity.">
+                                        <img title="Overall Verify quantity." src="~/Assets/MyImages/Tick16.png" />&nbsp;@row["VerifiedQuantity"].ToString()&nbsp;
+                                    </span>
+
+
+                                    &nbsp;&nbsp;
+                                    <span style="background-color:#cbc8c8;" title="Verification percentage.">
+                                        <img title="Verification percentage." src="~/Assets/MyImages/percent.png" />&nbsp;@CalculateVerifyPercentage(row) %&nbsp;
+                                    </span>
+                                </td>
+                                <!--/ life time-->
+                                <!-- today-->
+                                <td>
+                                    <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?srid=@row["SurveyorId"].ToString()&user=@ViewBag.UserName&moid=@ViewBag.MoId&statusid=2&fromdate=@DateTime.Today.Date.ToString("dd-MM-yyyy")&todate=@DateTime.Today.Date.ToString("dd-MM-yyyy")"><span style="background-color:#cbc8c8;" title="Today's Updated quantity. Click to view the list.">   <img title="Overall Updated quantity" src="~/Assets/MyImages/EditBlue16.png" />&nbsp;@row["TodaysUpdatedQuantity"].ToString()&nbsp;</span></a>&nbsp;&nbsp;
+                                    <a href="~/RobiAdmin/OutletList/SrWiseRetailersFromRetailer?srid=@row["SurveyorId"].ToString()&user=@ViewBag.UserName&moid=@ViewBag.MoId&statusid=3&fromdate=@DateTime.Today.Date.ToString("dd-MM-yyyy")&todate=@DateTime.Today.Date.ToString("dd-MM-yyyy")">
+                                        <span style="background-color:#cbc8c8;" title="Today's New quantity. Click to view the list.">
+                                            <img title="Today's New quantity." src="~/Assets/MyImages/PlusSky16.png" />&nbsp;@row["TodaysNewQuantity"].ToString()&nbsp;
+                                        </span>
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <span style="background-color:#cbc8c8;" title="Today's' Verified quantity.">
+                                        <img title="Verified quantity." src="~/Assets/MyImages/Tick16.png" />&nbsp;@row["TodaysVerifiedQuantity"].ToString()&nbsp;
+                                    </span>
+                                </td>
+                                <!--/ today-->
+                                <td>
+                                    @if (ViewBag.ShowInactiveImage==1)
+                                    {
+                                        <text>
+                                    <a class="traffic" onclick="return confirmDeactivate()" href="~/RobiAdmin/SurveyorManagement/DeactivateSurveyor?user=@ViewBag.UserName&moid=@ViewBag.MoId&srid=@row["SurveyorId"].ToString()" title="@row["LoginName"].ToString().ToUpper() is currently active. Click here to inactive."><span></span></a>
+                                    </text>
+                                    }
+                                    else
+                                    {
+                                      <text>
+                                    <img src="~/Assets/MyImages/TrafficLightOff16.png" title="This surveyor is currently inactive." />
+                                    </text>   
+                                    }
+
+                                   
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@functions{
+
+    public string IsActive(System.Data.DataRow row)
+    {
+        return Convert.ToBoolean(row["IsActive"]) == true ? "Yes" : "No";
+    }
+
+
+    public string CropText(String text)
+    {
+        if (text.Length > 10)
+        {
+            return text.Substring(0, 10);
+        }
+        else
+        {
+            return text;
+        }
+    }
+
+    public int CalculateVerifyPercentage(System.Data.DataRow row)
+    {
+        int percentage = 0;
+
+        int veryfied = Convert.ToInt32(row["VerifiedQuantity"]);
+        int updated = Convert.ToInt32(row["UpdatedQuantity"]);
+        int newq = Convert.ToInt32(row["NewQuantity"]);
+        if (veryfied>0)
+        {
+            int total = updated + newq;
+            percentage = (veryfied * 100) / total;
+        }
+        return percentage;
+    }
+
+}
+
+<script>
+
+    function confirmDeactivate() {
+        if (confirm("Are you sure to deactivate this surveyor?") == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
